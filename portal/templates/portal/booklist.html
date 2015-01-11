@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}{{page_title}}{% endblock %}
+
+{% block content %}
+<div class="custom-center-area-70">
+        <h1>Liste der Bücher</h1>
+        {% if perms.add_book %}
+        <a href="{% url 'addBook' %}" class="btn btn-primary">Buch zufügen</a>
+        {% endif %}
+        <a href="{% url 'addAuthor' %}" class="btn btn-primary">Autor zufügen</a>
+        <table class="table">
+            <tr>
+                <th>Title</th>
+                <th>Autoren</th>
+                <th>&nbsp;</th>
+            </tr>
+    {% for book in books%}
+        <tr>
+            <td><a href="{% url 'detailBook' pk=book.pk %}">{{ book.title }}</a></td>
+            <td>
+                {% for a in book.authors.all %}{# |join:', ' #}
+                {{ a }}<br />
+                {% endfor %}
+                {#{ book.authors.all|join:', ' }#}
+            </td>
+            <td><a href="{% url 'editBook' pk=book.pk %}">{% bootstrap_icon 'edit' %}</a></td>
+        </tr>
+    {% endfor %}
+        </table>
+
+      
+</div>
+{% endblock %}

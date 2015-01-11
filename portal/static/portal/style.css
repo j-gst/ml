@@ -1,0 +1,60 @@
+
+
+
+
+.custom-book-add {
+    float: left;
+    margin: 20px;
+    width:30%;
+    height: 400px;
+    background-color: yellow;
+}
+
+
+.custom-book-details{
+    float: left;
+    margin: 20px;
+    width:40%;
+    background-color: silver;
+}
+.custom-book-cover{
+    float: left;
+    margin: 20px;
+    max-width:30%;
+}
+.page-header{
+    height: 100px;
+}
+
+.custom-center-area{
+  
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 50%;
+    background-color: white;
+}
+
+.custom-center-area-70{
+  
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 70%;
+    background-color: white;
+}
+.custom-comment-area{
+  
+    
+   
+    padding: 10px;
+    width: 50%;
+    background-color: yellow;
+}
+.custom-space{
+    margin-top: 60px;
+}
+
+.btn{
+    margin-right: 10px;
+}

@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}{{page_title}}{% endblock %}
+
+{% block content %}
+
+
+<div class="custom-book-cover">
+     <img src="{{MEDIA_URL}}{{book.cover}}" alt="Cover" height="300" width="200"> 
+</div>
+
+
+<div class="custom-book-details">
+<h1>{{ book }}</h1>
+
+<p>
+{% for author in book.authors.all%}
+     <span style="margin-right:10px;" >{{ author }}</span>
+{% endfor %} 
+</p>
+
+<p> <b>ISBN: </b>{{ book.isbn }}</p>
+<p> <b>Beschreibung: </b></p><p>{{ book.description }}</p>
+
+
+</div>
+
+<div class="custom-book-add">
+
+<b>Durchschnittliche Bewertung: {{ avg }}</b>
+<p>Anzahl Bewertungen: {{count}}</p>
+
+
+
+
+
+
+
+
+
+
+
+<div>
+{% if ownRating == 0 %}
+
+<b>Sie haben dieses Buch noch nicht bewertet:</b>
+<form class="form-inline" role="form" method="post" action="{% url 'rateBook' pk=book.id %}" >
+    <div class="form-group">
+    {% for field in form2%}
+    {{ field }}
+    {% endfor %}
+    </div>
+    {% csrf_token %}
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" style="float:left">
+             bewerten
+        </button>
+   </div>
+</form>
+
+
+{% else %}  
+<b>Sie haben dieses Buch schon  bewertet: {{ ownRating }}</b>
+{% endif %}    
+   
+   
+   
+</div>   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+</div>
+
+
+<hr>
+
+<hr>
+<h2>Kommentare:</h2>
+<hr>
+<div class="custom-comment-area">
+<form action="{% url 'commentBook' pk=book.id %}" method="post" accept-charset="utf-8">
+    {% bootstrap_form form %}
+    {% csrf_token %}
+    
+    {% buttons %}
+        <button type="submit" class="btn btn-primary" style="float:left">
+            {#% bootstrap_icon "star" %#} Abschicken
+        </button>
+   {% endbuttons %}
+  
+</form>
+</div>
+<br><br><hr>
+    {% for comment in comments%}
+        <div class="custom-comment">
+        {{comment.text}}  {{comment.user.username}} {{comment.commentdate|date:'d.m.Y H:i'}}
+        </div>
+    {% endfor %}
+
+
+
+{% endblock %}

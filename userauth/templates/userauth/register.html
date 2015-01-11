@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+ {% load bootstrap3 %}
+{% block title %} Registrieren{% endblock %}
+
+{% block toggle_login %}{% endblock %}
+
+{% block content %}
+<div class="custom-center-area">
+<form action="{% url 'userauth_register' %}" method="post" accept-charset="utf-8">
+    {% bootstrap_form register_form %}
+    {% csrf_token %}
+    
+    {% buttons %}
+        <button type="submit" class="btn btn-primary" style="float:left">
+            {#% bootstrap_icon "star" %#} registrieren
+        </button>
+   {% endbuttons %}
+  
+</form>
+</div>
+{% endblock %}

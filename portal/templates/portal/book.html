@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+
+
+
+
+
+
+
+
+{% block title %}{{page_title}}{% endblock %}
+
+{% block content %}
+<!--
+<script>
+
+
+
+$( document ).ready(function() {
+
+
+$('#id_isbn').change(function() {
+alert( "Handler for .change() called." );
+var input = $('#id_isbn').val();
+$('#formAU').append($(input));
+});
+
+
+
+});
+
+</script>
+-->
+
+
+
+    <script src="http://malsup.github.com/jquery.form.js"></script> 
+    <script> 
+        $(document).ready(function() { 
+            test = $('#formAU').ajaxForm(function() { 
+               
+               
+              $('#InfoBox').css('visibility','visible');
+               $('#btn_col').trigger('click');
+               $('#id_firstname').val(""); 
+               $('#id_lastname').val(""); 
+                
+
+              setTimeout(function() {
+                location.reload(); 
+              }, 500);
+                
+                
+                
+               
+            }); 
+        }); 
+    </script> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <h1>{{ page_title }}</h1>
+     <form method="post" enctype="multipart/form-data" action="" class="form-horizontal">
+        {% csrf_token %}
+        {% bootstrap_form book_form layout='horizontal' %}
+        {% buttons layout='horizontal' %}
+        <button type="submit" class="btn btn-primary">
+         {#% bootstrap_icon "star" %#} Submit
+        </button>
+        <a id="btn_col" class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Autor hinzuf&uuml;gen</a>
+        <span id="InfoBox" style="visibility:hidden; color:green; "> Autor angelegt!</span>
+
+        {% endbuttons %}
+        
+        
+        
+    </form>
+    
+    
+    
+      
+
+
+
+<div class="collapse" id="collapseExample">
+  <div class="well">
+   
+   
+    <form id="formAU" method="post" enctype="multipart/form-data" action="/portal/book/add/" class="form-horizontal">
+        {% csrf_token %}
+        {% bootstrap_form author_form layout='horizontal' %}
+        {% buttons layout='horizontal' %}
+
+        <button type="submit" class="btn btn-primary">
+         {#% bootstrap_icon "star" %#} Submit
+        </button>
+        {% endbuttons %}
+    </form>
+   
+
+   
+  </div>
+</div>
+    
+    
+   
+    
+
+
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block title %} Registrieren{% endblock %}
+
+{% block toggle_login %}{% endblock %}
+
+
+
+
+{% block content %} 
+
+<div class="custom-center-area">
+<form action="{% url 'userauth_profile' %}" method="post" accept-charset="utf-8">
+    {% bootstrap_form profile_form  %}
+    {% csrf_token %}
+    
+   {% buttons %}
+        <button type="submit" class="btn btn-primary" style="float:left">
+            {#% bootstrap_icon "star" %#} speichern
+        </button>
+        <a class="btn btn-primary" href="{% url 'userauth_password_change' %}">Passwort ändern</a>
+   {% endbuttons %}
+    
+    
+  
+</form>
+</div>
+
+{% endblock %}

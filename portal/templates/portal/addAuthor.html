@@ -1,0 +1,19 @@
+{# Beate 02.01.2015#}
+        {% extends 'base.html' %}
+        {% load bootstrap3 %}
+{# End Beate 02.01.2015 #}
+
+{% block content %}
+<h1>Autor zufügen</h1>
+
+     <form method="post" enctype="multipart/form-data" action="" class="form-horizontal">
+        {% csrf_token %}
+        {% bootstrap_form author_form layout='horizontal' %}
+        {% buttons layout='horizontal' %}
+
+        <button type="submit" class="btn btn-primary">
+         {#% bootstrap_icon "star" %#} Submit
+        </button>
+        {% endbuttons %}
+    </form>
+{% endblock %}
