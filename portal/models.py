@@ -3,6 +3,23 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.auth.models import User
 
 @python_2_unicode_compatible
+class BookOwning(models.Model):
+    CHOICE = (
+        (1, 'Ja'),
+        (2, 'Nein'),
+    )
+
+    own = models.CharField(max_length=5, default = 2, choices = CHOICE )
+    read = models.CharField(max_length=5, default = 2, choices = CHOICE )
+    user = models.ForeignKey(User, unique=False)
+    book = models.ForeignKey('Book', unique=False)
+    owningdate = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return 'Gehoert mir: %s, Habe ich gelesen: %s ' % (self.own, self.read)
+    class Meta:
+        unique_together = (('user', 'book'),)
+
+@python_2_unicode_compatible
 class BookRating(models.Model):
     CHOICE = (
     (1, '1'),
