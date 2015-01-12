@@ -9,7 +9,9 @@
         {% if perms.add_book %}
         <a href="{% url 'addBook' %}" class="btn btn-primary">Buch zufügen</a>
         {% endif %}
+        {% if perms.add_author %}
         <a href="{% url 'addAuthor' %}" class="btn btn-primary">Autor zufügen</a>
+        {% endif %}
         <table class="table">
             <tr>
                 <th>Title</th>
@@ -25,7 +27,11 @@
                 {% endfor %}
                 {#{ book.authors.all|join:', ' }#}
             </td>
-            <td><a href="{% url 'editBook' pk=book.pk %}">{% bootstrap_icon 'edit' %}</a></td>
+            <td>
+                {% if perms.add_book %}
+                <a href="{% url 'editBook' pk=book.pk %}">{% bootstrap_icon 'edit' %}</a>
+                {% endif %}
+            </td>
         </tr>
     {% endfor %}
         </table>
