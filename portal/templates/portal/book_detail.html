@@ -12,61 +12,63 @@
 
 
 <div class="custom-book-details">
-<h1>{{ book }}</h1>
+    <h1>{{ book }}</h1>
 
-<p>
-{% for author in book.authors.all%}
-     <span style="margin-right:10px;" >{{ author }}</span>
-{% endfor %} 
-</p>
+    <p>
+    {% for author in book.authors.all%}
+         <span style="margin-right:10px;" >{{ author }}</span>
+    {% endfor %}
+    </p>
 
-<p> <b>ISBN: </b>{{ book.isbn }}</p>
-<p> <b>Beschreibung: </b></p><p>{{ book.description }}</p>
-
-
+    <p> <b>ISBN: </b>{{ book.isbn }}</p>
+    <p> <b>Beschreibung: </b></p><p>{{ book.description }}</p>
 </div>
 
 <div class="custom-book-add">
 
-<b>Durchschnittliche Bewertung: {{ avg }}</b>
-<p>Anzahl Bewertungen: {{count}}</p>
+    <b>Durchschnittliche Bewertung: {{ avg }}</b>
+    <p>Anzahl Bewertungen: {{count}}</p>
 
 
+    <div>
+    {% if ownRating == 0 %}
+
+    <b>Sie haben dieses Buch noch nicht bewertet:</b>
+    <form class="form-inline" role="form" method="post" action="{% url 'rateBook' pk=book.id %}" >
+        <div class="form-group">
+        {% for field in form2%}
+        {{ field }}
+        {% endfor %}
+        </div>
+        {% csrf_token %}
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" style="float:left">
+                 bewerten
+            </button>
+       </div>
+    </form>
 
 
+    {% else %}
+    <b>Sie haben dieses Buch schon  bewertet: {{ ownRating }}</b>
+    {% endif %}
 
 
-
-
-
-
-
-<div>
-{% if ownRating == 0 %}
-
-<b>Sie haben dieses Buch noch nicht bewertet:</b>
-<form class="form-inline" role="form" method="post" action="{% url 'rateBook' pk=book.id %}" >
-    <div class="form-group">
-    {% for field in form2%}
-    {{ field }}
-    {% endfor %}
     </div>
-    {% csrf_token %}
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary" style="float:left">
-             bewerten
-        </button>
-   </div>
-</form>
-
-
-{% else %}  
-<b>Sie haben dieses Buch schon  bewertet: {{ ownRating }}</b>
-{% endif %}    
-   
-   
-   
-</div>   
+    <div>
+        <br><br>
+        <b>Geben Sie an, ob Sie dieses Buch besitzen und ob Sie es bereits gelesen haben:</b>
+        <form class="form-inline" role="form" method="post" action="{% url 'ownBook' pk=book.id %}" >
+            {% csrf_token %}
+            {% bootstrap_form form3 layout='inline' %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="float:left">
+                         speichern
+                    </button>
+               </div>
+         </form>
+    </div>
+</div>
    
    
    

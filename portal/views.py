@@ -39,6 +39,7 @@ def addAuthor(request):
 def detailBook(request, pk = None):
     form = BookCommentForm()
     form2 = BookRatingForm()
+    form3 = BookOwningForm()
     book = get_object_or_404(Book, pk = pk)
     comments = BookComment.objects.all().filter(book_id=pk).order_by('-commentdate')
     count = BookRating.objects.all().filter(book_id=pk).count() 
@@ -51,7 +52,7 @@ def detailBook(request, pk = None):
     except:
         ownRating = 0
         
-    context = {'book': book,'form': form,'form2': form2,'comments':comments,'count':count,'avg':avg, 'ownRating': ownRating}
+    context = {'book': book,'form': form,'form2': form2, 'form3': form3,'comments':comments,'count':count,'avg':avg, 'ownRating': ownRating}
     return render(request, 'portal/book_detail.html', context)
 
     
@@ -67,6 +68,16 @@ def commentBook(request, pk = None):
             messages.error(request, 'Kommentar konnte nicht gespeichert werden.')
     return HttpResponseRedirect(('/portal/book/detail/'+pk+'/'))
 
+def ownBook(request, pk = None):
+    owning = BookOwning(user_id=request.user.id, book_id=pk)
+    if request.method == 'POST':
+        form = BookOwningForm(request.POST, instance = owning)
+
+        if form.is_valid():
+            form.save()
+        else:
+            messages.error(request, 'Beim speichern ist ein Fehler aufgetreten.')
+    return HttpResponseRedirect(('/portal/book/detail/'+pk+'/'))
     
     
     

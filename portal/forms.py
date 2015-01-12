@@ -3,6 +3,7 @@ from django import forms
 from portal.models import *
 from django.forms.models import BaseInlineFormSet
 from django.forms.models import inlineformset_factory
+from django.utils.translation import ugettext_lazy as _
 
 
 # Create the form class.
@@ -22,8 +23,16 @@ class BookCommentForm(ModelForm):
         fields = ['text', ]
 
 class BookRatingForm(ModelForm):
-
-
     class Meta:
         model = BookRating
         fields = ['rating', ]
+
+
+class BookOwningForm(ModelForm):
+    class Meta:
+        model = BookOwning
+        fields = ['own', 'read',]
+        labels = {
+            'own': _('Gehoert mir'),
+            'read': _('Habe ich gelesen'),
+        }

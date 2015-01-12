@@ -4,13 +4,17 @@ from django.contrib.auth.models import User
 
 @python_2_unicode_compatible
 class BookOwning(models.Model):
-    CHOICE = (
-        (1, 'Ja'),
-        (2, 'Nein'),
+    OWN = (
+        ('Ja', 'Ja'),
+        ('Nein', 'Nein'),
+    )
+    READ = (
+        ('Ja', 'Ja'),
+        ('Nein', 'Nein'),
     )
 
-    own = models.CharField(max_length=5, default = 2, choices = CHOICE )
-    read = models.CharField(max_length=5, default = 2, choices = CHOICE )
+    own = models.CharField(max_length=15, choices = OWN, default = 'Nein' )
+    read = models.CharField(max_length=15, choices = READ, default = 'Nein' )
     user = models.ForeignKey(User, unique=False)
     book = models.ForeignKey('Book', unique=False)
     owningdate = models.DateTimeField(auto_now=True)
