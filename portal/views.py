@@ -42,17 +42,27 @@ def detailBook(request, pk = None):
     form3 = BookOwningForm()
     book = get_object_or_404(Book, pk = pk)
     comments = BookComment.objects.all().filter(book_id=pk).order_by('-commentdate')
-    count = BookRating.objects.all().filter(book_id=pk).count() 
-    avg = ("%.1f" % round(BookRating.objects.all().filter(book_id=pk).aggregate(Avg('rating'))['rating__avg'],1))
-    ownRating = BookRating.objects.all().filter(user_id=request.user.id)
+    count = BookRating.objects.all().filter(book_id=pk).count()
+    if count != 0:
+        avg = ("%.1f" % round(BookRating.objects.all().filter(book_id=pk).aggregate(Avg('rating'))['rating__avg'],1))
+    else:
+        avg = 0
+    ownRating = BookRating.objects.all().filter(user_id=request.user.id, book_id = pk)
     #rated = False if ownRating == 0 else  True
     
     try:
         ownRating = ownRating[0]
     except:
         ownRating = 0
+
+    owning = BookOwning.objects.all().filter(user_id=request.user.id, book_id = pk)
+
+    try:
+        owning = owning[0]
+    except:
+        owning = 0
         
-    context = {'book': book,'form': form,'form2': form2, 'form3': form3,'comments':comments,'count':count,'avg':avg, 'ownRating': ownRating}
+    context = {'book': book,'form': form,'form2': form2, 'form3': form3,'comments':comments,'count':count,'avg':avg, 'ownRating': ownRating, 'owning': owning}
     return render(request, 'portal/book_detail.html', context)
 
     

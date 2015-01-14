@@ -25,9 +25,12 @@
 </div>
 
 <div class="custom-book-add">
-
+    {% if avg %}
     <b>Durchschnittliche Bewertung: {{ avg }}</b>
+    {% endif %}
+    {% if count %}
     <p>Anzahl Bewertungen: {{count}}</p>
+    {% endif %}
 
 
     <div>
@@ -56,6 +59,7 @@
 
     </div>
     <div>
+        {% if owning == 0 %}
         <br><br>
         <b>Geben Sie an, ob Sie dieses Buch besitzen und ob Sie es bereits gelesen haben:</b>
         <form class="form-inline" role="form" method="post" action="{% url 'ownBook' pk=book.id %}" >
@@ -67,6 +71,11 @@
                     </button>
                </div>
          </form>
+        {% else %}
+        <b>Sie haben ihre Angaben schon gemacht:<br> </b>
+        <span>Buch gelesen: {{ owning.own }}</span><br>
+        <span>Buch gehört mir: {{ owning.read }}</span>
+        {% endif %}
     </div>
 </div>
    
