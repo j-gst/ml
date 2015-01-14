@@ -78,20 +78,7 @@
         {% endif %}
     </div>
 </div>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-</div>
+
 
 
 <hr>
@@ -99,25 +86,52 @@
 <hr>
 <h2>Kommentare:</h2>
 <hr>
+
 <div class="custom-comment-area">
+    {% if user.is_authenticated %}
 <form action="{% url 'commentBook' pk=book.id %}" method="post" accept-charset="utf-8">
     {% bootstrap_form form %}
     {% csrf_token %}
     
     {% buttons %}
         <button type="submit" class="btn btn-primary" style="float:left">
-            {#% bootstrap_icon "star" %#} Abschicken
+            {#% bootstrap_icon "star" %#} Kommetieren
         </button>
    {% endbuttons %}
   
 </form>
+    {% else %}
+    <b>Sie müssen eingeloggt sein, um Kommentare abgeben zu können.</b>
+    {% endif %}
 </div>
+
 <br><br><hr>
+      <div class="container-fluid">
+     <div class="row">
+     <div class="col-md-7 col-md-offset-0">
     {% for comment in comments%}
+
         <div class="custom-comment">
-        {{comment.text}}  {{comment.user.username}} {{comment.commentdate|date:'d.m.Y H:i'}}
+            <div class="row comment-head">
+                <div class="col-md-8">
+                    {{comment.user.username}}
+                </div>
+                <div class="col-md-4 comment-date">
+                    {{comment.commentdate|date:'d.m.Y H:i'}}
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    {{comment.text}}
+                </div>
+            </div>
         </div>
+
     {% endfor %}
+     </div>
+     </div>
+     </div>
 
 
 

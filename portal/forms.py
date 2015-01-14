@@ -21,6 +21,7 @@ class BookCommentForm(ModelForm):
     class Meta:
         model = BookComment
         fields = ['text', ]
+        labels = {'text': _('Geben Sie Ihren Kommentar ein:'),}
 
 class BookRatingForm(ModelForm):
     class Meta:
