@@ -6,6 +6,7 @@
 
 .custom-book-add {
     float: left;
+    padding: 10px;
     margin: 20px;
     width:30%;
     height: 400px;
@@ -16,6 +17,7 @@
 
 
 .custom-book-details{
+    padding: 10px;
     float: left;
     margin: 20px;
     width:40%;
@@ -36,6 +38,7 @@
     margin-right: auto;
     padding: 10px;
     width: 50%;
+ 
     background-color: white;
 }
 
@@ -48,9 +51,11 @@
     background-color: white;
 }
 .custom-comment-area{
-   
+ 
+    clear: both;
     padding: 10px;
-    width: 50%;
+    margin: 15px;
+    width: 57%;
     border: 1px solid #5e5e5e;
     border-radius: 8px;
 }

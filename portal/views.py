@@ -113,27 +113,26 @@ def rateBook(request, pk = None):
 @permission_required('portal.add_book', login_url='/user/login/')
 #Beate 02.01.2015
 def editBook(request, pk = None):
-    link = 'portal/book.html'
+
     form = BookForm()
     form2 = AuthorForm()
-    
     author = Author()
+    book = Book()
     if pk == None:
-        book = Book()
-        
         page_title = 'Neues Buch speichern'
     else:
         book = get_object_or_404(Book, pk = pk)
         page_title = 'Buch bearbeiten'
     if request.method == 'POST':
-        form = BookForm(request.POST, request.FILES, instance = book)
+        form = BookForm(request.POST, instance = book)
         form2 = AuthorForm(request.POST, instance = author)
         
         if form2.is_valid() :
             form2.save()
             messages.success(request, 'Autor wurde gespeichert.')
             return HttpResponseRedirect(('/portal/book/add/'))
-        elif form.is_valid():
+        if form.is_valid():
+         
             newbook = form.save(commit = False)
             try:
                 newbook.cover = request.FILES['cover']
@@ -150,15 +149,26 @@ def editBook(request, pk = None):
     else:
         form = BookForm(instance = book)
         context = {'page_title':page_title,'book_form': form, 'author_form': form2,}
-        return render(request, link, context)
+        return render(request, 'portal/book.html', context)
 
 
         
-def books(request):
-    page_title = (u'Buecherliste')
-    books = Book.objects.all().order_by('title')
+def books(request, page = '1'):
+    
+    page = int(page)
+    elements_per_page = 3
+    start = (page-1) * elements_per_page
+    end = start + elements_per_page
+    
+    
+    allBooks = Book.objects.all().order_by('title')
+    books = allBooks[start:end]
+    number = allBooks.count()
+    
+    pageNum = int(round(number / float(elements_per_page),0))
 
-    return render(request, 'portal/booklist.html', {'books':books})
+    
+    return render(request, 'portal/booklist.html', {'books':books, 'number':number, 'pageNum': pageNum, 'pageRange':range(1,pageNum+1),'page':page })
 
 #End Beate 02.01.2015
 

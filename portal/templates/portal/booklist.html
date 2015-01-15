@@ -35,6 +35,29 @@
         </tr>
     {% endfor %}
         </table>
+        
+        <nav>
+  <ul class="pagination">
+    <li {% if 1 == page %} class="disabled" {% endif %}>
+      <a  href="{% url 'books' page=1  %}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    
+   
+    {% for count in pageRange %}
+        <li {% if count == page %} class="active" {% endif %}><a  href="{% url 'books' page=count  %}">{{count}}</a></li>
+    {% endfor %}
+    
+    <li {% if pageNum == page %} class="disabled" {% endif %}>
+      <a href="{% url 'books' page=pageNum  %}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
 
       
 </div>

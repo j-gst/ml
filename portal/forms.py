@@ -15,13 +15,16 @@ class AuthorForm(ModelForm):
 class BookForm(ModelForm):
     class Meta:
         model = Book
-
+        fields = ['title', 'isbn', 'description', 'cover', 'authors']
 
 class BookCommentForm(ModelForm):
     class Meta:
         model = BookComment
         fields = ['text', ]
         labels = {'text': _('Geben Sie Ihren Kommentar ein:'),}
+        widgets = {
+          'text': forms.Textarea(attrs={'rows':4, 'cols':15}),
+        }
 
 class BookRatingForm(ModelForm):
     class Meta:

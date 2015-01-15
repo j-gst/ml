@@ -7,7 +7,7 @@
 
 
 <div class="custom-book-cover">
-     <img src="{{MEDIA_URL}}{{book.cover}}" alt="Cover" height="300" width="200"> 
+     <img src="{{MEDIA_URL}}{{book.cover}}" alt="Cover" height="400" width="300"> 
 </div>
 
 
@@ -81,15 +81,18 @@
 
 
 
-<hr>
 
+
+
+
+<div class="custom-comment-area">
 <hr>
 <h2>Kommentare:</h2>
 <hr>
 
-<div class="custom-comment-area">
+
     {% if user.is_authenticated %}
-<form action="{% url 'commentBook' pk=book.id %}" method="post" accept-charset="utf-8">
+<form  action="{% url 'commentBook' pk=book.id %}" method="post" accept-charset="utf-8">
     {% bootstrap_form form %}
     {% csrf_token %}
     

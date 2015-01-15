@@ -75,8 +75,9 @@ class Book(models.Model):
     isbn = models.CharField( max_length=100, )
     description = models.TextField(u'Beschreibung', blank=True)
     authors = models.ManyToManyField(Author, verbose_name=u'Autoren')
-    cover = models.FileField(upload_to='cover/%Y%m%d')
+    cover = models.FileField(upload_to='cover/%Y%m%d', default='cover/default/default.png')
 
+    
     def __str__(self):
         return self.title
     def printAuthors(self):
