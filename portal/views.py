@@ -153,20 +153,26 @@ def editBook(request, pk = None):
 
 
         
-def books(request, page = '1'):
+def books(request, page = '1', search=''):
+    
+    
+    allBooks = Book.objects.all().order_by('title').filter(title__contains=search)
+    
+    
+    
+    
     
     page = int(page)
-    elements_per_page = 3
+    elements_per_page = 5
     start = (page-1) * elements_per_page
     end = start + elements_per_page
-    
-    
-    allBooks = Book.objects.all().order_by('title')
+
     books = allBooks[start:end]
     number = allBooks.count()
     
     pageNum = int(round(number / float(elements_per_page),0))
-
+    if pageNum == 0:
+        pageNum = 1
     
     return render(request, 'portal/booklist.html', {'books':books, 'number':number, 'pageNum': pageNum, 'pageRange':range(1,pageNum+1),'page':page })
 
