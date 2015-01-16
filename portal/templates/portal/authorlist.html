@@ -5,32 +5,32 @@
 
 {% block content %}
 <div class="custom-center-area-70">
-        <h1>Liste der Bücher</h1>
+        <h1>Liste der Autoren</h1>
         {% if perms.add_book %}
         <a href="{% url 'addBook' %}" class="btn btn-primary">Buch zufügen</a>
         {% endif %}
         {% if perms.add_author %}
         <a href="{% url 'addAuthor' %}" class="btn btn-primary">Autor zufügen</a>
-        <a href="{% url 'authorlist' %}" class="btn btn-primary">Autorenliste</a>
+
         {% endif %}
         <table class="table">
             <tr>
-                <th>Title</th>
-                <th>Autoren</th>
+                <th>Nachname</th>
+                <th>Vorname</th>
                 <th>&nbsp;</th>
             </tr>
-    {% for book in books%}
+
+    {% for author in authors%}
         <tr>
-            <td><a href="{% url 'detailBook' pk=book.pk %}">{{ book.title }}</a></td>
             <td>
-                {% for a in book.authors.all %}{# |join:', ' #}
-                {{ a }}<br />
-                {% endfor %}
-                {#{ book.authors.all|join:', ' }#}
+                {{ author.lastname }}
             </td>
             <td>
-                {% if perms.add_book %}
-                <a href="{% url 'editBook' pk=book.pk %}">{% bootstrap_icon 'edit' %}</a>
+                {{ author.firstname }}
+            </td>
+            <td>
+                {% if perms.edit_author %}
+                <a href="{% url 'editAuthor' pk=author.pk %}">{% bootstrap_icon 'edit' %}</a>
                 {% endif %}
             </td>
         </tr>
@@ -40,18 +40,18 @@
         <nav>
   <ul class="pagination">
     <li {% if 1 == page %} class="disabled" {% endif %}>
-      <a  href="{% url 'books' page=1  %}" aria-label="Previous">
+      <a  href="{% url 'authors' page=1  %}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
     
    
     {% for count in pageRange %}
-        <li {% if count == page %} class="active" {% endif %}><a  href="{% url 'books' page=count  %}">{{count}}</a></li>
+        <li {% if count == page %} class="active" {% endif %}><a  href="{% url 'authors' page=count  %}">{{count}}</a></li>
     {% endfor %}
     
     <li {% if pageNum == page %} class="disabled" {% endif %}>
-      <a href="{% url 'books' page=pageNum  %}" aria-label="Next">
+      <a href="{% url 'authors' page=pageNum  %}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>

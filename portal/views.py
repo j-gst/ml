@@ -17,22 +17,54 @@ def index(request):
     return render(request, 'portal/index.html', None)
    
 
-def addAuthor(request):
+def authors(request, page = '1', search=''):
+
+    allAuthors = Author.objects.all().order_by('lastname').filter(lastname__contains=search).filter(firstname__contains=search)
+
+    page = int(page)
+    elements_per_page = 5
+    start = (page-1) * elements_per_page
+    end = start + elements_per_page
+
+    authors = allAuthors[start:end]
+    number = allAuthors.count()
+
+    pageNum = int(round(number / float(elements_per_page),0))
+    if pageNum == 0:
+        pageNum = 1
+
+    return render(request, 'portal/authorlist.html', {'authors':authors, 'number':number, 'pageNum': pageNum, 'pageRange':range(1,pageNum+1),'page':page })
+
+
+def addAuthor(request, pk = None):
     form = AuthorForm()
+    author = Author()
+
+    if pk == None:
+        page_title = 'Neuen Autor speichern'
+    else:
+        author = get_object_or_404(Author, pk = pk)
+        page_title = 'Autor bearbeiten'
 
     if request.method == 'POST':
-        form = AuthorForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Autor wurde gespeichert.')
-            return HttpResponseRedirect(('/portal/books/'))
+        form = AuthorForm(request.POST, instance = author)
+        if request.POST.get('submit'):
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Autor wurde gespeichert.')
+                return HttpResponseRedirect(('/portal/authorlist/'))
+            else:
+                context = {'author_form': form}
+                return render(request, 'portal/addAuthor.html', context)
+        elif request.POST.get('delete'):
+            author.delete()
+            return HttpResponseRedirect(('/portal/authorlist/'))
         else:
-            context = {'author_form': form}
-            return render(request, 'portal/addAuthor.html', context)
-
-
+            messages.success(request, 'Etwas lief schief.')
+            return HttpResponseRedirect(('/portal/authorlist/'))
     else:
-        context = {'author_form': form}
+        form = AuthorForm(request.POST, instance = author)
+        context = {'page_title':page_title,'author_form': form}
         return render(request, 'portal/addAuthor.html', context)
 
 
@@ -92,7 +124,6 @@ def ownBook(request, pk = None):
     
     
 def rateBook(request, pk = None):
-    
     rating = BookRating(user_id=request.user.id, book_id=pk)
     if request.method == 'POST':
         form = BookRatingForm(request.POST, instance = rating)
@@ -126,13 +157,16 @@ def editBook(request, pk = None):
     if request.method == 'POST':
         form = BookForm(request.POST, instance = book)
         form2 = AuthorForm(request.POST, instance = author)
+
+
+        form = BookForm(request.POST, instance = book)
+        form2 = AuthorForm(request.POST, instance = author)
         if request.POST.get('submit'):
             if form2.is_valid() :
                 form2.save()
                 messages.success(request, 'Autor wurde gespeichert.')
                 return HttpResponseRedirect(('/portal/book/add/'))
             if form.is_valid():
-
                 newbook = form.save(commit = False)
                 try:
                     newbook.cover = request.FILES['cover']
@@ -140,7 +174,7 @@ def editBook(request, pk = None):
                     pass
                 newbook.save()
                 messages.success(request, 'Buch wurde gespeichert.')
-                return HttpResponseRedirect(('/portal/books/'))
+                return HttpResponseRedirect(('/portal/books/1/'))
             else:
                 messages.error(request, (u'Die Eingabe ist nicht vollstaendig korrekt.'))
         elif request.POST.get('delete'):
@@ -148,7 +182,7 @@ def editBook(request, pk = None):
             return HttpResponseRedirect(('/portal/books/1/'))
         else:
             messages.success(request, 'Etwas lief schief.')
-            return HttpResponseRedirect(('/portal/books/'))
+            return HttpResponseRedirect(('/portal/books/1/'))
 
     else:
         form = BookForm(instance = book)
@@ -158,14 +192,9 @@ def editBook(request, pk = None):
 
         
 def books(request, page = '1', search=''):
-    
-    
+
     allBooks = Book.objects.all().order_by('title').filter(title__contains=search)
-    
-    
-    
-    
-    
+
     page = int(page)
     elements_per_page = 5
     start = (page-1) * elements_per_page
@@ -180,7 +209,6 @@ def books(request, page = '1', search=''):
     
     return render(request, 'portal/booklist.html', {'books':books, 'number':number, 'pageNum': pageNum, 'pageRange':range(1,pageNum+1),'page':page })
 
-#End Beate 02.01.2015
 
 
 

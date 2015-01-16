@@ -4,15 +4,18 @@
 {# End Beate 02.01.2015 #}
 
 {% block content %}
-<h1>Autor zufügen</h1>
+<h1>{{ page_title }}</h1>
 
      <form method="post" enctype="multipart/form-data" action="" class="form-horizontal">
         {% csrf_token %}
         {% bootstrap_form author_form layout='horizontal' %}
         {% buttons layout='horizontal' %}
 
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary" value="submit">
          {#% bootstrap_icon "star" %#} Submit
+        </button>
+         <button type="submit" class="btn btn-primary" value="delete">
+         {#% bootstrap_icon "star" %#} Delete
         </button>
         {% endbuttons %}
     </form>

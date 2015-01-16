@@ -58,7 +58,6 @@ class BookComment(models.Model):
 
 @python_2_unicode_compatible
 class Author(models.Model):
-
     firstname = models.CharField('lastname', max_length=255, )
     lastname = models.CharField('firstname', max_length=255, )
 
