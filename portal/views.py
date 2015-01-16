@@ -126,26 +126,30 @@ def editBook(request, pk = None):
     if request.method == 'POST':
         form = BookForm(request.POST, instance = book)
         form2 = AuthorForm(request.POST, instance = author)
-        
-        if form2.is_valid() :
-            form2.save()
-            messages.success(request, 'Autor wurde gespeichert.')
-            return HttpResponseRedirect(('/portal/book/add/'))
-        if form.is_valid():
-         
-            newbook = form.save(commit = False)
-            try:
-                newbook.cover = request.FILES['cover']
-            except:
-                pass
-            newbook.save()
-            messages.success(request, 'Buch wurde gespeichert.')
-            return HttpResponseRedirect(('/portal/books/'))
-        
-        
-        
+        if request.POST.get('submit'):
+            if form2.is_valid() :
+                form2.save()
+                messages.success(request, 'Autor wurde gespeichert.')
+                return HttpResponseRedirect(('/portal/book/add/'))
+            if form.is_valid():
+
+                newbook = form.save(commit = False)
+                try:
+                    newbook.cover = request.FILES['cover']
+                except:
+                    pass
+                newbook.save()
+                messages.success(request, 'Buch wurde gespeichert.')
+                return HttpResponseRedirect(('/portal/books/'))
+            else:
+                messages.error(request, (u'Die Eingabe ist nicht vollstaendig korrekt.'))
+        elif request.POST.get('delete'):
+            book.delete()
+            return HttpResponseRedirect(('/portal/books/1/'))
         else:
-            messages.error(request, (u'Die Eingabe ist nicht vollstaendig korrekt.'))
+            messages.success(request, 'Etwas lief schief.')
+            return HttpResponseRedirect(('/portal/books/'))
+
     else:
         form = BookForm(instance = book)
         context = {'page_title':page_title,'book_form': form, 'author_form': form2,}

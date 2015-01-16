@@ -25,6 +25,7 @@
 </div>
 
 <div class="custom-book-add">
+{# Bewertung des Buches #}
     {% if avg %}
     <b>Durchschnittliche Bewertung: {{ avg }}</b>
     {% endif %}
@@ -32,32 +33,29 @@
     <p>Anzahl Bewertungen: {{count}}</p>
     {% endif %}
 
-
     <div>
     {% if ownRating == 0 %}
 
-    <b>Sie haben dieses Buch noch nicht bewertet:</b>
-    <form class="form-inline" role="form" method="post" action="{% url 'rateBook' pk=book.id %}" >
-        <div class="form-group">
-        {% for field in form2%}
-        {{ field }}
-        {% endfor %}
-        </div>
-        {% csrf_token %}
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary" style="float:left">
-                 bewerten
-            </button>
-       </div>
-    </form>
-
-
+        <b>Sie haben dieses Buch noch nicht bewertet:</b>
+        <form class="form-inline" role="form" method="post" action="{% url 'rateBook' pk=book.id %}" >
+            <div class="form-group">
+            {% for field in form2%}
+            {{ field }}
+            {% endfor %}
+            </div>
+            {% csrf_token %}
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" style="float:left">
+                     bewerten
+                </button>
+           </div>
+        </form>
     {% else %}
-    <b>Sie haben dieses Buch schon  bewertet: {{ ownRating }}</b>
+        <b>Sie haben dieses Buch schon  bewertet: {{ ownRating }}</b>
     {% endif %}
-
-
     </div>
+    {# Ende Bewertung des Buches #}
+
     <div>
         {% if owning == 0 %}
         <br><br>
@@ -73,16 +71,11 @@
          </form>
         {% else %}
         <b>Sie haben ihre Angaben schon gemacht:<br> </b>
-        <span>Buch gelesen: {{ owning.own }}</span><br>
-        <span>Buch gehört mir: {{ owning.read }}</span>
+        <span>Buch gehört mir: {{ owning.own }}</span><br>
+        <span>Buch gelesen: {{ owning.read }}</span>
         {% endif %}
     </div>
 </div>
-
-
-
-
-
 
 
 <div class="custom-comment-area">
@@ -135,7 +128,4 @@
      </div>
      </div>
      </div>
-
-
-
 {% endblock %}
