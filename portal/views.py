@@ -196,23 +196,58 @@ def editBook(request, pk = None):
 
 
         
-def books(request, page = '1', search=''):
 
-    allBooks = Book.objects.all().order_by('title').filter(title__contains=search)
+        
+        
+def books(request, page = '1', search='', order = None):
+
+    allBooks = Book.objects.all()
+    
+    if not "reverse" in request.session:
+        request.session["reverse"] = True
+    
+    if order:
+        if order == request.session["orderBooksBy"]:
+            request.session["reverse"] = not request.session["reverse"]
+
+            
+        request.session["orderBooksBy"] = order
+        orderBy = order
+    elif "orderBooksBy" in request.session:
+        orderBy = request.session["orderBooksBy"]
+    else:
+        orderBy = 'title'
+    
+    #.filter(title__contains=search)
     
     page = int(page)
     elements_per_page = 5
     start = (page-1) * elements_per_page
     end = start + elements_per_page
-
-    books = allBooks[start:end]
+    
     number = allBooks.count()
     
     pageNum = int(round(number / float(elements_per_page),0))
     if pageNum == 0:
         pageNum = 1
-    
+
+    # Sortieren
+    if request.session["reverse"]:
+        o = 'title'
+    else:
+        o = '-title'
+    orderBooks = list(allBooks.order_by(o))
+    if orderBy == 'rating':
+        orderBooks.sort( key=rating,reverse=request.session["reverse"] )
+
+    books = orderBooks[start:end]
+ 
     return render(request, 'portal/booklist.html', {'books':books, 'number':number, 'pageNum': pageNum, 'pageRange':range(1,pageNum+1),'page':page })
+
+    
+
+def rating( book ):
+    return book.orderRating()
 
 
 

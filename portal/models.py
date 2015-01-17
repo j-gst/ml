@@ -84,6 +84,11 @@ class Book(models.Model):
     cover = models.FileField(upload_to='cover/%Y%m%d', default='cover/default/default.png')
 
     
+    
+    
+    def orderRating(self):
+        return BookRating.objects.all().filter(book_id=self.id).aggregate(Avg('rating'))['rating__avg']
+
     def __str__(self):
         return self.title
     def printAuthors(self):

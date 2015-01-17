@@ -14,9 +14,9 @@
         {% endif %}
         <table class="table">
             <tr>
-                <th>Title</th>
+                <th><a href="{% url 'booksrating' order='title' %}" >Title<a></th>
                 <th>Autoren</th>
-                <th>Bewertungen</th>
+                <th><a href="{% url 'booksrating' order='rating' %}" >Bewertungen<a></th>
                 <th>&nbsp;</th>
             </tr>
     {% for book in books%}
