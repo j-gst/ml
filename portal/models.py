@@ -65,7 +65,12 @@ class Author(models.Model):
     def __str__(self):
         return '%s, %s' % (self.lastname, self.firstname)
 
+@python_2_unicode_compatible
+class Category(models.Model):
+    categoryname = models.CharField('category', max_length=255)
 
+    def __str__(self):
+        return '%s' % (self.categoryname)
 
 
  #Create your models here.
@@ -75,6 +80,7 @@ class Book(models.Model):
     isbn = models.CharField( max_length=100, )
     description = models.TextField(u'Beschreibung', blank=True)
     authors = models.ManyToManyField(Author, verbose_name=u'Autoren')
+    categories = models.ManyToManyField(Category, verbose_name=u'Kategorien')
     cover = models.FileField(upload_to='cover/%Y%m%d', default='cover/default/default.png')
 
     
@@ -92,12 +98,6 @@ class Book(models.Model):
             avg = 'noch keine Bewertungen'
         
         return avg
-        
-        
-        
-        
-        
-        
         
         
         

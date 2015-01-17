@@ -15,7 +15,11 @@ class AuthorForm(ModelForm):
 class BookForm(ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'isbn', 'description', 'cover', 'authors']
+        fields = ['title', 'isbn', 'description', 'cover', 'authors', 'categories']
+
+class CategoryForm(ModelForm):
+    class Meta:
+        model = Category
 
 class BookCommentForm(ModelForm):
     class Meta:

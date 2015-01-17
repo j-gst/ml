@@ -145,6 +145,8 @@ def editBook(request, pk = None):
     form = BookForm()
     form2 = AuthorForm()
     author = Author()
+    form3 = CategoryForm()
+    category = Category()
     book = Book()
     if pk == None:
         page_title = 'Neues Buch speichern'
@@ -158,7 +160,12 @@ def editBook(request, pk = None):
 
         form = BookForm(request.POST, instance = book)
         form2 = AuthorForm(request.POST, instance = author)
+        form3 = CategoryForm(request.POST, instance = category)
         if request.POST.get('submit'):
+            if form3.is_valid():
+                form3.save()
+                messages.success(request, 'Kategorie wurde gespeichert.')
+                return HttpResponseRedirect(('/portal/book/add/'))
             if form2.is_valid() :
                 form2.save()
                 messages.success(request, 'Autor wurde gespeichert.')
@@ -184,7 +191,7 @@ def editBook(request, pk = None):
 
     else:
         form = BookForm(instance = book)
-        context = {'page_title':page_title,'book_form': form, 'author_form': form2,}
+        context = {'page_title':page_title,'book_form': form, 'author_form': form2, 'category_form': form3,}
         return render(request, 'portal/book.html', context)
 
 
