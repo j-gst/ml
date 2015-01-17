@@ -86,6 +86,10 @@ class Book(models.Model):
     
     def orderRating(self):
         return BookRating.objects.all().filter(book_id=self.id).aggregate(Avg('rating'))['rating__avg']
+        
+  
+               
+        
 
     def __str__(self):
         return self.title

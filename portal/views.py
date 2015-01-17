@@ -201,10 +201,15 @@ def editBook(request, pk = None):
         
 def books(request, page = '1',  filter = None):
 
+    elements_per_page = 5
+    
     search = '' 
     if "search" in request.session and request.session["search"] != None:
         search = request.session["search"]
-
+    
+    filter = '' 
+    if "filter" in request.session and request.session["filter"] != None:
+        filter = request.session["filter"]
           
     allBooks = Book.objects.all().filter(title__contains=search)
     
@@ -218,10 +223,6 @@ def books(request, page = '1',  filter = None):
         reverseOrder = request.session["reverse"]
     else:
         reverseOrder = True
-        
-    
-    
-      
 
     
     if page != None:
@@ -229,28 +230,51 @@ def books(request, page = '1',  filter = None):
     else:
         page = 0
     
-    elements_per_page = 5
-    start = (page-1) * elements_per_page
-    end = start + elements_per_page
     
-    number = allBooks.count()
-    
-    pageNum = int(round(number / float(elements_per_page),0))
-    if pageNum == 0:
-        pageNum = 1
+
 
     # Sortieren
+    orderImg = 'down'
+    o = 'title'
     if reverseOrder:
-        o = 'title'
+        orderImg = 'up'
     else:
         o = '-title'
     orderBooks = list(allBooks.order_by(o))
     if orderBy == 'rating':
         orderBooks.sort( key=rating,reverse=reverseOrder )
+    
+    debStr = 'Remove: '
+    #filter = ''
+    if filter != '':
+        for b in orderBooks[:]:
+            
+            own = BookOwning.objects.all().filter(book_id = b.id).filter(user_id=request.user.id)
+            
 
+            
+            
+            if  own.count() > 0 and own[0].own == 'Ja':
+                if filter == 'nicht gelesen':
+                    orderBooks.remove(b)
+            else:
+                if filter == 'gelesen':
+                    orderBooks.remove(b)
+
+    
+    
+    number = len(orderBooks)
+    pageNum = int(round(number / float(elements_per_page),0))
+    if pageNum == 0:
+        pageNum = 1
+    
+
+    
+    start = (page-1) * elements_per_page
+    end = start + elements_per_page
     books = orderBooks[start:end]
  
-    return render(request, 'portal/booklist.html', {'TitelSearch':search,'books':books, 'number':number, 'pageNum': pageNum, 'pageRange':range(1,pageNum+1),'page':page,'search':search })
+    return render(request, 'portal/booklist.html', {'TitelSearch':search,'orderBy':orderBy,'books':books, 'number':number, 'pageNum': pageNum,'orderImg':orderImg, 'pageRange':range(1,pageNum+1),'page':page,'filter':filter })
 
     
 
@@ -276,6 +300,10 @@ def setBookSearch(request):
     request.session["search"] = request.POST.get('search', '')
     return HttpResponseRedirect(('/portal/books/1/'))
 
+def setBookFilter(request):
+
+    request.session["filter"] = request.POST.get('filter', '')
+    return HttpResponseRedirect(('/portal/books/1/'))
 
 
 

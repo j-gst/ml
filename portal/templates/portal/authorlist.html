@@ -6,18 +6,15 @@
 {% block content %}
 <div class="custom-center-area-70">
         <h1>Liste der Autoren</h1>
-        {% if perms.add_book %}
-        <a href="{% url 'addBook' %}" class="btn btn-primary">Buch zufügen</a>
-        {% endif %}
-        {% if perms.add_author %}
-        <a href="{% url 'addAuthor' %}" class="btn btn-primary">Autor zufügen</a>
 
-        {% endif %}
+
         <table class="table">
             <tr>
                 <th>Nachname</th>
                 <th>Vorname</th>
-                <th>&nbsp;</th>
+                <th>        {% if perms.add_author %}
+        <a href="{% url 'addAuthor' %}" class="btn btn-primary">neuer Autor</a>
+        {% endif %}</th>
             </tr>
 
     {% for author in authors%}

@@ -2,35 +2,89 @@
 {% load bootstrap3 %}
 
 {% block title %}{{page_title}}{% endblock %}
-{{ search }}
+
 {% block content %}
 <div class="custom-center-area-70">
-        <h1 style="display: inline; ">Liste der Bücher </h1>
+      
+ <h1 style="display: inline; ">Liste der Bücher </h1>
+       
+       
+       <div   class="custom-head-area" > 
+      
+           <div   style="width:40%; float:left; "> 
+
+               <form style=" " method="post"  role="" action="{% url 'booksearch'  %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                            <input style="float:left; width:60%"name="search" maxlength="20" type="text" class="form-control" placeholder="Titel Suche">
+                    </div>
+                    <button style="display:float:left;" type="submit" class="btn btn-default">Suchen</button>
+                </form>
+     
+            </div> 
+             
+             
+             <div   style="width:40%; float:right; "> 
+
+               <form style=" " method="post"  role="" action="{% url 'booksfilter'  %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                            <select style="float:left;  width:60%" name="filter"  class="form-control">
+                                <option></option>
+                                <option>gelesen</option>
+                                <option>nicht gelesen</option>
+                            </select>
+                    </div>
+                    <button style="display:float:left;" type="submit" class="btn btn-default">Filter</button>
+                </form>
+     
+            </div> 
+           
+
+           <div   style="width:40%; float:left; "> 
+            {% if TitelSearch != '' %} 
+            <p><b>Suchbegriff: {{TitelSearch}} </b></p>
+            <form  style="display: inline; " method="post"  role="" action="{% url 'booksearch'  %}">
+               {% csrf_token %}
+               <input name="search" type="hidden" class="form-control" placeholder="Titel Suche">
+                <button style="display: inline; " type="submit" class="btn btn-default">Suche Löschen</button>
+            </form>
+          {% endif %}
+          </div> 
+          
+          <div   style="width:40%; float:right; "> 
+           {% if filter != '' %} 
+            <p><b>Filter: {{filter}} </b></p>
+            <form  style="display: inline; " method="post"  role="" action="{% url 'booksfilter'  %}">
+               {% csrf_token %}
+               <input name="search" type="hidden" class="form-control" placeholder="Titel Suche">
+                <button style="display: inline; " type="submit" class="btn btn-default">Filter Löschen</button>
+            </form>
+           {% endif %}
+           </div> 
+           
         
-        {% if TitelSearch != '' %} 
+         </div> <!-- head area -->
         
-        <span><b>Suche nach: {{TitelSearch}} </b></span>
-        <form  style="display: inline; " method="post"  role="" action="{% url 'booksearch'  %}">
-           {% csrf_token %}
-           <input name="search" type="hidden" class="form-control" placeholder="Titel Suche">
-            <button style="display: inline; " type="submit" class="btn btn-default">Suche Löschen</button>
-        </form>
-        
-        {% endif %}
-        
-        {% if perms.add_book %}
-        <br>
-        <a href="{% url 'addBook' %}" class="btn btn-primary">Buch zufügen</a>
-        {% endif %}
-        {% if perms.add_author %}
-        <a href="{% url 'addAuthor' %}" class="btn btn-primary">Autor zufügen</a>
-        {% endif %}
         <table class="table">
-            <tr>
-                <th><a href="{% url 'booksrating' order='title' %}" >Title<a></th>
+            <tr>            
+                <th>
+                <a href="{% url 'booksrating' order='title' %}" >Title<a> 
+                {% if orderBy == 'title' %}
+                <img src="{{STATIC_URL}}portal/img/{{orderImg}}.gif" alt="u"> </img></th>
+                {% endif %}
                 <th>Autoren</th>
-                <th><a href="{% url 'booksrating' order='rating' %}" >Bewertungen<a></th>
-                <th>&nbsp;</th>
+                <th>
+                <a href="{% url 'booksrating' order='rating' %}" >Bewertungen<a>
+                {% if orderBy == 'rating' %}
+                <img src="{{STATIC_URL}}portal/img/{{orderImg}}.gif" alt="u"> </img>
+                {% endif %}
+                </th>
+                <th> 
+                {% if perms.add_book %}
+                <a href="{% url 'addBook' %}" class="btn btn-primary">neues Buch</a>
+                {% endif %}
+                </th>
             </tr>
     {% for book in books%}
         <tr>
