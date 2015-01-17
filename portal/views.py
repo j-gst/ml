@@ -219,11 +219,11 @@ def books(request, page = '1',  filter = None):
     else:
         orderBy = 'title'    
     
+    reverseOrder = True
     if "reverse" in request.session:
         reverseOrder = request.session["reverse"]
-    else:
-        reverseOrder = True
-
+ 
+   
     
     if page != None:
         page = int(page)
@@ -282,12 +282,13 @@ def rating( book ):
     return book.orderRating()
 
 
-def setOrderBooks(request, order):
-    
+def setOrderBooks(request, order):  
     if "orderBooksBy" in request.session:
-        if order == request.session["orderBooksBy"] and "reverse" in request.session:
-            request.session["reverse"] = not request.session["reverse"]
-     
+        if order == request.session["orderBooksBy"]:  
+            if "reverse" in request.session:
+                request.session["reverse"] = not request.session["reverse"]
+            else:
+                request.session["reverse"] = True
     request.session["orderBooksBy"] = order
     return HttpResponseRedirect(('/portal/books/1/'))
 
