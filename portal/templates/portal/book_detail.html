@@ -26,13 +26,9 @@
 
 <div class="custom-book-add">
 {# Bewertung des Buches #}
-    {% if avg %}
-    <b>Durchschnittliche Bewertung: {{ avg }}</b>
-    {% endif %}
-    {% if count %}
-    <p>Anzahl Bewertungen: {{count}}</p>
-    {% endif %}
-
+    
+    <b>Durchschnittliche Bewertung: {{ book.printAvgRating }}</b><br>
+ 
     <div>
     {% if ownRating == 0 %}
 

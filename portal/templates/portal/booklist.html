@@ -17,6 +17,7 @@
             <tr>
                 <th>Title</th>
                 <th>Autoren</th>
+                <th>Bewertungen</th>
                 <th>&nbsp;</th>
             </tr>
     {% for book in books%}
@@ -27,6 +28,11 @@
                 {{ a }}<br />
                 {% endfor %}
                 {#{ book.authors.all|join:', ' }#}
+            </td>
+            <td>
+
+                <p>{{ book.printAvgRating }}</p>
+             
             </td>
             <td>
                 {% if perms.add_book %}

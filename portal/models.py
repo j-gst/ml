@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.auth.models import User
+from django.db.models import Avg
 
 @python_2_unicode_compatible
 class BookOwning(models.Model):
@@ -81,4 +82,25 @@ class Book(models.Model):
         return self.title
     def printAuthors(self):
         return self.authors.all()
-
+    def printAvgRating(self):
+        bookRatings = BookRating.objects.all().filter(book_id=self.id) 
+        count = bookRatings.count()
+        if count != 0:
+            avg = ("%.1f" % round(bookRatings.aggregate(Avg('rating'))['rating__avg'],1))
+            avg = avg + ' ('+str(count)+' Bewertungen)'
+        else:
+            avg = 'noch keine Bewertungen'
+        
+        return avg
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        

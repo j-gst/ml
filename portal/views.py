@@ -73,13 +73,10 @@ def detailBook(request, pk = None):
     form2 = BookRatingForm()
     form3 = BookOwningForm()
     book = get_object_or_404(Book, pk = pk)
+    bookRatings = BookRating.objects.all()
     comments = BookComment.objects.all().filter(book_id=pk).order_by('-commentdate')
-    count = BookRating.objects.all().filter(book_id=pk).count()
-    if count != 0:
-        avg = ("%.1f" % round(BookRating.objects.all().filter(book_id=pk).aggregate(Avg('rating'))['rating__avg'],1))
-    else:
-        avg = 0
-    ownRating = BookRating.objects.all().filter(user_id=request.user.id, book_id = pk)
+    count = bookRatings.filter(book_id=pk).count()
+    ownRating = bookRatings.filter(user_id=request.user.id, book_id = pk)
     #rated = False if ownRating == 0 else  True
     
     try:
@@ -94,7 +91,7 @@ def detailBook(request, pk = None):
     except:
         owning = 0
         
-    context = {'book': book,'form': form,'form2': form2, 'form3': form3,'comments':comments,'count':count,'avg':avg, 'ownRating': ownRating, 'owning': owning}
+    context = {'book': book,'form': form,'form2': form2, 'form3': form3,'comments':comments,'count':count, 'ownRating': ownRating, 'owning': owning}
     return render(request, 'portal/book_detail.html', context)
 
     
@@ -195,7 +192,7 @@ def editBook(request, pk = None):
 def books(request, page = '1', search=''):
 
     allBooks = Book.objects.all().order_by('title').filter(title__contains=search)
-
+    
     page = int(page)
     elements_per_page = 5
     start = (page-1) * elements_per_page
