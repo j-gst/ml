@@ -25,7 +25,7 @@ $('#formAU').append($(input));
 <script src="http://malsup.github.com/jquery.form.js"></script>
     <script> 
         $(document).ready(function() { 
-            test = $('#formAU').ajaxForm(function() {
+            test = $('#formAU').ajaxForm(function() { 
                
                
               $('#InfoBox').css('visibility','visible');
@@ -53,17 +53,15 @@ $('#formAU').append($(input));
         <button type="submit" class="btn btn-primary" name="submit" value="submit">
          {#% bootstrap_icon "star" %#} Submit
         </button>
-        {% if id %}
         <button type="submit" class="btn btn-primary" name="delete" value="delete">
          {#% bootstrap_icon "star" %#} Löschen
         </button>
-        {% endif %}
         <a id="btn_col" class="btn btn-primary" data-toaggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Autor hinzuf&uuml;gen</a>
         <span id="InfoBox" style="visibility:hidden; color:green; "> Autor angelegt!</span>
 
-        <!--<a id="btn_col" class="btn btn-primary" data-toaggle="collapse" href="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">Kategorie hinzuf&uuml;gen</a>
+        <a id="btn_col" class="btn btn-primary" data-toaggle="collapse" href="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">Kategorie hinzuf&uuml;gen</a>
         <span id="InfoBox" style="visibility:hidden; color:green; "> Kategorie angelegt!</span>
--->
+
         {% endbuttons %}
     </form>
 
@@ -83,7 +81,7 @@ $('#formAU').append($(input));
     </form>
   </div>
 </div>
-<!--
+
 <div class="collapse" id="collapseCategory">
   <div class="well">
 
@@ -98,6 +96,6 @@ $('#formAU').append($(input));
         {% endbuttons %}
     </form>
   </div>
-</div>-->
+</div>
 
 {% endblock %}

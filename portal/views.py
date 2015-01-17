@@ -15,131 +15,133 @@ from django.db.models import Avg
 # Create your views here.
 def index(request):
     return render(request, 'portal/index.html', None)
+   
 
+def authors(request, page = '1', search=''):
 
-def authors(request, page='1', search=''):
-    allAuthors = Author.objects.all().order_by('lastname').filter(lastname__contains=search).filter(
-        firstname__contains=search)
+    allAuthors = Author.objects.all().order_by('lastname').filter(lastname__contains=search).filter(firstname__contains=search)
 
     page = int(page)
     elements_per_page = 5
-    start = (page - 1) * elements_per_page
+    start = (page-1) * elements_per_page
     end = start + elements_per_page
 
     authors = allAuthors[start:end]
     number = allAuthors.count()
 
-    pageNum = int(round(number / float(elements_per_page), 0))
+    pageNum = int(round(number / float(elements_per_page),0))
     if pageNum == 0:
         pageNum = 1
 
-    return render(request, 'portal/authorlist.html',
-                  {'authors': authors, 'number': number, 'pageNum': pageNum, 'pageRange': range(1, pageNum + 1),
-                   'page': page})
+    return render(request, 'portal/authorlist.html', {'authors':authors, 'number':number, 'pageNum': pageNum, 'pageRange':range(1,pageNum+1),'page':page })
 
 
-def addAuthor(request, pk=None):
+def addAuthor(request, pk = None):
     form = AuthorForm()
     author = Author()
 
     if pk == None:
         page_title = 'Neuen Autor speichern'
     else:
-        author = get_object_or_404(Author, pk=pk)
+        author = get_object_or_404(Author, pk = pk)
         page_title = 'Autor bearbeiten'
 
     if request.method == 'POST':
-        form = AuthorForm(request.POST, instance=author)
+        form = AuthorForm(request.POST, instance = author)
         if request.POST.get('submit'):
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Autor wurde gespeichert.')
-                return HttpResponseRedirect(('/portal/authors/'))
+                return HttpResponseRedirect(('/portal/authorlist/'))
             else:
                 context = {'author_form': form}
                 return render(request, 'portal/addAuthor.html', context)
         elif request.POST.get('delete'):
             author.delete()
-            return HttpResponseRedirect(('/portal/authors/'))
+            return HttpResponseRedirect(('/portal/authorlist/'))
         else:
             messages.success(request, 'Etwas lief schief.')
-            return HttpResponseRedirect(('/portal/authors/'))
+            return HttpResponseRedirect(('/portal/authorlist/'))
     else:
-        form = AuthorForm(request.POST, instance=author)
-        context = {'page_title': page_title, 'author_form': form,}
+        form = AuthorForm(request.POST, instance = author)
+        context = {'page_title':page_title,'author_form': form}
         return render(request, 'portal/addAuthor.html', context)
 
 
-def detailBook(request, pk=None):
+def detailBook(request, pk = None):
     form = BookCommentForm()
     form2 = BookRatingForm()
     form3 = BookOwningForm()
-    book = get_object_or_404(Book, pk=pk)
+    book = get_object_or_404(Book, pk = pk)
     bookRatings = BookRating.objects.all()
     comments = BookComment.objects.all().filter(book_id=pk).order_by('-commentdate')
     count = bookRatings.filter(book_id=pk).count()
-    ownRating = bookRatings.filter(user_id=request.user.id, book_id=pk)
-    # rated = False if ownRating == 0 else  True
-
+    ownRating = bookRatings.filter(user_id=request.user.id, book_id = pk)
+    #rated = False if ownRating == 0 else  True
+    
     try:
         ownRating = ownRating[0]
     except:
         ownRating = 0
 
-    owning = BookOwning.objects.all().filter(user_id=request.user.id, book_id=pk)
+    owning = BookOwning.objects.all().filter(user_id=request.user.id, book_id = pk)
 
     try:
         owning = owning[0]
     except:
         owning = 0
-
-    context = {'book': book, 'form': form, 'form2': form2, 'form3': form3, 'comments': comments, 'count': count,
-               'ownRating': ownRating, 'owning': owning}
+        
+    context = {'book': book,'form': form,'form2': form2, 'form3': form3,'comments':comments,'count':count, 'ownRating': ownRating, 'owning': owning}
     return render(request, 'portal/book_detail.html', context)
 
-
-def commentBook(request, pk=None):
+    
+def commentBook(request, pk = None):
+    
     comment = BookComment(user_id=request.user.id, book_id=pk)
     if request.method == 'POST':
-        form = BookCommentForm(request.POST, instance=comment)
-
-        if form.is_valid():
+        form = BookCommentForm(request.POST, instance = comment)
+     
+        if form.is_valid() :
             form.save()
         else:
             messages.error(request, 'Kommentar konnte nicht gespeichert werden.')
-    return HttpResponseRedirect(('/portal/book/detail/' + pk + '/'))
+    return HttpResponseRedirect(('/portal/book/detail/'+pk+'/'))
 
-
-def ownBook(request, pk=None):
+def ownBook(request, pk = None):
     owning = BookOwning(user_id=request.user.id, book_id=pk)
     if request.method == 'POST':
-        form = BookOwningForm(request.POST, instance=owning)
+        form = BookOwningForm(request.POST, instance = owning)
 
         if form.is_valid():
             form.save()
         else:
             messages.error(request, 'Beim speichern ist ein Fehler aufgetreten.')
-    return HttpResponseRedirect(('/portal/book/detail/' + pk + '/'))
-
-
-def rateBook(request, pk=None):
+    return HttpResponseRedirect(('/portal/book/detail/'+pk+'/'))
+    
+    
+    
+def rateBook(request, pk = None):
     rating = BookRating(user_id=request.user.id, book_id=pk)
     if request.method == 'POST':
-        form = BookRatingForm(request.POST, instance=rating)
-
-        if form.is_valid():
+        form = BookRatingForm(request.POST, instance = rating)
+       
+        if form.is_valid() :
             try:
                 form.save()
             except:
                 pass
         else:
             messages.error(request, 'Bewertung konnte nicht gespeichert werden.')
-    return HttpResponseRedirect(('/portal/book/detail/' + pk + '/'))
-
-
+    return HttpResponseRedirect(('/portal/book/detail/'+pk+'/'))
+  
+    
+    
+    
+    
 @permission_required('portal.add_book', login_url='/user/login/')
-# Beate 02.01.2015
-def editBook(request, pk=None):
+#Beate 02.01.2015
+def editBook(request, pk = None):
+
     form = BookForm()
     form2 = AuthorForm()
     author = Author()
@@ -149,26 +151,27 @@ def editBook(request, pk=None):
     if pk == None:
         page_title = 'Neues Buch speichern'
     else:
-        book = get_object_or_404(Book, pk=pk)
+        book = get_object_or_404(Book, pk = pk)
         page_title = 'Buch bearbeiten'
     if request.method == 'POST':
-        form = BookForm(request.POST, instance=book)
-        form2 = AuthorForm(request.POST, instance=author)
+        form = BookForm(request.POST, instance = book)
+        form2 = AuthorForm(request.POST, instance = author)
 
-        form = BookForm(request.POST, instance=book)
-        form2 = AuthorForm(request.POST, instance=author)
-        form3 = CategoryForm(request.POST, instance=category)
+
+        form = BookForm(request.POST, instance = book)
+        form2 = AuthorForm(request.POST, instance = author)
+        form3 = CategoryForm(request.POST, instance = category)
         if request.POST.get('submit'):
             if form3.is_valid():
                 form3.save()
                 messages.success(request, 'Kategorie wurde gespeichert.')
                 return HttpResponseRedirect(('/portal/book/add/'))
-            if form2.is_valid():
+            if form2.is_valid() :
                 form2.save()
                 messages.success(request, 'Autor wurde gespeichert.')
                 return HttpResponseRedirect(('/portal/book/add/'))
             if form.is_valid():
-                newbook = form.save(commit=False)
+                newbook = form.save(commit = False)
                 try:
                     newbook.cover = request.FILES['cover']
                 except:
@@ -187,64 +190,91 @@ def editBook(request, pk=None):
             return HttpResponseRedirect(('/portal/books/1/'))
 
     else:
-        form = BookForm(instance=book)
-        context = {'page_title': page_title, 'book_form': form, 'author_form': form2, 'category_form': form3, }
+        form = BookForm(instance = book)
+        context = {'page_title':page_title,'book_form': form, 'author_form': form2, 'category_form': form3,}
         return render(request, 'portal/book.html', context)
 
 
-def books(request, page='1', search='', order=None):
-    allBooks = Book.objects.all()
+        
 
-    if not "reverse" in request.session:
-        request.session["reverse"] = True
+        
+        
+def books(request, page = '1',  filter = None):
 
-    if order:
-        if order == request.session["orderBooksBy"]:
-            request.session["reverse"] = not request.session["reverse"]
+    search = '' 
+    if "search" in request.session and request.session["search"] != None:
+        search = request.session["search"]
 
-        request.session["orderBooksBy"] = order
-        orderBy = order
-    elif "orderBooksBy" in request.session:
+          
+    allBooks = Book.objects.all().filter(title__contains=search)
+    
+    
+    if "orderBooksBy" in request.session:
         orderBy = request.session["orderBooksBy"]
     else:
-        orderBy = 'title'
+        orderBy = 'title'    
+    
+    if "reverse" in request.session:
+        reverseOrder = request.session["reverse"]
+    else:
+        reverseOrder = True
+        
+    
+    
+      
 
-    # .filter(title__contains=search)
-
-    page = int(page)
+    
+    if page != None:
+        page = int(page)
+    else:
+        page = 0
+    
     elements_per_page = 5
-    start = (page - 1) * elements_per_page
+    start = (page-1) * elements_per_page
     end = start + elements_per_page
-
+    
     number = allBooks.count()
-
-    pageNum = int(round(number / float(elements_per_page), 0))
+    
+    pageNum = int(round(number / float(elements_per_page),0))
     if pageNum == 0:
         pageNum = 1
 
     # Sortieren
-    if request.session["reverse"]:
+    if reverseOrder:
         o = 'title'
     else:
         o = '-title'
     orderBooks = list(allBooks.order_by(o))
     if orderBy == 'rating':
-        orderBooks.sort(key=rating, reverse=request.session["reverse"])
+        orderBooks.sort( key=rating,reverse=reverseOrder )
 
     books = orderBooks[start:end]
+ 
+    return render(request, 'portal/booklist.html', {'TitelSearch':search,'books':books, 'number':number, 'pageNum': pageNum, 'pageRange':range(1,pageNum+1),'page':page,'search':search })
 
-    return render(request, 'portal/booklist.html',
-                  {'books': books, 'number': number, 'pageNum': pageNum, 'pageRange': range(1, pageNum + 1),
-                   'page': page})
+    
 
-
-def rating(book):
+def rating( book ):
     return book.orderRating()
 
 
+def setOrderBooks(request, order):
+    
+    if "orderBooksBy" in request.session:
+        if order == request.session["orderBooksBy"] and "reverse" in request.session:
+            request.session["reverse"] = not request.session["reverse"]
+     
+    request.session["orderBooksBy"] = order
+    return HttpResponseRedirect(('/portal/books/1/'))
 
+    
+    
+    
+    
+def setBookSearch(request):
 
-
+    request.session["search"] = request.POST.get('search', '')
+    return HttpResponseRedirect(('/portal/books/1/'))
 
 
 
