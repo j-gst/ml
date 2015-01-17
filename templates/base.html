@@ -41,6 +41,9 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="{% url 'books' page=1  %}" >Books <span class="sr-only">(current)</span></a></li>
         <li><a href="{% url 'userauth_profile' %}">Profil</a></li>
+        {% if perms.add_author %}
+        <li><a href="{% url 'authorlist' %}" >Autorenliste</a></li>
+        {% endif %}
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -61,11 +64,6 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        
-        
-        
-        
-        
         
         <li>
         {#% block toggle_login %#}
@@ -103,12 +101,6 @@
 
 {% block content %}
 {% endblock %}
-
-
-
-
-
-
 
 <div class="custom-space container text-center">
     <hr />
