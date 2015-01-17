@@ -173,6 +173,7 @@ def editBook(request, pk = None):
                 except:
                     pass
                 newbook.save()
+                form.save_m2m()
                 messages.success(request, 'Buch wurde gespeichert.')
                 return HttpResponseRedirect(('/portal/books/1/'))
             else:
