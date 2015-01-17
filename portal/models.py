@@ -74,6 +74,7 @@ class Category(models.Model):
 
 
  #Create your models here.
+
 @python_2_unicode_compatible
 class Book(models.Model):
     title = models.CharField( max_length=255, )
@@ -82,9 +83,6 @@ class Book(models.Model):
     authors = models.ManyToManyField(Author, verbose_name=u'Autoren')
     categories = models.ManyToManyField(Category, verbose_name=u'Kategorien')
     cover = models.FileField(upload_to='cover/%Y%m%d', default='cover/default/default.png')
-
-    
-    
     
     def orderRating(self):
         return BookRating.objects.all().filter(book_id=self.id).aggregate(Avg('rating'))['rating__avg']
