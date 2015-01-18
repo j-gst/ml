@@ -129,7 +129,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$12000$VPCmwOuglIhZ$0z5er7B19PFqewO8JpyYNNZ2fh6techf8NaGszbZKiw=','2015-01-11 17:06:50',1,'buffy','Beate','','buffy@test.de',1,1,'2015-01-02 16:05:18'),(2,'pbkdf2_sha256$12000$qsoNTYoR4rHq$CyJd4y7JhWgx9ZOyaNjzyu6/RCim4IlRFIj3BUtQMvM=','2015-01-11 16:42:59',0,'gst','','','gst@netuse.de',0,1,'2015-01-04 14:02:41'),(3,'pbkdf2_sha256$12000$WI5kilzxTlka$3IxYz4f3LEpn1aNm6jrnTSYOX98lgqAebPBQxpcLPhw=','2015-01-11 16:25:29',0,'tt','Peter','Lustig','tt@fd.fr',0,1,'2015-01-04 14:05:24'),(4,'pbkdf2_sha256$12000$sUKCzClit7yj$QWIdSfCWW1SUxHE1S82JmIJTNeeVEBFQikTUOUx1FNg=','2015-01-11 16:45:57',0,'hans','','','h@x.de',0,1,'2015-01-11 16:45:31');
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$12000$VPCmwOuglIhZ$0z5er7B19PFqewO8JpyYNNZ2fh6techf8NaGszbZKiw=','2015-01-18 13:22:09',1,'buffy','Beate','','buffy@test.de',1,1,'2015-01-02 16:05:18'),(2,'pbkdf2_sha256$12000$qsoNTYoR4rHq$CyJd4y7JhWgx9ZOyaNjzyu6/RCim4IlRFIj3BUtQMvM=','2015-01-11 16:42:59',0,'gst','','','gst@netuse.de',0,1,'2015-01-04 14:02:41'),(3,'pbkdf2_sha256$12000$WI5kilzxTlka$3IxYz4f3LEpn1aNm6jrnTSYOX98lgqAebPBQxpcLPhw=','2015-01-11 16:25:29',0,'tt','Peter','Lustig','tt@fd.fr',0,1,'2015-01-04 14:05:24'),(4,'pbkdf2_sha256$12000$sUKCzClit7yj$QWIdSfCWW1SUxHE1S82JmIJTNeeVEBFQikTUOUx1FNg=','2015-01-11 16:45:57',0,'hans','','','h@x.de',0,1,'2015-01-11 16:45:31');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -302,7 +302,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('lr80hj0z632y626voub6ok7b083nrctn','ZGU5M2I4MTI5M2M2ZGQyYzk3ZTdlMjdmN2M1MTU1NTYzMmQ0MjE3ODp7Il9hdXRoX3VzZXJfaGFzaCI6ImQ3N2NhMTMyMDM0NzViYmNjMWVmNGMyODZkN2I1YTRmNWZiMjVmYjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-01-18 17:46:51'),('nh6yi42zq67midv5uyy1qj13dqi222e5','OWQ5MWFlODkzZDQ0YTQ1NTkzYmY1YWRlNzkyOTAwMzllN2I4YjhkYTp7InNlYXJjaCI6IiIsInJldmVyc2UiOnRydWUsIl9hdXRoX3VzZXJfaWQiOjEsImZhdl9jb2xvciI6ImJsdWUiLCJvcmRlckJvb2tzQnkiOiJ0aXRsZSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiZmlsdGVyIjoiIiwib3JkZXJCb29rc0RpcmVjdGlvbiI6ImRvd24iLCJfYXV0aF91c2VyX2hhc2giOiJkNzdjYTEzMjAzNDc1YmJjYzFlZjRjMjg2ZDdiNWE0ZjVmYjI1ZmIxIn0=','2015-01-31 21:30:46');
+INSERT INTO `django_session` VALUES ('jf3s8izk4v0vp944z8va8e2wdq5k0ewi','ZGU5M2I4MTI5M2M2ZGQyYzk3ZTdlMjdmN2M1MTU1NTYzMmQ0MjE3ODp7Il9hdXRoX3VzZXJfaGFzaCI6ImQ3N2NhMTMyMDM0NzViYmNjMWVmNGMyODZkN2I1YTRmNWZiMjVmYjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-02-01 13:22:09'),('lr80hj0z632y626voub6ok7b083nrctn','ZGU5M2I4MTI5M2M2ZGQyYzk3ZTdlMjdmN2M1MTU1NTYzMmQ0MjE3ODp7Il9hdXRoX3VzZXJfaGFzaCI6ImQ3N2NhMTMyMDM0NzViYmNjMWVmNGMyODZkN2I1YTRmNWZiMjVmYjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-01-18 17:46:51');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -318,7 +318,7 @@ CREATE TABLE `portal_author` (
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -327,7 +327,7 @@ CREATE TABLE `portal_author` (
 
 LOCK TABLES `portal_author` WRITE;
 /*!40000 ALTER TABLE `portal_author` DISABLE KEYS */;
-INSERT INTO `portal_author` VALUES (1,'Hans','Anderson'),(2,'Tannenbaum','Andrew S.'),(3,'Kate','White'),(4,'Gumm','Prof. Dr. Heinz Peter'),(5,'Sommer','Prof. Dr. Manfred'),(6,'karl','heinz'),(7,'t','u'),(8,'n','m');
+INSERT INTO `portal_author` VALUES (1,'Hans-Peter','Anderson'),(2,'Tannenbaum','Andrew S.'),(3,'Kate','White'),(4,'Gumm','Prof. Dr. Heinz Peter'),(5,'Sommer','Prof. Dr. Manfred'),(6,'Karl','Heinz'),(13,'Hans-Dieter','Neuwingen'),(14,'Karl','Koch');
 /*!40000 ALTER TABLE `portal_author` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -354,7 +354,7 @@ CREATE TABLE `portal_book` (
 
 LOCK TABLES `portal_book` WRITE;
 /*!40000 ALTER TABLE `portal_book` DISABLE KEYS */;
-INSERT INTO `portal_book` VALUES (1,'978-3-442-36671-2','Wenn Blicke töten könnten','Gerade nicht so wichtig','cover/default/default.png'),(4,'mitjwletpw','Test cc','ggghhh','cover/default/default.png'),(6,'978-3-486-59711-0','Einführung in die Informatik','l','cover/default/default.png'),(7,'44444','neues bbuch','mm','cover/default/default.png'),(8,'4','Test cccc','g','cover/default/default.png'),(9,'1234','TestBuch1','test','cover/default/default.png'),(10,'rrr','rr','rr','cover/default/default.png'),(11,'fgf','1111111111','fgfg','cover/default/default.png'),(12,'11','11111111','11','cover/default/default.png'),(13,'22','22','22','cover/default/default.png');
+INSERT INTO `portal_book` VALUES (1,'978-3-442-36671-2','Wenn Blicke töten könnten','Gerade nicht so wichtig','cover/default/default.png'),(4,'2323-4433-4455-6789','Die Wüste','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.','cover/default/default.png'),(6,'978-3-486-59711-0','Einführung in die Informatik','l','cover/default/default.png'),(7,'44444-2323-1212-1212','Betriebssysteme','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ','cover/default/default.png'),(8,'2323-5678-1298-0000','Aurora','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.','cover/default/default.png'),(9,'1234-1111-2222-3333','Das Märchenbuch','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.','cover/default/default.png'),(10,'2323-4444-5555-6666','Experimentalphysik ','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ','cover/default/default.png'),(12,'1234-1234-1234-FF12','Cobra','11','cover/default/default.png'),(13,'1234-5678-2222-12G2','Der Herr der Ringe Band 1','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.','cover/default/default.png');
 /*!40000 ALTER TABLE `portal_book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,7 +375,7 @@ CREATE TABLE `portal_book_authors` (
   KEY `portal_book_authors_4f331e2f` (`author_id`),
   CONSTRAINT `portal_book_authors_author_id_6584cb1_fk_portal_author_id` FOREIGN KEY (`author_id`) REFERENCES `portal_author` (`id`),
   CONSTRAINT `portal_book_authors_book_id_55269d2b_fk_portal_book_id` FOREIGN KEY (`book_id`) REFERENCES `portal_book` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -384,7 +384,7 @@ CREATE TABLE `portal_book_authors` (
 
 LOCK TABLES `portal_book_authors` WRITE;
 /*!40000 ALTER TABLE `portal_book_authors` DISABLE KEYS */;
-INSERT INTO `portal_book_authors` VALUES (1,1,2),(23,4,1),(13,6,4),(14,6,5),(25,7,2),(26,8,3),(27,11,3),(28,11,4),(29,12,3),(30,13,1);
+INSERT INTO `portal_book_authors` VALUES (38,1,1),(41,4,4),(42,4,5),(13,6,4),(14,6,5),(37,7,2),(43,8,3),(40,9,1),(39,10,5),(34,12,3),(35,13,1);
 /*!40000 ALTER TABLE `portal_book_authors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -405,7 +405,7 @@ CREATE TABLE `portal_book_categories` (
   KEY `portal_book_categories_b583a629` (`category_id`),
   CONSTRAINT `portal_book_categorie_category_id_2ec00195_fk_portal_category_id` FOREIGN KEY (`category_id`) REFERENCES `portal_category` (`id`),
   CONSTRAINT `portal_book_categories_book_id_147a0ff2_fk_portal_book_id` FOREIGN KEY (`book_id`) REFERENCES `portal_book` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -414,6 +414,7 @@ CREATE TABLE `portal_book_categories` (
 
 LOCK TABLES `portal_book_categories` WRITE;
 /*!40000 ALTER TABLE `portal_book_categories` DISABLE KEYS */;
+INSERT INTO `portal_book_categories` VALUES (8,1,39),(11,4,41),(7,7,41),(13,8,1),(12,8,40),(10,9,40),(9,10,41),(3,12,1),(4,12,39),(5,13,40);
 /*!40000 ALTER TABLE `portal_book_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -477,7 +478,7 @@ CREATE TABLE `portal_bookowning` (
 
 LOCK TABLES `portal_bookowning` WRITE;
 /*!40000 ALTER TABLE `portal_bookowning` DISABLE KEYS */;
-INSERT INTO `portal_bookowning` VALUES (1,'Ja','Ja','2015-01-16 16:40:18',6,1),(2,'Nein','Ja','2015-01-17 11:18:10',10,1),(3,'Nein','Nein','2015-01-17 18:28:44',11,1),(4,'Ja','Nein','2015-01-17 19:23:23',1,1),(5,'Nein','Ja','2015-01-17 19:23:31',4,1),(6,'Nein','Nein','2015-01-17 20:31:40',9,1);
+INSERT INTO `portal_bookowning` VALUES (1,'Ja','Ja','2015-01-16 16:40:18',6,1),(2,'Nein','Ja','2015-01-17 11:18:10',10,1),(4,'Ja','Nein','2015-01-17 19:23:23',1,1),(5,'Nein','Ja','2015-01-17 19:23:31',4,1),(6,'Nein','Nein','2015-01-17 20:31:40',9,1);
 /*!40000 ALTER TABLE `portal_bookowning` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -524,7 +525,7 @@ CREATE TABLE `portal_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `categoryname` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -533,6 +534,7 @@ CREATE TABLE `portal_category` (
 
 LOCK TABLES `portal_category` WRITE;
 /*!40000 ALTER TABLE `portal_category` DISABLE KEYS */;
+INSERT INTO `portal_category` VALUES (1,'Roman'),(39,'Krimi'),(40,'Fantasy'),(41,'Sachbuch'),(42,'Kinderbuch');
 /*!40000 ALTER TABLE `portal_category` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -545,4 +547,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-17 22:31:01
+-- Dump completed on 2015-01-18 14:22:56
