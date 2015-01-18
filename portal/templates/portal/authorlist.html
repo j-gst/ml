@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}{{page_title}}{% endblock %}
+
+{% block content %}
+<div class="custom-center-area-70">
+        <h1>Liste der Autoren</h1>
+
+
+        <table class="table">
+            <tr>
+                <th>Nachname</th>
+                <th>Vorname</th>
+                <th>        {% if perms.add_author %}
+        <a href="{% url 'addAuthor' %}" class="btn btn-primary">neuer Autor</a>
+        {% endif %}</th>
+            </tr>
+
+    {% for author in authors%}
+        <tr>
+            <td>
+                {{ author.lastname }}
+            </td>
+            <td>
+                {{ author.firstname }}
+            </td>
+            <td>
+                {% if perms.edit_author %}
+                <a href="{% url 'editAuthor' pk=author.pk %}">{% bootstrap_icon 'edit' %}</a>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+        </table>
+        
+        <nav>
+  <ul class="pagination">
+    <li {% if 1 == page %} class="disabled" {% endif %}>
+      <a  href="{% url 'authors' page=1  %}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    
+   
+    {% for count in pageRange %}
+        <li {% if count == page %} class="active" {% endif %}><a  href="{% url 'authors' page=count  %}">{{count}}</a></li>
+    {% endfor %}
+    
+    <li {% if pageNum == page %} class="disabled" {% endif %}>
+      <a href="{% url 'authors' page=pageNum  %}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      
+</div>
+{% endblock %}

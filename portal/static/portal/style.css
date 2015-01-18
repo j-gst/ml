@@ -4,6 +4,10 @@
 }
 
 
+
+
+
+
 .custom-book-add {
     float: left;
     padding: 10px;
@@ -31,7 +35,13 @@
 .page-header{
     height: 100px;
 }
+.custom-head-area{
+width: 70%;
 
+float:right;
+height:140px;
+
+}
 .custom-center-area{
   
     margin-left: auto;
@@ -47,7 +57,15 @@
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
-    width: 70%;
+    width: 80%;
+    background-color: white;
+}
+.custom-center-area-100{
+  
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 80%;
     background-color: white;
 }
 .custom-comment-area{
