@@ -48,13 +48,15 @@ $('#formAU').append($(input));
 
     
 
-<div style="width:100%">
+<div class="custom-center-area-100">
 
         <h1>{{ page_title }}</h1>
     <form  method="post" enctype="multipart/form-data" action="" class="form-horizontal">
         {% csrf_token %}
         {% bootstrap_form book_form layout='horizontal' %}
-        {% buttons layout='horizontal' %}
+      
+      
+<div style=" width:50%; margin-left:100px">
         <button type="submit" class="btn btn-primary" name="submit" value="submit">
          {#% bootstrap_icon "star" %#} Speichern
         </button>
@@ -63,17 +65,17 @@ $('#formAU').append($(input));
          {#% bootstrap_icon "star" %#} Löschen
         </button>
         {% endif %} 
-   <a id="btn_col" class="btn btn-default" data-toggle="collapse" href="#a" aria-expanded="false" aria-controls="a">neuer Autor</a>
+   <a style="float:right; margin:right:200px" id="btn_col" class="btn btn-default" data-toggle="collapse" href="#a" aria-expanded="false" aria-controls="a">neuer Autor</a>
         <span id="InfoBox" style="visibility:hidden; color:green; "> Autor angelegt!</span>
-   <a id="btn_col2" class="btn btn-default" data-toggle="collapse" href="#c" aria-expanded="false" aria-controls="c">neue Kat</a>
+   <a style="float:right; margin:right:200px" id="btn_col2" class="btn btn-default" data-toggle="collapse" href="#c" aria-expanded="false" aria-controls="c">neue Kategorie</a>
         <span id="InfoBox2" style="visibility:hidden; color:green; "> Kategorie angelegt!</span>       
-        
+</div>        
         
 <!--
         <a id="btn_col" class="btn btn-default" data-toaggle="collapse" href="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory"> Kategorie </a>
         <span id="InfoBox" style="visibility:hidden; color:green; "> Kategorie angelegt!</span>
 -->
-        {% endbuttons %}
+       
     </form>
 
 

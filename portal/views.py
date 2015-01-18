@@ -39,12 +39,15 @@ def authors(request, page = '1', search=''):
 def addAuthor(request, pk = None):
     form = AuthorForm()
     author = Author()
-
+    
+    new = False
     if pk == None:
         page_title = 'Neuen Autor speichern'
+        new = True
     else:
         author = get_object_or_404(Author, pk = pk)
         page_title = 'Autor bearbeiten'
+        
 
     if request.method == 'POST':
         form = AuthorForm(request.POST, instance = author)
@@ -52,20 +55,20 @@ def addAuthor(request, pk = None):
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Autor wurde gespeichert.')
-                return HttpResponseRedirect(('/portal/authorlist/'))
-            else:
-                context = {'author_form': form}
-                return render(request, 'portal/addAuthor.html', context)
+                return HttpResponseRedirect(('/portal/authors/'))
+            #else:
+                #context = {'author_form': form}
+                #return render(request, 'portal/addAuthor.html', context)
         elif request.POST.get('delete'):
             author.delete()
-            return HttpResponseRedirect(('/portal/authorlist/'))
+            return HttpResponseRedirect(('/portal/authors/'))
         else:
-            messages.success(request, 'Etwas lief schief.')
-            return HttpResponseRedirect(('/portal/authorlist/'))
+            messages.error(request, 'Etwas lief schief.')
+            return HttpResponseRedirect(('/portal/authors/'))
     else:
-        form = AuthorForm(request.POST, instance = author)
-        context = {'page_title':page_title,'author_form': form}
-        return render(request, 'portal/addAuthor.html', context)
+        form = AuthorForm(instance = author)
+    context = {'page_title':page_title,'author_form': form,'new':new, }
+    return render(request, 'portal/addAuthor.html', context)
 
 
 def detailBook(request, pk = None):

@@ -40,7 +40,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="{% url 'books' page=1  %}" >Books <span class="sr-only">(current)</span></a></li>
-        <li><a href="{% url 'userauth_profile' %}">Profil</a></li>
+       {% if user.is_authenticated %} <li><a href="{% url 'userauth_profile' %}">Profil</a></li>{% endif %}
         {% if perms.add_author %}
         <li><a href="{% url 'authorlist' %}" >Autorenliste</a></li>
         {% endif %}

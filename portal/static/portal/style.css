@@ -60,6 +60,14 @@ height:140px;
     width: 80%;
     background-color: white;
 }
+.custom-center-area-100{
+  
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 80%;
+    background-color: white;
+}
 .custom-comment-area{
  
     clear: both;
