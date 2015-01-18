@@ -141,35 +141,27 @@ def rateBook(request, pk = None):
 @permission_required('portal.add_book', login_url='/user/login/')
 #Beate 02.01.2015
 def editBook(request, pk = None):
-
-    form = BookForm()
-    form2 = AuthorForm()
-    author = Author()
-    form3 = CategoryForm()
+    
     category = Category()
     book = Book()
+    author = Author()
+    form = BookForm()
+    form2 = AuthorForm()
+    form3 = CategoryForm()
+    
+    
+    new = False
     if pk == None:
         page_title = 'Neues Buch speichern'
+        new = True       
     else:
         book = get_object_or_404(Book, pk = pk)
         page_title = 'Buch bearbeiten'
+        
     if request.method == 'POST':
         form = BookForm(request.POST, instance = book)
-        form2 = AuthorForm(request.POST, instance = author)
 
-
-        form = BookForm(request.POST, instance = book)
-        form2 = AuthorForm(request.POST, instance = author)
-        form3 = CategoryForm(request.POST, instance = category)
         if request.POST.get('submit'):
-            if form3.is_valid():
-                form3.save()
-                messages.success(request, 'Kategorie wurde gespeichert.')
-                return HttpResponseRedirect(('/portal/book/add/'))
-            if form2.is_valid() :
-                form2.save()
-                messages.success(request, 'Autor wurde gespeichert.')
-                return HttpResponseRedirect(('/portal/book/add/'))
             if form.is_valid():
                 newbook = form.save(commit = False)
                 try:
@@ -184,19 +176,33 @@ def editBook(request, pk = None):
                 messages.error(request, (u'Die Eingabe ist nicht vollstaendig korrekt.'))
         elif request.POST.get('delete'):
             book.delete()
+            messages.success(request, 'Buch wurde entfernt.')
             return HttpResponseRedirect(('/portal/books/1/'))
         else:
-            messages.success(request, 'Etwas lief schief.')
+            messages.error(request, 'Etwas lief schief.')
             return HttpResponseRedirect(('/portal/books/1/'))
 
     else:
         form = BookForm(instance = book)
-        context = {'page_title':page_title,'book_form': form, 'author_form': form2, 'category_form': form3,}
+        context = {'page_title':page_title,'book_form': form, 'author_form': form2, 'category_form': form3,'new':new,}
         return render(request, 'portal/book.html', context)
 
 
-        
+def addBookCategory(request):
+    category = Category()
+    form = CategoryForm(request.POST, instance = category)
+    if request.POST:
+        if form.is_valid():
+            form.save()   
+    return HttpResponseRedirect(('/portal/book/add/'))        
 
+def addBookAuthor(request):
+    author = Author()
+    form = AuthorForm(request.POST, instance = author)
+    if request.POST:
+        if form.is_valid():
+            form.save()
+    return HttpResponseRedirect(('/portal/book/add/'))   
         
         
 def books(request, page = '1',  filter = None):
@@ -242,7 +248,7 @@ def books(request, page = '1',  filter = None):
         o = '-title'
     orderBooks = list(allBooks.order_by(o))
     if orderBy == 'rating':
-        orderBooks.sort( key=rating,reverse=reverseOrder )
+        orderBooks.sort( key=rating,reverse = not reverseOrder )
     
     debStr = 'Remove: '
     #filter = ''

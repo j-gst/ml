@@ -25,51 +25,63 @@ $('#formAU').append($(input));
 <script src="http://malsup.github.com/jquery.form.js"></script>
     <script> 
         $(document).ready(function() { 
-            test = $('#formAU').ajaxForm(function() { 
-               
-               
-              $('#InfoBox').css('visibility','visible');
-               $('#btn_col').trigger('click');
-               $('#id_firstname').val(""); 
-               $('#id_lastname').val(""); 
-                
-
-              setTimeout(function() {
-                location.reload(); 
-              }, 500);
+            a = $('#formAU').ajaxForm(function() { 
+                $('#InfoBox').css('visibility','visible');
+                $('#btn_col').trigger('click');
+                $('#id_firstname').val(""); 
+                $('#id_lastname').val(""); 
+                setTimeout(function() {
+                        location.reload(); 
+                }, 500);
                
             }); 
+            c = $('#formCA').ajaxForm(function() { 
+                $('#InfoBox2').css('visibility','visible');
+                $('#btn_col2').trigger('click');
+                $('#id_categoryname').val("");      
+                setTimeout(function() {
+                    location.reload(); 
+                }, 500);
+            });           
         }); 
     </script> 
 
+    
 
-
+<div style="width:100%">
 
         <h1>{{ page_title }}</h1>
-    <form method="post" enctype="multipart/form-data" action="" class="form-horizontal">
+    <form  method="post" enctype="multipart/form-data" action="" class="form-horizontal">
         {% csrf_token %}
         {% bootstrap_form book_form layout='horizontal' %}
         {% buttons layout='horizontal' %}
         <button type="submit" class="btn btn-primary" name="submit" value="submit">
-         {#% bootstrap_icon "star" %#} Submit
+         {#% bootstrap_icon "star" %#} Speichern
         </button>
+        {% if not new %} 
         <button type="submit" class="btn btn-primary" name="delete" value="delete">
          {#% bootstrap_icon "star" %#} Löschen
         </button>
-        <a id="btn_col" class="btn btn-primary" data-toaggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Autor hinzuf&uuml;gen</a>
+        {% endif %} 
+   <a id="btn_col" class="btn btn-default" data-toggle="collapse" href="#a" aria-expanded="false" aria-controls="a">neuer Autor</a>
         <span id="InfoBox" style="visibility:hidden; color:green; "> Autor angelegt!</span>
-
-        <a id="btn_col" class="btn btn-primary" data-toaggle="collapse" href="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">Kategorie hinzuf&uuml;gen</a>
+   <a id="btn_col2" class="btn btn-default" data-toggle="collapse" href="#c" aria-expanded="false" aria-controls="c">neue Kat</a>
+        <span id="InfoBox2" style="visibility:hidden; color:green; "> Kategorie angelegt!</span>       
+        
+        
+<!--
+        <a id="btn_col" class="btn btn-default" data-toaggle="collapse" href="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory"> Kategorie </a>
         <span id="InfoBox" style="visibility:hidden; color:green; "> Kategorie angelegt!</span>
-
+-->
         {% endbuttons %}
     </form>
 
 
-<div class="collapse" id="collapseExample">
+<div class="collapse" id="a">
   <div class="well">
    
-    <form id="formAU" method="post" enctype="multipart/form-data" action="/portal/book/add/" class="form-horizontal">
+   
+    <form id="formAU" method="post" enctype="multipart/form-data" action="{% url 'book_author_add' %}" class="form-horizontal">
         {% csrf_token %}
         {% bootstrap_form author_form layout='horizontal' %}
         {% buttons layout='horizontal' %}
@@ -79,13 +91,17 @@ $('#formAU').append($(input));
         </button>
         {% endbuttons %}
     </form>
+   
+
+   
   </div>
 </div>
 
-<div class="collapse" id="collapseCategory">
+
+<div class="collapse" id="c">
   <div class="well">
 
-    <form id="formCA" method="post" enctype="multipart/form-data" action="/portal/book/add/" class="form-horizontal">
+    <form id="formCA" method="post" enctype="multipart/form-data" action="{% url 'book_category_add' %}" class="form-horizontal">
         {% csrf_token %}
         {% bootstrap_form category_form layout='horizontal' %}
         {% buttons layout='horizontal' %}
@@ -98,4 +114,7 @@ $('#formAU').append($(input));
   </div>
 </div>
 
+
+
+</div>
 {% endblock %}
