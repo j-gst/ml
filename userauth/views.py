@@ -55,3 +55,4 @@ def users(request, page = 1, search = ''):
         pageNum = 1
 
     return render(request, 'userauth/userlist.html', {'users':users, 'number':number, 'pageNum': pageNum, 'pageRange':range(1,pageNum+1),'page':page })
+
