@@ -90,10 +90,9 @@
         <tr>
             <td><a href="{% url 'detailBook' pk=book.pk %}">{{ book.title }}</a></td>
             <td>
-                {% for a in book.authors.all %}{# |join:', ' #}
+                {% for a in book.authors.all %}
                 {{ a }}<br />
                 {% endfor %}
-                {#{ book.authors.all|join:', ' }#}
             </td>
             <td>
 

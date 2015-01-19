@@ -22,6 +22,10 @@
 
     <p> <b>ISBN: </b>{{ book.isbn }}</p>
     <p> <b>Beschreibung: </b></p><p>{{ book.description }}</p>
+    <p>
+        <b>Kategorien:</b>
+       {{ book.categories.all|join:', ' }}
+    </p>
 </div>
 
 <div class="custom-book-add">
@@ -114,21 +118,21 @@
                 </div>
             </div>
             <hr>
-            {% if perms.change_bookcomment %}
-            <div class="row comment-head">
-                <div class="col-md-12">
-                    <a href="{% url 'deleteComment' pk=comment.pk bpk=book.pk  %}" type="submit" name="delete" value="delete">
-                        Löschen
-                    </a>
-                </div>
-            </div>
-            {% endif %}
-            <hr>
             <div class="row">
                 <div class="col-md-12">
                     {{comment.text}}
                 </div>
             </div>
+            {% if perms.change_bookcomment %}
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="{% url 'deleteComment' pk=comment.pk bpk=book.pk  %}" type="submit" name="delete" value="delete"  class="btn btn-default">
+                        Löschen
+                    </a>
+                </div>
+            </div>
+            {% endif %}
         </div>
 
     {% endfor %}

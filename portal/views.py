@@ -36,6 +36,7 @@ def authors(request, page = '1', search=''):
     return render(request, 'portal/authorlist.html', {'authors':authors, 'number':number, 'pageNum': pageNum, 'pageRange':range(1,pageNum+1),'page':page })
 
 
+
 def addAuthor(request, pk = None):
     form = AuthorForm()
     author = Author()

@@ -1,7 +1,14 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
 
-urlpatterns = patterns('django.contrib.auth.views',
+from userauth import views
+
+urlpatterns = patterns(
+    url(r'^users/$', views.users, name='userlist'),
+    url(r'^users/(?P<page>[0-9]+)?/$', views.users, name='users'),
+)
+
+urlpatterns += patterns('django.contrib.auth.views',
     url(r'^login/$', 'login', {'template_name': 'userauth/login.html'},
         name='userauth_login'),
     url(r'^logout/$', 'logout', {'next_page': '/portal/books/'},
@@ -13,8 +20,6 @@ urlpatterns = patterns('django.contrib.auth.views',
     url(r'^password_change_done/$', 'password_change_done',
         {'template_name': 'userauth/password_change_done.html'},
         name='userauth_password_change_done'),
-
-
 )
 
 
