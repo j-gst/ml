@@ -110,6 +110,26 @@ def commentBook(request, pk = None):
             messages.error(request, 'Kommentar konnte nicht gespeichert werden.')
     return HttpResponseRedirect(('/portal/book/detail/'+pk+'/'))
 
+def deleteComment(request, pk = None, bpk = None):
+    comment = BookComment
+
+    if pk == None:
+        page_title = 'Etwas ist schief '
+    else:
+        comment = get_object_or_404(BookComment, pk = pk)
+
+        comment.delete()
+        messages.success(request, 'Kommentar wurde geloescht.')
+        if bpk == None:
+            return HttpResponseRedirect(('/portal/books/1/'))
+        else:
+            return HttpResponseRedirect(('/portal/book/detail/'+bpk+'/'))
+
+
+
+
+
+
 def ownBook(request, pk = None):
     owning = BookOwning(user_id=request.user.id, book_id=pk)
     if request.method == 'POST':

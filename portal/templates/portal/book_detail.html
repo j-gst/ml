@@ -104,6 +104,7 @@
     {% for comment in comments%}
 
         <div class="custom-comment">
+
             <div class="row comment-head">
                 <div class="col-md-8">
                     {{comment.user.username}}
@@ -112,6 +113,16 @@
                     {{comment.commentdate|date:'d.m.Y H:i'}}
                 </div>
             </div>
+            <hr>
+            {% if perms.change_bookcomment %}
+            <div class="row comment-head">
+                <div class="col-md-12">
+                    <a href="{% url 'deleteComment' pk=comment.pk bpk=book.pk  %}" type="submit" name="delete" value="delete">
+                        Löschen
+                    </a>
+                </div>
+            </div>
+            {% endif %}
             <hr>
             <div class="row">
                 <div class="col-md-12">
