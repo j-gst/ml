@@ -30,6 +30,11 @@ def authors(request, page = '1', search=''):
     number = allAuthors.count()
 
     pageNum = int(round(number / float(elements_per_page),0))
+    
+    # abgerundet?
+    if pageNum < round(number / float(elements_per_page),1):
+        pageNum = pageNum+1
+    
     if pageNum == 0:
         pageNum = 1
 
@@ -295,6 +300,11 @@ def books(request, page = '1',  filter = None):
     
     number = len(orderBooks)
     pageNum = int(round(number / float(elements_per_page),0))
+    
+    # abgerundet?
+    if pageNum < round(number / float(elements_per_page),1):
+        pageNum = pageNum+1
+    
     if pageNum == 0:
         pageNum = 1
     

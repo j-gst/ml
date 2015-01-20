@@ -13,49 +13,50 @@
                 <th>Username</th>
                 <th>Nachname</th>
                 <th>Vorname</th>
+                <th>aktiv?</th>
                 <th></th>
             </tr>
 
-    {% for user in users%}
+    {% for luser in users%}
         <tr>
             <td>
-                {{ user.username }}
+                {{ luser.username }}
             </td>
             <td>
-                {{ user.last_name }}
+                {{ luser.last_name }}
             </td>
             <td>
-                {{ user.first_name }}
+                {{ luser.first_name }}
             </td>
             <td>
-
+                {% if luser.is_active %} Ja {% else%} Nein {% endif %}
+            </td>
+            <td>
+                {% if luser.id != user.id %}
+                <a href="{% url 'users_active_inactive' id=luser.id page=page %}"> {% if luser.is_active %} deaktivieren {% else%} aktivieren {% endif %} </a>
+                {% endif %}
             </td>
         </tr>
     {% endfor %}
         </table>
         
-        <nav>
-  <ul class="pagination">
-    <li {% if 1 == page %} class="disabled" {% endif %}>
-      <a  href="{% url 'users' page=1  %}" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    
-   
+    <nav>
+        <ul class="pagination">
+            <li {% if 1 == page %} class="disabled" {% endif %}>
+                <a  href="{% url 'users' page=1  %}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
     {% for count in pageRange %}
-        <li {% if count == page %} class="active" {% endif %}><a  href="{% url 'users' page=count  %}">{{count}}</a></li>
+            <li {% if count == page %} class="active" {% endif %}><a  href="{% url 'users' page=count  %}">{{count}}</a></li>
     {% endfor %}
-    
-    <li {% if pageNum == page %} class="disabled" {% endif %}>
-      <a href="{% url 'users' page=pageNum  %}" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-    
-    
-  </ul>
-</nav>
+            <li {% if pageNum == page %} class="disabled" {% endif %}>
+                <a href="{% url 'users' page=pageNum  %}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
       
 </div>

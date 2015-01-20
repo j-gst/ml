@@ -6,6 +6,7 @@ from userauth import views
 urlpatterns = patterns(
     url(r'^users/$', views.users, name='userlist'),
     url(r'^users/(?P<page>[0-9]+)?/$', views.users, name='users'),
+    url(r'^activate/(?P<id>[0-9]+)?/(?P<page>[0-9]+)?/$', views.userAktivate, name='users_active_inactive'),
 )
 
 urlpatterns += patterns('django.contrib.auth.views',

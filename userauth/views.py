@@ -7,7 +7,7 @@ from django.template import RequestContext
 from forms import RegisterForm , ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from django.shortcuts import render, get_object_or_404
 
 
 
@@ -17,11 +17,8 @@ def register(request, next_page_name=None):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            if next_page_name is None:
-                next_page = '/'
-            else:
-                next_page = reverse(next_page_name)
-            return HttpResponseRedirect(next_page)
+            messages.success(request, 'Sie haben sich erfolgreich registriert und koennen sich jetzt einloggen.')
+            return HttpResponseRedirect('/user/login/')
     else:
         form = RegisterForm()
     return render(request, 'userauth/register.html', {'register_form': form})
@@ -49,10 +46,38 @@ def users(request, page = 1, search = ''):
 
     users = allUsers[start:end]
     number = allUsers.count()
-
+            
     pageNum = int(round(number / float(elements_per_page),0))
+    
+    # abgerundet?
+    if pageNum < round(number / float(elements_per_page),1):
+        pageNum = pageNum+1
+    
     if pageNum == 0:
         pageNum = 1
 
     return render(request, 'userauth/userlist.html', {'users':users, 'number':number, 'pageNum': pageNum, 'pageRange':range(1,pageNum+1),'page':page })
+
+def userAktivate(request, id, page):
+    user = get_object_or_404(User, pk = id)
+    user.is_active = not user.is_active 
+    user.save()
+    return HttpResponseRedirect(('/user/users/'+page+'/'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
