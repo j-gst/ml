@@ -7,6 +7,8 @@ urlpatterns = patterns(
     url(r'^users/$', views.users, name='userlist'),
     url(r'^users/(?P<page>[0-9]+)?/$', views.users, name='users'),
     url(r'^activate/(?P<id>[0-9]+)?/(?P<page>[0-9]+)?/$', views.userAktivate, name='users_active_inactive'),
+    url(r'^msg/$', views.writeMsg,  name='userauth_write_msg'),
+    url(r'^msg/delete/(?P<mid>[0-9]+)?/$', views.deleteMsg,  name='userauth_delete_msg'),
 )
 
 urlpatterns += patterns('django.contrib.auth.views',

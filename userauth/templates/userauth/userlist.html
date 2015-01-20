@@ -13,6 +13,7 @@
                 <th>Username</th>
                 <th>Nachname</th>
                 <th>Vorname</th>
+                <th>E-Mail</th>
                 <th>aktiv?</th>
                 <th></th>
             </tr>
@@ -27,6 +28,9 @@
             </td>
             <td>
                 {{ luser.first_name }}
+            </td>
+            <td>
+                {{ luser.email }}
             </td>
             <td>
                 {% if luser.is_active %} Ja {% else%} Nein {% endif %}

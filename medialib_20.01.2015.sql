@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.11, for Win32 (x86)
 --
 -- Host: localhost    Database: medialib
 -- ------------------------------------------------------
--- Server version	5.5.24-log
+-- Server version	5.6.11
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -120,7 +120,7 @@ CREATE TABLE `auth_user` (
   `date_joined` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +129,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$12000$VPCmwOuglIhZ$0z5er7B19PFqewO8JpyYNNZ2fh6techf8NaGszbZKiw=','2015-01-18 13:22:09',1,'buffy','Beate','','buffy@test.de',1,1,'2015-01-02 16:05:18'),(2,'pbkdf2_sha256$12000$qsoNTYoR4rHq$CyJd4y7JhWgx9ZOyaNjzyu6/RCim4IlRFIj3BUtQMvM=','2015-01-11 16:42:59',0,'gst','','','gst@netuse.de',0,1,'2015-01-04 14:02:41'),(3,'pbkdf2_sha256$12000$WI5kilzxTlka$3IxYz4f3LEpn1aNm6jrnTSYOX98lgqAebPBQxpcLPhw=','2015-01-11 16:25:29',0,'tt','Peter','Lustig','tt@fd.fr',0,1,'2015-01-04 14:05:24'),(4,'pbkdf2_sha256$12000$sUKCzClit7yj$QWIdSfCWW1SUxHE1S82JmIJTNeeVEBFQikTUOUx1FNg=','2015-01-11 16:45:57',0,'hans','','','h@x.de',0,1,'2015-01-11 16:45:31');
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$12000$VPCmwOuglIhZ$0z5er7B19PFqewO8JpyYNNZ2fh6techf8NaGszbZKiw=','2015-01-20 20:29:18',1,'buffy','Beate','','buffy@test.de',1,1,'2015-01-02 16:05:18'),(2,'pbkdf2_sha256$12000$qsoNTYoR4rHq$CyJd4y7JhWgx9ZOyaNjzyu6/RCim4IlRFIj3BUtQMvM=','2015-01-20 20:25:37',0,'gst','','','gst@netuse.de',0,1,'2015-01-04 14:02:41'),(3,'pbkdf2_sha256$12000$WI5kilzxTlka$3IxYz4f3LEpn1aNm6jrnTSYOX98lgqAebPBQxpcLPhw=','2015-01-20 20:22:26',0,'peter','Peter','Lustig','tt@fd.fr',0,1,'2015-01-04 14:05:24'),(4,'pbkdf2_sha256$12000$sUKCzClit7yj$QWIdSfCWW1SUxHE1S82JmIJTNeeVEBFQikTUOUx1FNg=','2015-01-20 20:26:15',0,'hans','Hans','','h@x.de',0,1,'2015-01-11 16:45:31'),(5,'pbkdf2_sha256$12000$JnOOBY7VvOCH$QGVsOoZX0qXaoPZTAfRPoNhvdvLZS9gCO6Ub76XFwrE=','2015-01-20 20:14:37',0,'maxi','Max','Mustermann','max@test.de',0,1,'2015-01-20 20:12:18'),(6,'pbkdf2_sha256$12000$P4va5CAG284Q$gLsOEsV52WVjJzewtTOOf/zQuzQf5E7DQfQOrP6BfeQ=','2015-01-20 20:19:13',0,'peter22','Peter','Kastens','peter@test.de',0,1,'2015-01-20 20:19:02');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -302,7 +302,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('jf3s8izk4v0vp944z8va8e2wdq5k0ewi','ZGU5M2I4MTI5M2M2ZGQyYzk3ZTdlMjdmN2M1MTU1NTYzMmQ0MjE3ODp7Il9hdXRoX3VzZXJfaGFzaCI6ImQ3N2NhMTMyMDM0NzViYmNjMWVmNGMyODZkN2I1YTRmNWZiMjVmYjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-02-01 13:22:09'),('lr80hj0z632y626voub6ok7b083nrctn','ZGU5M2I4MTI5M2M2ZGQyYzk3ZTdlMjdmN2M1MTU1NTYzMmQ0MjE3ODp7Il9hdXRoX3VzZXJfaGFzaCI6ImQ3N2NhMTMyMDM0NzViYmNjMWVmNGMyODZkN2I1YTRmNWZiMjVmYjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-01-18 17:46:51');
+INSERT INTO `django_session` VALUES ('cgk895atj5btu392houan0kwuhppn4m8','ZGU5M2I4MTI5M2M2ZGQyYzk3ZTdlMjdmN2M1MTU1NTYzMmQ0MjE3ODp7Il9hdXRoX3VzZXJfaGFzaCI6ImQ3N2NhMTMyMDM0NzViYmNjMWVmNGMyODZkN2I1YTRmNWZiMjVmYjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-02-03 20:29:18'),('jf3s8izk4v0vp944z8va8e2wdq5k0ewi','ZGU5M2I4MTI5M2M2ZGQyYzk3ZTdlMjdmN2M1MTU1NTYzMmQ0MjE3ODp7Il9hdXRoX3VzZXJfaGFzaCI6ImQ3N2NhMTMyMDM0NzViYmNjMWVmNGMyODZkN2I1YTRmNWZiMjVmYjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-02-01 13:22:09'),('lr80hj0z632y626voub6ok7b083nrctn','ZGU5M2I4MTI5M2M2ZGQyYzk3ZTdlMjdmN2M1MTU1NTYzMmQ0MjE3ODp7Il9hdXRoX3VzZXJfaGFzaCI6ImQ3N2NhMTMyMDM0NzViYmNjMWVmNGMyODZkN2I1YTRmNWZiMjVmYjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-01-18 17:46:51');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -436,7 +436,7 @@ CREATE TABLE `portal_bookcomment` (
   KEY `portal_bookcomment_user_id_104900ec_fk_auth_user_id` (`user_id`),
   CONSTRAINT `portal_bookcomment_book_id_66be15a2_fk_portal_book_id` FOREIGN KEY (`book_id`) REFERENCES `portal_book` (`id`),
   CONSTRAINT `portal_bookcomment_user_id_104900ec_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -445,7 +445,7 @@ CREATE TABLE `portal_bookcomment` (
 
 LOCK TABLES `portal_bookcomment` WRITE;
 /*!40000 ALTER TABLE `portal_bookcomment` DISABLE KEYS */;
-INSERT INTO `portal_bookcomment` VALUES (3,'test',6,1,'2015-01-11 14:33:39'),(4,'test2',6,1,'2015-01-11 14:33:39'),(5,'test3',6,1,'2015-01-11 14:33:39'),(6,'test3',6,1,'2015-01-11 14:33:39'),(7,'fgdfgdfg',6,1,'2015-01-11 14:33:39'),(8,'gg',6,1,'2015-01-11 14:33:39'),(9,'neu',6,1,'2015-01-11 14:33:39'),(10,'zeit',6,2,'2015-01-11 14:34:52'),(11,'kommentar mal etwas länger und auch mit Ulauten kommentar mal etwas länger und auch mit Ulauten\r\nkommentar mal etwas länger und auch mit Ulauten\r\nkommentar mal etwas länger und auch mit Ulauten kommentar mal etwas länger und auch mit Ulauten\r\nkommentar mal etwas länger und auch mit Ulauten\r\nkommentar mal etwas länger und auch mit Ulauten kommentar mal etwas länger und auch mit Ulauten\r\nkommentar mal etwas länger und auch mit Ulauten',6,4,'2015-01-11 16:48:23'),(12,'test ',6,4,'2015-01-11 16:50:00'),(13,'jjj',10,1,'2015-01-17 11:29:51');
+INSERT INTO `portal_bookcomment` VALUES (3,'test',6,1,'2015-01-11 14:33:39'),(4,'test2',6,1,'2015-01-11 14:33:39'),(5,'test3',6,1,'2015-01-11 14:33:39'),(6,'test3',6,1,'2015-01-11 14:33:39'),(7,'fgdfgdfg',6,1,'2015-01-11 14:33:39'),(8,'gg',6,1,'2015-01-11 14:33:39'),(9,'neu',6,1,'2015-01-11 14:33:39'),(10,'zeit',6,2,'2015-01-11 14:34:52'),(11,'kommentar mal etwas länger und auch mit Ulauten kommentar mal etwas länger und auch mit Ulauten\r\nkommentar mal etwas länger und auch mit Ulauten\r\nkommentar mal etwas länger und auch mit Ulauten kommentar mal etwas länger und auch mit Ulauten\r\nkommentar mal etwas länger und auch mit Ulauten\r\nkommentar mal etwas länger und auch mit Ulauten kommentar mal etwas länger und auch mit Ulauten\r\nkommentar mal etwas länger und auch mit Ulauten',6,4,'2015-01-11 16:48:23'),(12,'test ',6,4,'2015-01-11 16:50:00'),(13,'jjj',10,1,'2015-01-17 11:29:51'),(14,'On Linux systems, a Python installation will typically be included as part of the distribution. Installing into this Python installation requires root access to the system, and may interfere with the operation of the system package manager and other components of the system if a component is unexpectedly upgraded using pip.\r\n\r\nOn such systems, it is often better to use a virtual environment or a per-user installation when installing packages with pip.',8,5,'2015-01-20 20:13:30'),(15,'Python has typically relied heavily on source based distribution, with end users being expected to compile extension modules from source as part of the installation process.',8,5,'2015-01-20 20:13:41'),(16,'Python has typically relied heavily on source based distribution, with end users being expected to compile extension modules from source as part of the installation process.',7,5,'2015-01-20 20:13:50'),(17,'Python has typically relied heavily on source based distribution, with end users being expected to compile extension modules from source as part of the installation process.',9,5,'2015-01-20 20:13:57'),(18,'Python has typically relied heavily on source based distribution, with end users being expected to compile extension modules from source as part of the installation process.',12,5,'2015-01-20 20:14:01'),(19,'Python has typically relied heavily on source based distribution, with end users being expected to compile extension modules from source as part of the installation process.',6,5,'2015-01-20 20:14:11'),(20,'Python is an easy to learn, powerful programming language. It has efficient high-level data structures and a simple but effective approach to object-oriented programming. Python’s elegant syntax and dynamic typing, together with its interpreted nature, make it an ideal language for scripting and rapid application development in many areas on most platforms.\r\n',1,6,'2015-01-20 20:22:00'),(21,'Python is an easy to learn, powerful programming language. ',13,3,'2015-01-20 20:23:42'),(22,'Python is an easy to learn, powerful programming language. ',7,3,'2015-01-20 20:23:47'),(23,'Python is an easy to learn, powerful programming language. ',8,3,'2015-01-20 20:23:52'),(24,'Python is an easy to learn, powerful programming language. ',6,3,'2015-01-20 20:23:58');
 /*!40000 ALTER TABLE `portal_bookcomment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -458,8 +458,8 @@ DROP TABLE IF EXISTS `portal_bookowning`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `portal_bookowning` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `own` varchar(15),
-  `read` varchar(15),
+  `own` varchar(15) DEFAULT NULL,
+  `read` varchar(15) DEFAULT NULL,
   `owningdate` datetime NOT NULL,
   `book_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -469,7 +469,7 @@ CREATE TABLE `portal_bookowning` (
   KEY `portal_bookowning_e8701ad4` (`user_id`),
   CONSTRAINT `portal_bookowning_book_id_64d4f7ca_fk_portal_book_id` FOREIGN KEY (`book_id`) REFERENCES `portal_book` (`id`),
   CONSTRAINT `portal_bookowning_user_id_6f322380_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -478,7 +478,7 @@ CREATE TABLE `portal_bookowning` (
 
 LOCK TABLES `portal_bookowning` WRITE;
 /*!40000 ALTER TABLE `portal_bookowning` DISABLE KEYS */;
-INSERT INTO `portal_bookowning` VALUES (1,'Ja','Ja','2015-01-16 16:40:18',6,1),(2,'Nein','Ja','2015-01-17 11:18:10',10,1),(4,'Ja','Nein','2015-01-17 19:23:23',1,1),(5,'Nein','Ja','2015-01-17 19:23:31',4,1),(6,'Nein','Nein','2015-01-17 20:31:40',9,1);
+INSERT INTO `portal_bookowning` VALUES (1,'Ja','Ja','2015-01-16 16:40:18',6,1),(2,'Nein','Ja','2015-01-17 11:18:10',10,1),(4,'Ja','Nein','2015-01-17 19:23:23',1,1),(5,'Nein','Ja','2015-01-17 19:23:31',4,1),(6,'Nein','Nein','2015-01-17 20:31:40',9,1),(7,'Ja','Ja','2015-01-20 20:14:47',8,5),(8,'Ja','Nein','2015-01-20 20:14:58',9,5),(9,'Nein','Ja','2015-01-20 20:15:07',13,5),(10,'Ja','Ja','2015-01-20 20:15:18',6,5),(11,'Nein','Ja','2015-01-20 20:19:27',8,6),(12,'Ja','Ja','2015-01-20 20:19:39',12,6),(13,'Ja','Ja','2015-01-20 20:19:50',1,6),(14,'Ja','Ja','2015-01-20 20:20:01',6,6),(15,'Ja','Ja','2015-01-20 20:23:29',7,3);
 /*!40000 ALTER TABLE `portal_bookowning` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -501,7 +501,7 @@ CREATE TABLE `portal_bookrating` (
   KEY `portal_bookrating_e8701ad4` (`user_id`),
   CONSTRAINT `portal_bookrating_book_id_32f0144d_fk_portal_book_id` FOREIGN KEY (`book_id`) REFERENCES `portal_book` (`id`),
   CONSTRAINT `portal_bookrating_user_id_353c84fd_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -510,7 +510,7 @@ CREATE TABLE `portal_bookrating` (
 
 LOCK TABLES `portal_bookrating` WRITE;
 /*!40000 ALTER TABLE `portal_bookrating` DISABLE KEYS */;
-INSERT INTO `portal_bookrating` VALUES (1,3,'2015-01-11 15:34:23',6,2),(8,5,'2015-01-11 16:24:12',6,1),(9,3,'2015-01-11 16:25:41',6,3),(13,3,'2015-01-11 16:46:47',6,4),(14,2,'2015-01-17 11:18:07',10,1),(15,2,'2015-01-17 11:55:47',7,1),(16,4,'2015-01-17 13:06:50',12,1),(17,3,'2015-01-17 21:13:46',4,1);
+INSERT INTO `portal_bookrating` VALUES (1,3,'2015-01-11 15:34:23',6,2),(8,5,'2015-01-11 16:24:12',6,1),(9,3,'2015-01-11 16:25:41',6,3),(13,3,'2015-01-11 16:46:47',6,4),(14,2,'2015-01-17 11:18:07',10,1),(15,2,'2015-01-17 11:55:47',7,1),(16,4,'2015-01-17 13:06:50',12,1),(17,3,'2015-01-17 21:13:46',4,1),(18,1,'2015-01-20 20:14:48',8,5),(19,5,'2015-01-20 20:15:10',13,5),(20,4,'2015-01-20 20:15:21',6,5),(21,2,'2015-01-20 20:19:25',8,6),(22,4,'2015-01-20 20:19:36',12,6),(23,2,'2015-01-20 20:19:47',1,6),(24,3,'2015-01-20 20:20:03',6,6),(25,4,'2015-01-20 20:23:38',13,3);
 /*!40000 ALTER TABLE `portal_bookrating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -537,6 +537,38 @@ LOCK TABLES `portal_category` WRITE;
 INSERT INTO `portal_category` VALUES (1,'Roman'),(39,'Krimi'),(40,'Fantasy'),(41,'Sachbuch'),(42,'Kinderbuch');
 /*!40000 ALTER TABLE `portal_category` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `userauth_msg`
+--
+
+DROP TABLE IF EXISTS `userauth_msg`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `userauth_msg` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `subject` varchar(40) NOT NULL,
+  `text` longtext NOT NULL,
+  `msgdate` datetime NOT NULL,
+  `from_user_id` int(11) NOT NULL,
+  `to_user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userauth_msg_6b4f059f` (`from_user_id`),
+  KEY `userauth_msg_63add04c` (`to_user_id`),
+  CONSTRAINT `userauth_msg_to_user_id_2bf28fc1_fk_auth_user_id` FOREIGN KEY (`to_user_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `userauth_msg_from_user_id_6f2e5b5c_fk_auth_user_id` FOREIGN KEY (`from_user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `userauth_msg`
+--
+
+LOCK TABLES `userauth_msg` WRITE;
+/*!40000 ALTER TABLE `userauth_msg` DISABLE KEYS */;
+INSERT INTO `userauth_msg` VALUES (1,'Hallo buffy','Eine erste Nachricht','2015-01-20 18:38:23',2,1),(4,'Nachricht mit viel Text','Welcome! Are you completely new to programming? If not then we presume you will be looking for information about why and how to get started with Python. Fortunately an experienced programmer in any programming language (whatever it may be) can pick up Python very quickly. It\'s also easy for beginners to use and learn, so jump in!','2015-01-20 18:39:34',2,1),(5,'Hallo gst','Eine Nachricht','2015-01-20 18:40:08',1,2),(6,'Testnachricht 2','Welcome! Are you completely new to programming? If not then we presume you will be looking for information about why and how to get started with Python. Fortunately an experienced programmer in any programming language (whatever it may be) can pick up Python very quickly. It\'s also easy for beginners to use and learn, so jump in!Welcome! Are you completely new to programming? If not then we presume you will be looking for information about why and how to get started with Python. Fortunately an experienced programmer in any programming language (whatever it may be) can pick up Python very quickly. It\'s also easy for beginners to use and learn, so jump in!','2015-01-20 18:40:26',1,2),(7,'Eine neue Nachricht','Installing Python is generally easy, and nowadays many Linux and UNIX distributions include a recent Python. Even some Windows computers (notably those from HP) now come with Python already installed. If you do need to install Python and aren\'t confident about the task you can find a few notes on the BeginnersGuide/Download wiki page, but installation is unremarkable on most platforms.','2015-01-20 20:09:24',1,2),(8,'Looking for Something Specific?','If you want to know whether a particular application, or a library with particular functionality, is available in Python there are a number of possible sources of information. The Python web site provides a Python Package Index (also known as the Cheese Shop, a reference to the Monty Python script of that name). There is also a search page for a number of sources of Python-related information. Failing that, just Google for a phrase including the word \'\'python\'\' and you may well get the result you need. If all else fails, ask on the python newsgroup and there\'s a good chance someone will put you on the right track.','2015-01-20 20:09:53',1,2),(9,'Looking to Help?','If you want to help to develop Python, take a look at the developer area for further information. Please note that you don\'t have to be an expert programmer to help. The documentation is just as important as the compiler, and still needs plenty of work!','2015-01-20 20:10:35',2,1),(10,'Key terms','\r\n    pip is the preferred installer program. Starting with Python 3.4, it is included by default with the Python binary installers.\r\n    a virtual environment is a semi-isolated Python environment that allows packages to be installed for use by a particular application, rather than being installed system wide\r\n    pyvenv is the standard tool for creating virtual environments, and has been part of Python since Python 3.3. Starting with Python 3.4, it defaults to installing pip into all created virtual environments\r\n    virtualenv is a third party alternative (and predecessor) to pyvenv. It allows virtual environments to be used on versions of Python prior to 3.4, which either don’t provide pyvenv at all, or aren’t able to automatically install pip into created environments.\r\n    the Python Packaging Index is a public repository of open source licensed packages made available for use by other Python users\r\n    the Python Packaging Authority are the group of developers and documentation authors responsible for the maintenance and evolution of the standard packaging tools and the associated metadata and file format standards. They maintain a variety of tools, documentation and issue trackers on both GitHub and BitBucket.\r\n    distutils is the original build and distribution system first added to the Python standard library in 1998. While direct use of distutils is being phased out, it still laid the foundation for the current packaging and distribution infrastructure, and it not only remains part of the standard library, but its name lives on in other ways (such as the name of the mailing list used to coordinate Python packaging standards development).\r\n','2015-01-20 20:11:06',2,1),(11,'Basic usage','The standard packaging tools are all designed to be used from the command line.','2015-01-20 20:13:04',5,1),(12,'Common installation issues','On Linux systems, a Python installation will typically be included as part of the distribution. Installing into this Python installation requires root access to the system, and may interfere with the operation of the system package manager and other components of the system if a component is unexpectedly upgraded using pip.\r\n\r\nOn such systems, it is often better to use a virtual environment or a per-user installation when installing packages with pip.','2015-01-20 20:13:22',5,2),(13,'hallo','Python has typically relied heavily on source based distribution, with end users being expected to compile extension modules from source as part of the installation process.','2015-01-20 20:16:04',1,5),(14,'Testbetreff','With the introduction of support for the binary wheel format, and the ability to publish wheels for at least Windows and Mac OS X through the Python Packaging Index, this problem is expected to diminish over time, as users are more regularly able to install pre-built extensions rather than needing to build them themselves.','2015-01-20 20:20:32',6,1),(15,'Ganz viel Text','Python is an easy to learn, powerful programming language. It has efficient high-level data structures and a simple but effective approach to object-oriented programming. Python’s elegant syntax and dynamic typing, together with its interpreted nature, make it an ideal language for scripting and rapid application development in many areas on most platforms.\r\n\r\nThe Python interpreter and the extensive standard library are freely available in source or binary form for all major platforms from the Python Web site, https://www.python.org/, and may be freely distributed. The same site also contains distributions of and pointers to many free third party Python modules, programs and tools, and additional documentation.\r\n\r\nThe Python interpreter is easily extended with new functions and data types implemented in C or C++ (or other languages callable from C). Python is also suitable as an extension language for customizable applications.\r\n\r\nThis tutorial introduces the reader informally to the basic concepts and features of the Python language and system. It helps to have a Python interpreter handy for hands-on experience, but all examples are self-contained, so the tutorial can be read off-line as well.\r\nPython is an easy to learn, powerful programming language. It has efficient high-level data structures and a simple but effective approach to object-oriented programming. Python’s elegant syntax and dynamic typing, together with its interpreted nature, make it an ideal language for scripting and rapid application development in many areas on most platforms.\r\n\r\nThe Python interpreter and the extensive standard library are freely available in source or binary form for all major platforms from the Python Web site, https://www.python.org/, and may be freely distributed. The same site also contains distributions of and pointers to many free third party Python modules, programs and tools, and additional documentation.\r\n\r\nThe Python interpreter is easily extended with new functions and data types implemented in C or C++ (or other languages callable from C). Python is also suitable as an extension language for customizable applications.','2015-01-20 20:21:30',6,1),(16,'Python ','Python is an easy to learn, powerful programming language. ','2015-01-20 20:23:07',3,2),(17,'Python','Python is an easy to learn, powerful programming language. ','2015-01-20 20:23:17',3,1),(18,'Hallo gst','Python is an easy to learn, powerful programming language. ','2015-01-20 20:26:44',4,2);
+/*!40000 ALTER TABLE `userauth_msg` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -547,4 +579,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-18 14:22:56
+-- Dump completed on 2015-01-20 21:30:01

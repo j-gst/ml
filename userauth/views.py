@@ -4,10 +4,12 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template import RequestContext
-from forms import RegisterForm , ProfileForm
+from forms import RegisterForm , ProfileForm, MsgForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
+from models import Msg
+
 
 
 
@@ -66,7 +68,34 @@ def userAktivate(request, id, page):
 
 
 
-
+@login_required        
+def writeMsg(request):
+    
+    allMsg = Msg.objects.all().filter(to_user = request.user.id ).order_by('-msgdate')
+    msg = Msg(from_user=request.user)
+    form = MsgForm()
+    form.fields['to_user'].queryset = User.objects.all().exclude(id=request.user.id)
+    if request.method == 'POST':
+        form = MsgForm(request.POST, instance = msg)
+     
+        if form.is_valid() :
+            #animal = form.save(commit=False)
+            #form.from_user = request.user.id
+            form.save()
+            messages.success(request, 'Nachricht gesendet.')
+            return HttpResponseRedirect('/user/msg/')
+        else:
+            messages.error(request, 'Nachricht konnte nicht verschickt werden.')
+    return render(request, 'userauth/write_msg.html', {'form': form, 'allMsg' : allMsg,} )
+    
+    
+    
+    
+def deleteMsg(request, mid):
+    msg = get_object_or_404(Msg, pk = mid)
+    msg.delete()
+    messages.success(request, 'Nachricht entfernt.')
+    return HttpResponseRedirect('/user/msg/')
 
 
 
