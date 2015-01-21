@@ -8,6 +8,14 @@ https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/
 """
 
 import os
+import sys
+import site
+
+
+sys.path.append('/var/oos/ml')
+sys.path.append('/var/oos/ml/medialib')
+
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "medialib.settings")
 
 from django.core.wsgi import get_wsgi_application
