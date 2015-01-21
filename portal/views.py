@@ -5,7 +5,7 @@ from portal.models import *
 from portal.forms import *
 from django.contrib.auth.decorators import permission_required
 from django.db.models import Avg
-
+from django.conf import settings
 
 
 
@@ -18,11 +18,11 @@ def index(request):
    
 
 def authors(request, page = '1', search=''):
-
+    elements_per_page = settings.PAGINATION_ELEM_PER_PAGE
     allAuthors = Author.objects.all().order_by('lastname').filter(lastname__contains=search).filter(firstname__contains=search)
 
     page = int(page)
-    elements_per_page = 5
+
     start = (page-1) * elements_per_page
     end = start + elements_per_page
 
@@ -236,7 +236,7 @@ def addBookAuthor(request):
         
 def books(request, page = '1',  filter = None):
 
-    elements_per_page = 5
+    elements_per_page = settings.PAGINATION_ELEM_PER_PAGE
     
     search = '' 
     if "search" in request.session and request.session["search"] != None:

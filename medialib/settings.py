@@ -26,6 +26,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+PAGINATION_ELEM_PER_PAGE = 6
+
 
 # Application definition
 
