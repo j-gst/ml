@@ -1,28 +1,27 @@
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from portal.models import *
-from portal.forms import *
+from book.models import *
+from book.forms import *
 from django.contrib.auth.decorators import permission_required
 from django.db.models import Avg
+from django.conf import settings
 
 
 
 
 
 
-
-# Create your views here.
 def index(request):
-    return render(request, 'portal/index.html', None)
+    return render(request, 'book/index.html', None)
    
 
 def authors(request, page = '1', search=''):
-
+    elements_per_page = settings.PAGINATION_ELEM_PER_PAGE
     allAuthors = Author.objects.all().order_by('lastname').filter(lastname__contains=search).filter(firstname__contains=search)
 
     page = int(page)
-    elements_per_page = 5
+
     start = (page-1) * elements_per_page
     end = start + elements_per_page
 
@@ -38,7 +37,7 @@ def authors(request, page = '1', search=''):
     if pageNum == 0:
         pageNum = 1
 
-    return render(request, 'portal/authorlist.html', {'authors':authors, 'number':number, 'pageNum': pageNum, 'pageRange':range(1,pageNum+1),'page':page })
+    return render(request, 'book/authorlist.html', {'authors':authors, 'number':number, 'pageNum': pageNum, 'pageRange':range(1,pageNum+1),'page':page })
 
 
 
@@ -61,20 +60,20 @@ def addAuthor(request, pk = None):
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Autor wurde gespeichert.')
-                return HttpResponseRedirect(('/portal/authors/'))
+                return HttpResponseRedirect(('/book/authors/'))
             #else:
                 #context = {'author_form': form}
-                #return render(request, 'portal/addAuthor.html', context)
+                #return render(request, 'book/addAuthor.html', context)
         elif request.POST.get('delete'):
             author.delete()
-            return HttpResponseRedirect(('/portal/authors/'))
+            return HttpResponseRedirect(('/book/authors/'))
         else:
             messages.error(request, 'Etwas lief schief.')
-            return HttpResponseRedirect(('/portal/authors/'))
+            return HttpResponseRedirect(('/book/authors/'))
     else:
         form = AuthorForm(instance = author)
     context = {'page_title':page_title,'author_form': form,'new':new, }
-    return render(request, 'portal/addAuthor.html', context)
+    return render(request, 'book/addAuthor.html', context)
 
 
 def detailBook(request, pk = None):
@@ -101,7 +100,7 @@ def detailBook(request, pk = None):
         owning = 0
         
     context = {'book': book,'form': form,'form2': form2, 'form3': form3,'comments':comments,'count':count, 'ownRating': ownRating, 'owning': owning}
-    return render(request, 'portal/book_detail.html', context)
+    return render(request, 'book/book_detail.html', context)
 
     
 def commentBook(request, pk = None):
@@ -114,7 +113,7 @@ def commentBook(request, pk = None):
             form.save()
         else:
             messages.error(request, 'Kommentar konnte nicht gespeichert werden.')
-    return HttpResponseRedirect(('/portal/book/detail/'+pk+'/'))
+    return HttpResponseRedirect(('/book/book/detail/'+pk+'/'))
 
 def deleteComment(request, pk = None, bpk = None):
     comment = BookComment
@@ -127,9 +126,9 @@ def deleteComment(request, pk = None, bpk = None):
         comment.delete()
         messages.success(request, 'Kommentar wurde geloescht.')
         if bpk == None:
-            return HttpResponseRedirect(('/portal/books/1/'))
+            return HttpResponseRedirect(('/book/books/1/'))
         else:
-            return HttpResponseRedirect(('/portal/book/detail/'+bpk+'/'))
+            return HttpResponseRedirect(('/book/book/detail/'+bpk+'/'))
 
 
 
@@ -145,7 +144,7 @@ def ownBook(request, pk = None):
             form.save()
         else:
             messages.error(request, 'Beim speichern ist ein Fehler aufgetreten.')
-    return HttpResponseRedirect(('/portal/book/detail/'+pk+'/'))
+    return HttpResponseRedirect(('/book/book/detail/'+pk+'/'))
     
     
     
@@ -161,13 +160,13 @@ def rateBook(request, pk = None):
                 pass
         else:
             messages.error(request, 'Bewertung konnte nicht gespeichert werden.')
-    return HttpResponseRedirect(('/portal/book/detail/'+pk+'/'))
+    return HttpResponseRedirect(('/book/book/detail/'+pk+'/'))
   
     
     
     
     
-@permission_required('portal.add_book', login_url='/user/login/')
+@permission_required('book.add_book', login_url='/user/login/')
 #Beate 02.01.2015
 def editBook(request, pk = None):
     
@@ -200,21 +199,21 @@ def editBook(request, pk = None):
                 newbook.save()
                 form.save_m2m()
                 messages.success(request, 'Buch wurde gespeichert.')
-                return HttpResponseRedirect(('/portal/books/1/'))
+                return HttpResponseRedirect(('/book/books/1/'))
             else:
                 messages.error(request, (u'Die Eingabe ist nicht vollstaendig korrekt.'))
         elif request.POST.get('delete'):
             book.delete()
             messages.success(request, 'Buch wurde entfernt.')
-            return HttpResponseRedirect(('/portal/books/1/'))
+            return HttpResponseRedirect(('/book/books/1/'))
         else:
             messages.error(request, 'Etwas lief schief.')
-            return HttpResponseRedirect(('/portal/books/1/'))
+            return HttpResponseRedirect(('/book/books/1/'))
 
     else:
         form = BookForm(instance = book)
         context = {'page_title':page_title,'book_form': form, 'author_form': form2, 'category_form': form3,'new':new,}
-        return render(request, 'portal/book.html', context)
+        return render(request, 'book/book.html', context)
 
 
 def addBookCategory(request):
@@ -223,7 +222,7 @@ def addBookCategory(request):
     if request.POST:
         if form.is_valid():
             form.save()   
-    return HttpResponseRedirect(('/portal/book/add/'))        
+    return HttpResponseRedirect(('/book/book/add/'))        
 
 def addBookAuthor(request):
     author = Author()
@@ -231,12 +230,12 @@ def addBookAuthor(request):
     if request.POST:
         if form.is_valid():
             form.save()
-    return HttpResponseRedirect(('/portal/book/add/'))   
+    return HttpResponseRedirect(('/book/book/add/'))   
         
         
 def books(request, page = '1',  filter = None):
 
-    elements_per_page = 5
+    elements_per_page = settings.PAGINATION_ELEM_PER_PAGE
     
     search = '' 
     if "search" in request.session and request.session["search"] != None:
@@ -313,8 +312,9 @@ def books(request, page = '1',  filter = None):
     start = (page-1) * elements_per_page
     end = start + elements_per_page
     books = orderBooks[start:end]
+    context = {'TitelSearch':search,'orderBy':orderBy,'books':books, 'number':number, 'pageNum': pageNum,'orderImg':orderImg, 'pageRange':range(1,pageNum+1),'page':page,'filter':filter,'curPage':'books', }
  
-    return render(request, 'portal/booklist.html', {'TitelSearch':search,'orderBy':orderBy,'books':books, 'number':number, 'pageNum': pageNum,'orderImg':orderImg, 'pageRange':range(1,pageNum+1),'page':page,'filter':filter })
+    return render(request, 'book/booklist.html', context)
 
     
 
@@ -330,7 +330,7 @@ def setOrderBooks(request, order):
             else:
                 request.session["reverse"] = True
     request.session["orderBooksBy"] = order
-    return HttpResponseRedirect(('/portal/books/1/'))
+    return HttpResponseRedirect(('/book/books/1/'))
 
     
     
@@ -339,12 +339,12 @@ def setOrderBooks(request, order):
 def setBookSearch(request):
 
     request.session["search"] = request.POST.get('search', '')
-    return HttpResponseRedirect(('/portal/books/1/'))
+    return HttpResponseRedirect(('/book/books/1/'))
 
 def setBookFilter(request):
 
     request.session["filter"] = request.POST.get('filter', '')
-    return HttpResponseRedirect(('/portal/books/1/'))
+    return HttpResponseRedirect(('/book/books/1/'))
 
 
 

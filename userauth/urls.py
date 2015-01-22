@@ -14,7 +14,7 @@ urlpatterns = patterns(
 urlpatterns += patterns('django.contrib.auth.views',
     url(r'^login/$', 'login', {'template_name': 'userauth/login.html'},
         name='userauth_login'),
-    url(r'^logout/$', 'logout', {'next_page': '/portal/books/'},
+    url(r'^logout/$', 'logout', {'next_page': '/'},
         name='userauth_logout'),
     url(r'^password_change/$', 'password_change',
          {'post_change_redirect' : '/user/profile/',

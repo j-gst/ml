@@ -1,0 +1,24 @@
+{# Beate 02.01.2015#}
+        {% extends 'base.html' %}
+        {% load bootstrap3 %}
+{# End Beate 02.01.2015 #}
+
+{% block content %}
+<h1>{{ page_title }}</h1>
+
+     <form method="post" enctype="multipart/form-data" action="" class="form-horizontal">
+        {% csrf_token %}
+        {% bootstrap_form participant_form layout='horizontal' %}
+        {% buttons layout='horizontal' %}
+
+        <button type="submit" class="btn btn-primary" name="submit" value="submit">
+         {#% bootstrap_icon "star" %#} Submit
+        </button>
+         {% if not new %}
+         <button type="submit" class="btn btn-primary" name="delete" value="delete">
+         {#% bootstrap_icon "star" %#} Delete
+        </button>
+         {% endif %}
+        {% endbuttons %}
+    </form>
+{% endblock %}

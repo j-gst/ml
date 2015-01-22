@@ -73,7 +73,7 @@ class Category(models.Model):
         return '%s' % (self.categoryname)
 
 
- #Create your models here.
+
 
 @python_2_unicode_compatible
 class Book(models.Model):

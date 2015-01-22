@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from portal.models import *
+from book.models import *
 from django.forms.models import BaseInlineFormSet
 from django.forms.models import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _

@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}{{page_title}}{% endblock %}
+
+{% block content %}
+
+
+<div class="custom-book-cover">
+     <img src="{{MEDIA_URL}}{{film.cover}}" alt="Cover" height="400" width="300"> 
+</div>
+
+
+<div class="custom-book-details">
+    <h1>{{ film }}</h1>
+
+    <p>
+    {% for participant in film.participants.all%}
+         <span style="margin-right:10px;" >{{ participant }}</span>
+    {% endfor %}
+    </p>
+
+    <p> <b>Jahr: </b>{{ film.year }}</p>
+    <p> <b>Beschreibung: </b></p><p>{{ film.description }}</p>
+    <p>
+        <b>Kategorien:</b>
+       {{ film.categories.all|join:', ' }}
+    </p>
+</div>
+
+<div class="custom-book-add">
+{# Bewertung des Filmes #}
+    
+    <b>Durchschnittliche Bewertung: {{ film.printAvgRating }}</b><br>
+ 
+    <div>
+    {% if ownRating == 0 %}
+
+        <b>Sie haben diesen Film noch nicht bewertet:</b>
+        <form class="form-inline" role="form" method="post" action="{% url 'rateFilm' pk=film.id %}" >
+            <div class="form-group">
+            {% for field in form2%}
+            {{ field }}
+            {% endfor %}
+            </div>
+            {% csrf_token %}
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" style="float:left">
+                     bewerten
+                </button>
+           </div>
+        </form>
+    {% else %}
+        <b>Sie haben dieses Film schon  bewertet: {{ ownRating }}</b>
+    {% endif %}
+    </div>
+    {# Ende Bewertung des Filmes #}
+
+    <div>
+        {% if owning == 0 %}
+        <br><br>
+        <b>Geben Sie an, ob Sie diesen Film besitzen und ob Sie es bereits gesehen haben:</b>
+        <form class="form-inline" role="form" method="post" action="{% url 'ownFilm' pk=film.id %}" >
+            {% csrf_token %}
+            {% bootstrap_form form3 layout='inline' %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="float:left">
+                         speichern
+                    </button>
+               </div>
+         </form>
+        {% else %}
+        <b>Sie haben ihre Angaben schon gemacht:<br> </b>
+        <span>Film gehört mir: {{ owning.own }}</span><br>
+        <span>Film gelesen: {{ owning.seen }}</span>
+        {% endif %}
+    </div>
+</div>
+
+
+<div class="custom-comment-area">
+<hr>
+<h2>Kommentare:</h2>
+<hr>
+
+
+    {% if user.is_authenticated %}
+<form  action="{% url 'commentFilm' pk=film.id %}" method="post" accept-charset="utf-8">
+    {% bootstrap_form form %}
+    {% csrf_token %}
+    
+    {% buttons %}
+        <button type="submit" class="btn btn-primary" style="float:left">
+            {#% bootstrap_icon "star" %#} Kommetieren
+        </button>
+   {% endbuttons %}
+  
+</form>
+    {% else %}
+    <b>Sie müssen eingeloggt sein, um Kommentare abgeben zu können.</b>
+    {% endif %}
+</div>
+
+<br><br><hr>
+      <div class="container-fluid">
+     <div class="row">
+     <div class="col-md-7 col-md-offset-0">
+    {% for comment in comments%}
+
+        <div class="custom-comment">
+
+            <div class="row comment-head">
+                <div class="col-md-8">
+                    {{comment.user.username}}
+                </div>
+                <div class="col-md-4 comment-date">
+                    {{comment.commentdate|date:'d.m.Y H:i'}}
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    {{comment.text}}
+                </div>
+            </div>
+            {% if perms.change_filmcomment %}
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="{% url 'deleteComment' pk=comment.pk bpk=film.pk  %}" type="submit" name="delete" value="delete"  class="btn btn-default">
+                        Löschen
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+    {% endfor %}
+     </div>
+     </div>
+     </div>
+{% endblock %}

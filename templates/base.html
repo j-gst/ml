@@ -9,13 +9,13 @@
 
     <meta charset="UTF-8">
     <title>{% block title %}Medialib{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'portal/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
 </head>
 <body>
 
 
 
-    <div     class="page-header"  style="background: url('{% static 'portal/img/blue4.jpeg' %}') repeat-x left top;" >
+    <div     class="page-header"  style="background: url('{% static 'img/blue4.jpeg' %}') repeat-x left top;" >
       <h1>MediaLib <small>A media lib</small></h1>
     </div>
 
@@ -39,27 +39,36 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{% url 'books' page=1  %}" >Books <span class="sr-only">(current)</span></a></li>
-       {% if user.is_authenticated %} <li><a href="{% url 'userauth_profile' %}">Profil</a></li>{% endif %}
-       {% if user.is_authenticated %} <li><a href="{% url 'userauth_write_msg' %}">Nachrichten</a></li>{% endif %}
-        {% if perms.add_author %}
-        <li><a href="{% url 'authorlist' %}" >Autorenliste</a></li>
-        {% endif %}
-         {% if perms.change_permissions %}
-        <li><a href="{% url 'users' page=1 %}" >Userliste</a></li>
-        {% endif %}
+        <li {% if curPage == 'books' %}class="active"{% endif %}><a href="{% url 'books' page=1  %}" >Buch <span class="sr-only">(current)</span> </a></li>
+        <li {% if curPage == 'films' %}class="active"{% endif %}><a href="{% url 'films' page=1  %}" >Film <span class="sr-only">(current)</span></a></li>
+       
+        
+       {% if user.is_authenticated %} <li {% if curPage == 'profile' %}class="active"{% endif %} ><a href="{% url 'userauth_profile' %}">Profil</a></li>{% endif %}
+       {% if user.is_authenticated %} <li {% if curPage == 'msg' %}class="active"{% endif %} ><a href="{% url 'userauth_write_msg' %}">Nachrichten</a></li>{% endif %}
+  
+       
+        {% if perms.add_author or perms.change_permissions or perms.add_participantlis %}
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contentmanager<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            {% if perms.add_author %}
+                <li><a href="{% url 'authorlist' %}" >Autorenliste</a></li>
+            {% endif %}
+             <li class="divider"></li>
+             {% if perms.add_participantlis %}
+             <li><a href="{% url 'participantlist' %}" >Mitwirkendenliste</a></li>
+             {% endif %}
+             <li class="divider"></li>
+            {% if perms.change_permissions %}
+            <li><a href="{% url 'users' page=1 %}" >Userliste</a></li>
+            {% endif %}
           </ul>
         </li>
+        {% endif %}
+        
+        
+        
+        
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

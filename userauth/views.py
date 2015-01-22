@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
 from models import Msg
-
+from django.conf import settings
 
 
 
@@ -36,13 +36,15 @@ def profile(request, next_page_name=None):
             messages.success(request, 'Profil wurde aktualisiert.')
     else:
         form = ProfileForm(instance=request.user)
-    return render(request, 'userauth/profile.html', {'profile_form': form})
+    return render(request, 'userauth/profile.html', {'profile_form': form,'curPage':'profile',})
 
 def users(request, page = 1, search = ''):
+    elements_per_page = settings.PAGINATION_ELEM_PER_PAGE
+    
     allUsers = User.objects.all().order_by('username').filter(username__contains=search).filter(first_name__contains=search).filter(last_name__contains=search)
 
     page = int(page)
-    elements_per_page = 5
+    
     start = (page-1) * elements_per_page
     end = start + elements_per_page
 
@@ -86,7 +88,7 @@ def writeMsg(request):
             return HttpResponseRedirect('/user/msg/')
         else:
             messages.error(request, 'Nachricht konnte nicht verschickt werden.')
-    return render(request, 'userauth/write_msg.html', {'form': form, 'allMsg' : allMsg,} )
+    return render(request, 'userauth/write_msg.html', {'form': form, 'allMsg' : allMsg,'curPage':'msg',} )
     
     
     

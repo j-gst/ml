@@ -6,14 +6,14 @@
 {% block content %}
 <div class="custom-center-area-70">
       
- <h1 style="display: inline; ">Liste der Bücher </h1>
+ <h1 style="display: inline; ">Liste der Filme </h1>
        
        
        <div   class="custom-head-area" > 
       
            <div   style="width:40%; float:left; "> 
 
-               <form style=" " method="post"  role="" action="{% url 'booksearch'  %}">
+               <form style=" " method="post"  role="" action="{% url 'filmsearch'  %}">
                     {% csrf_token %}
                     <div class="form-group">
                             <input style="float:left; width:60%" name="search" maxlength="20" type="text" class="form-control" placeholder="Titel Suche">
@@ -26,13 +26,13 @@
              
              <div   style="width:40%; float:right; "> 
 
-               <form style=" " method="post"  role="" action="{% url 'booksfilter'  %}">
+               <form style=" " method="post"  role="" action="{% url 'filmsfilter'  %}">
                     {% csrf_token %}
                     <div class="form-group">
                             <select style="float:left;  width:60%" name="filter"  class="form-control">
                                 <option></option>
-                                <option>gelesen</option>
-                                <option>nicht gelesen</option>
+                                <option>gesehen</option>
+                                <option>nicht gesehen</option>
                             </select>
                     </div>
                     <button style="display:float:left;" type="submit" class="btn btn-default">Filter</button>
@@ -44,7 +44,7 @@
            <div   style="width:40%; float:left; "> 
             {% if TitelSearch != '' %} 
             <p><b>Suchbegriff: {{TitelSearch}} </b></p>
-            <form  style="display: inline; " method="post"  role="" action="{% url 'booksearch'  %}">
+            <form  style="display: inline; " method="post"  role="" action="{% url 'filmsearch'  %}">
                {% csrf_token %}
                <input name="search" type="hidden" class="form-control" placeholder="Titel Suche">
                 <button style="display: inline; " type="submit" class="btn btn-default">Suche Löschen</button>
@@ -55,7 +55,7 @@
           <div   style="width:40%; float:right; "> 
            {% if filter != '' %} 
             <p><b>Filter: {{filter}} </b></p>
-            <form  style="display: inline; " method="post"  role="" action="{% url 'booksfilter'  %}">
+            <form  style="display: inline; " method="post"  role="" action="{% url 'filmsfilter'  %}">
                {% csrf_token %}
                <input name="search" type="hidden" class="form-control" placeholder="Titel Suche">
                 <button style="display: inline; " type="submit" class="btn btn-default">Filter Löschen</button>
@@ -69,39 +69,39 @@
         <table class="table">
             <tr>            
                 <th>
-                <a href="{% url 'booksrating' order='title' %}" >Title<a> 
+                <a href="{% url 'filmsrating' order='title' %}" >Title<a> 
                 {% if orderBy == 'title' %}
-                <img src="{{STATIC_URL}}portal/img/{{orderImg}}.gif" alt="u"> </img></th>
+                <img src="{{STATIC_URL}}img/{{orderImg}}.gif" alt="."> </img></th>
                 {% endif %}
-                <th>Autoren</th>
+                <th>Mitwirkende</th>
                 <th>
-                <a href="{% url 'booksrating' order='rating' %}" >Bewertungen<a>
+                <a href="{% url 'filmsrating' order='rating' %}" >Bewertungen<a>
                 {% if orderBy == 'rating' %}
-                <img src="{{STATIC_URL}}portal/img/{{orderImg}}.gif" alt="u"> </img>
+                <img src="{{STATIC_URL}}img/{{orderImg}}.gif" alt="."> </img>
                 {% endif %}
                 </th>
                 <th> 
-                {% if perms.add_book %}
-                <a href="{% url 'addBook' %}" class="btn btn-primary">neues Buch</a>
+                {% if perms.add_film %}
+                <a href="{% url 'addFilm' %}" class="btn btn-primary">neuer Film</a>
                 {% endif %}
                 </th>
             </tr>
-    {% for book in books%}
+    {% for film in films%}
         <tr>
-            <td><a href="{% url 'detailBook' pk=book.pk %}">{{ book.title }}</a></td>
+            <td><a href="{% url 'detailFilm' pk=film.pk %}">{{ film.title }}</a></td>
             <td>
-                {% for a in book.authors.all %}
+                {% for a in film.participants.all %}
                 {{ a }}<br />
                 {% endfor %}
             </td>
             <td>
 
-                <p>{{ book.printAvgRating }}</p>
+                <p>{{ film.printAvgRating }}</p>
              
             </td>
             <td>
-                {% if perms.add_book %}
-                <a href="{% url 'editBook' pk=book.pk %}">{% bootstrap_icon 'edit' %}</a>
+                {% if perms.add_film %}
+                <a href="{% url 'editFilm' pk=film.pk %}">{% bootstrap_icon 'edit' %}</a>
                 {% endif %}
             </td>
         </tr>
@@ -114,15 +114,15 @@
     <nav>
         <ul class="pagination">
             <li {% if 1 == page %} class="disabled" {% endif %}>
-                <a  href="{% url 'books' page=1  %}" aria-label="Previous">
+                <a  href="{% url 'films' page=1  %}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
     {% for count in pageRange %}
-            <li {% if count == page %} class="active" {% endif %}><a  href="{% url 'books' page=count  %}">{{count}}</a></li>
+            <li {% if count == page %} class="active" {% endif %}><a  href="{% url 'films' page=count  %}">{{count}}</a></li>
     {% endfor %}
             <li {% if pageNum == page %} class="disabled" {% endif %}>
-                <a href="{% url 'books' page=pageNum  %}" aria-label="Next">
+                <a href="{% url 'films' page=pageNum  %}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>

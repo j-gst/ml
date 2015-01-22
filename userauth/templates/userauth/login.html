@@ -12,7 +12,7 @@
 <form action="" method="post" accept-charset="utf-8">
     {% bootstrap_form form %}
     {% csrf_token %}
-    <input type="hidden" name="next" value="/portal/books/" />
+    <input type="hidden" name="next" value="/" />
     {% buttons %}
         <button type="submit" class="btn btn-primary" style="float:left">
             {#% bootstrap_icon "star" %#} Login
