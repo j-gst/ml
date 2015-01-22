@@ -98,3 +98,20 @@ height:140px;
 .btn{
     margin-right: 10px;
 }
+
+
+/***INDEX**************************************************************/
+
+div.index-title{
+    height: 80px;
+}
+
+img.index-cover{
+    height:200px;
+    width: auto;
+
+}
+
+div.index-persons{
+    height: 100px;
+}

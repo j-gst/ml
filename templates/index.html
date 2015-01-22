@@ -8,7 +8,55 @@
 {% block content %}
 
 <div style="height:600px; background-color: silver;">
-<p> Dummy Home </p>
+<h1>Willkommen in der Medialib</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row content">
+                <div class="col-md-6 books">
+                    <h2>Bücher</h2>
+                    <h3>Die neusten Einträge in Bücher</h3>
+                    <div class="row">
+                        {% for book in books %}
+                        <div class="col-md-4">
+                            <div class="index-title">
+                                <a href="{% url 'detailBook' pk=book.pk %}">{{ book.title }}</a>
+                            </div>
+                                <img src="{{MEDIA_URL}}{{book.cover}}" alt="Cover" class="index-cover" >
+                            <div class="index-persons">
+                                {{ book.authors.all|join:', ' }}
+                            </div>
+                            <div class="index-categories">
+                                {{ book.categories.all|join:', ' }}
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+                <div class="col-md-6 films">
+                    <h2>Filme</h2>
+                    <h3>Die neusten Einträge in Filme</h3>
+                    <div class="row">
+                        {% for film in films %}
+                        <div class="col-md-4">
+                            <div class="index-title">
+                                <a href="{% url 'detailFilm' pk=film.pk %}">{{ film.title }}</a>
+                            </div>
+                             <img src="{{MEDIA_URL}}{{film.cover}}" alt="Cover" class="index-cover">
+                            <div class="index-persons">
+                                {{ film.participants.all|join:', ' }}
+                            </div>
+                            <div class="index-categories">
+                                {{ film.categories.all|join:', ' }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 

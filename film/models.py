@@ -94,6 +94,8 @@ class Film(models.Model):
     participants  = models.ManyToManyField(Participant , verbose_name=u'Mitwirkende')
     categories = models.ManyToManyField(Category, verbose_name=u'Kategorien')
     cover = models.FileField(upload_to='cover/film/%Y%m%d', default='cover/default/default.png')
+    length = models.CharField( max_length=100,verbose_name=u'Spieldauer' )
+    filmtimestamp = models.DateTimeField(auto_now=True)
    
     
     def orderRating(self):

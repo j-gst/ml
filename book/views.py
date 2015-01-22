@@ -77,6 +77,9 @@ def addAuthor(request, pk = None):
     return render(request, 'book/addAuthor.html', context)
 
 
+
+
+
 def detailBook(request, pk = None):
     form = BookCommentForm()
     form2 = BookRatingForm()
