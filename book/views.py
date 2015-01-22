@@ -6,7 +6,10 @@ from book.forms import *
 from django.contrib.auth.decorators import permission_required
 from django.db.models import Avg
 from django.conf import settings
+#<<<<<<< HEAD:book/views.py
 
+#=======
+#>>>>>>> origin/master:portal/views.py
 
 
 
@@ -61,9 +64,7 @@ def addAuthor(request, pk = None):
                 form.save()
                 messages.success(request, 'Autor wurde gespeichert.')
                 return HttpResponseRedirect(('/book/authors/'))
-            #else:
-                #context = {'author_form': form}
-                #return render(request, 'book/addAuthor.html', context)
+
         elif request.POST.get('delete'):
             author.delete()
             return HttpResponseRedirect(('/book/authors/'))
@@ -85,7 +86,7 @@ def detailBook(request, pk = None):
     comments = BookComment.objects.all().filter(book_id=pk).order_by('-commentdate')
     count = bookRatings.filter(book_id=pk).count()
     ownRating = bookRatings.filter(user_id=request.user.id, book_id = pk)
-    #rated = False if ownRating == 0 else  True
+
     
     try:
         ownRating = ownRating[0]
@@ -167,7 +168,7 @@ def rateBook(request, pk = None):
     
     
 @permission_required('book.add_book', login_url='/user/login/')
-#Beate 02.01.2015
+
 def editBook(request, pk = None):
     
     category = Category()
@@ -279,7 +280,7 @@ def books(request, page = '1',  filter = None):
         orderBooks.sort( key=rating,reverse = not reverseOrder )
     
     debStr = 'Remove: '
-    #filter = ''
+
     if filter != '':
         for b in orderBooks[:]:
             
