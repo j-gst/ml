@@ -103,15 +103,21 @@ height:140px;
 /***INDEX**************************************************************/
 
 div.index-title{
-    height: 80px;
+    height: 100px;
 }
 
 img.index-cover{
-    height:200px;
-    width: auto;
+    height: auto;
+    width: 90%;
 
 }
 
 div.index-persons{
     height: 100px;
+}
+
+a.index-title{
+    font-weight: 600;
+    color: #3355ff;
+    font-size: 1.1em;
 }

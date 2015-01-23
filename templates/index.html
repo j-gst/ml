@@ -7,57 +7,58 @@
 
 {% block content %}
 
-<div style="height:600px; background-color: silver;">
-<h1>Willkommen in der Medialib</h1>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row content">
-                <div class="col-md-6 books">
-                    <h2>Bücher</h2>
-                    <h3>Die neusten Einträge in Bücher</h3>
-                    <div class="row">
-                        {% for book in books %}
-                        <div class="col-md-4">
-                            <div class="index-title">
-                                <a href="{% url 'detailBook' pk=book.pk %}">{{ book.title }}</a>
-                            </div>
-                                <img src="{{MEDIA_URL}}{{book.cover}}" alt="Cover" class="index-cover" >
-                            <div class="index-persons">
-                                {{ book.authors.all|join:', ' }}
-                            </div>
-                            <div class="index-categories">
-                                {{ book.categories.all|join:', ' }}
-                            </div>
-                        </div>
-                        {% endfor %}
 
-                    </div>
-                </div>
-                <div class="col-md-6 films">
-                    <h2>Filme</h2>
-                    <h3>Die neusten Einträge in Filme</h3>
-                    <div class="row">
-                        {% for film in films %}
-                        <div class="col-md-4">
-                            <div class="index-title">
-                                <a href="{% url 'detailFilm' pk=film.pk %}">{{ film.title }}</a>
-                            </div>
-                             <img src="{{MEDIA_URL}}{{film.cover}}" alt="Cover" class="index-cover">
-                            <div class="index-persons">
-                                {{ film.participants.all|join:', ' }}
-                            </div>
-                            <div class="index-categories">
-                                {{ film.categories.all|join:', ' }}
-                            </div>
+
+<div class="row">
+    <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+        <h1>Willkommen in der Medialib</h1>
+        <div class="row content">
+            <div class="col-md-6 col-sm-6 col-xs-6 books">
+                <h2>Bücher</h2>
+                <h3>Die neusten Einträge in Bücher</h3>
+                <div class="row">
+                    {% for book in books %}
+                    <div class="col-md-4">
+                        <div class="index-title">
+                            <h4><a href="{% url 'detailBook' pk=book.pk %}" class="index-title">{{ book.title }}</a></h4>
                         </div>
-                        {% endfor %}
+                            <img src="{{MEDIA_URL}}{{book.cover}}" alt="Cover" class="index-cover" >
+                        <div class="index-persons">
+                            {{ book.authors.all|join:', ' }}
+                        </div>
+                        <div class="index-categories">
+                            {{ book.categories.all|join:', ' }}
+                        </div>
                     </div>
+                    {% endfor %}
 
                 </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6 films">
+                <h2>Filme</h2>
+                <h3>Die neusten Einträge in Filme</h3>
+                <div class="row">
+                    {% for film in films %}
+                    <div class="col-md-4">
+                        <div class="index-title">
+                            <h4><a href="{% url 'detailFilm' pk=film.pk %}" class="index-title">{{ film.title }}</a></h4>
+                        </div>
+                         <img src="{{MEDIA_URL}}{{film.cover}}" alt="Cover" class="index-cover">
+                        <div class="index-persons">
+                            {{ film.participants.all|join:', ' }}
+                        </div>
+                        <div class="index-categories">
+                            {{ film.categories.all|join:', ' }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+
 
 
 {% endblock %}
