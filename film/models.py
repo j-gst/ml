@@ -89,15 +89,22 @@ class FilmRating(models.Model):
 @python_2_unicode_compatible
 class Film(models.Model):
     title = models.CharField( max_length=255, verbose_name=u'Titel')
-    year = models.CharField( max_length=100,verbose_name=u'Jahr' )
+    year = models.CharField( max_length=4,verbose_name=u'Jahr' )
+    length = models.CharField( max_length=3,verbose_name=u'Spieldauer in Minuten' )
+ 
     description = models.TextField(u'Beschreibung', blank=True)
     participants  = models.ManyToManyField(Participant , verbose_name=u'Mitwirkende')
     categories = models.ManyToManyField(Category, verbose_name=u'Kategorien')
     cover = models.FileField(upload_to='cover/film/%Y%m%d', default='cover/default/default.png')
-    length = models.CharField( max_length=100,verbose_name=u'Spieldauer' )
+    
     filmtimestamp = models.DateTimeField(auto_now=True)
    
-    
+    def printCategories(self):
+        categoryStr = ''
+        for cat in self.categories.all():
+            categoryStr = categoryStr + " " + str(cat)
+        return categoryStr
+           
     def orderRating(self):
         return FilmRating.objects.all().filter(film_id=self.id).aggregate(Avg('rating'))['rating__avg']
         

@@ -73,7 +73,19 @@
                 {% if orderBy == 'title' %}
                 <img src="{{STATIC_URL}}img/{{orderImg}}.gif" alt="."> </img></th>
                 {% endif %}
-                <th>Mitwirkende</th>
+                <th><a href="{% url 'filmsrating' order='year' %}" >Jahr</a>
+                {% if orderBy == 'year' %}
+                <img src="{{STATIC_URL}}img/{{orderImg}}.gif" alt="."> </img></th>
+                {% endif %}</th>
+                
+                <th>
+                 <a href="{% url 'filmsrating' order='length' %}" >Spieldauer<a>
+                {% if orderBy == 'length' %}
+                <img src="{{STATIC_URL}}img/{{orderImg}}.gif" alt="."> </img>
+                {% endif %}
+                </th>
+                
+                <th>Kategorie</th>
                 <th>
                 <a href="{% url 'filmsrating' order='rating' %}" >Bewertungen<a>
                 {% if orderBy == 'rating' %}
@@ -90,9 +102,13 @@
         <tr>
             <td><a href="{% url 'detailFilm' pk=film.pk %}">{{ film.title }}</a></td>
             <td>
-                {% for a in film.participants.all %}
-                {{ a }}<br />
-                {% endfor %}
+                {{ film.year }}
+            </td>
+            <td> 
+                {{ film.length }}
+            </td>
+            <td> 
+                {{ film.printCategories }}
             </td>
             <td>
 

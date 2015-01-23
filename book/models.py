@@ -81,7 +81,7 @@ class Book(models.Model):
     isbn = models.CharField( max_length=100, )
     description = models.TextField(u'Beschreibung', blank=True)
     authors = models.ManyToManyField(Author, verbose_name=u'Autoren')
-    pages = models.CharField( max_length=100,verbose_name=u'Seitenzahl' )
+    pages = models.IntegerField( max_length=4,verbose_name=u'Seitenzahl' )
     categories = models.ManyToManyField(Category, verbose_name=u'Kategorien')
     cover = models.FileField(upload_to='cover/%Y%m%d', default='cover/default/default.png')
     booktimestamp = models.DateTimeField(auto_now=True)

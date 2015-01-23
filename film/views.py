@@ -154,14 +154,16 @@ def films(request, page = '1',  filter = None):
 
     # Sortieren
     orderImg = 'down'
-    o = 'title'
+    o = orderBy
     if reverseOrder:
         orderImg = 'up'
     else:
-        o = '-title'
-    orderFilms = list(allFilms.order_by(o))
+        o = '-'+orderBy
+    orderFilms = list(allFilms)
     if orderBy == 'rating':
         orderFilms.sort( key=rating,reverse = not reverseOrder )
+    else:
+        orderFilms = list(allFilms.order_by(o))
     
     debStr = 'Remove: '
     #filter = ''
@@ -174,10 +176,10 @@ def films(request, page = '1',  filter = None):
             
             
             if  own.count() > 0 and own[0].own == 'Ja':
-                if filter == 'nicht gelesen':
+                if filter == 'nicht gesehen':
                     orderFilms.remove(b)
             else:
-                if filter == 'gelesen':
+                if filter == 'gesehen':
                     orderFilms.remove(b)
 
     
