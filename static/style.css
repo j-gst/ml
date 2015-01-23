@@ -9,27 +9,24 @@
 
 
 .custom-book-add {
-    float: left;
     padding: 10px;
-    margin: 20px;
-    width:30%;
-    height: 400px;
-    /*background-color: yellow;*/
     border: 1px solid #5e5e5e;
     border-radius: 8px;
 }
 
 
 .custom-book-details{
-    padding: 10px;
-    float: left;
-    margin: 20px;
-    width:40%;
+    padding: 0px 10px;
+}
+.custom-book-details h1{
+    margin: 0px;
+    line-height: 1;
 }
 .custom-book-cover{
-    float: left;
-    margin: 20px;
-    max-width:30%;
+}
+.custom-book-cover img{
+    width: 100%;
+    height: auto;
 }
 .page-header{
     height: 100px;
@@ -52,7 +49,7 @@ height:140px;
 }
 
 .custom-center-area-70{
-  
+
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
@@ -71,8 +68,6 @@ height:140px;
  
     clear: both;
     padding: 10px;
-    margin: 15px;
-    width: 57%;
     border: 1px solid #5e5e5e;
     border-radius: 8px;
 }

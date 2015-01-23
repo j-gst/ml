@@ -5,79 +5,91 @@
 
 {% block content %}
 
+<div class="row">
+<div class=" col-md-10 col-sm-10 col-xs-10  col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+<div class="row">
 
-<div class="custom-book-cover">
-     <img src="{{MEDIA_URL}}{{film.cover}}" alt="Cover" height="400" width="300"> 
-</div>
-
-
-<div class="custom-book-details">
-    <h1>{{ film }}</h1>
-
-    <p>
-    {% for participant in film.participants.all%}
-         <span style="margin-right:10px;" >{{ participant }}</span>
-    {% endfor %}
-    </p>
-
-    <p> <b>Jahr: </b>{{ film.year }}</p>
-    <p> <b>Beschreibung: </b></p><p>{{ film.description }}</p>
-    <p>
-        <b>Kategorien:</b>
-       {{ film.categories.all|join:', ' }}
-    </p>
-</div>
-
-<div class="custom-book-add">
-{# Bewertung des Filmes #}
-    
-    <b>Durchschnittliche Bewertung: {{ film.printAvgRating }}</b><br>
- 
-    <div>
-    {% if ownRating == 0 %}
-
-        <b>Sie haben diesen Film noch nicht bewertet:</b>
-        <form class="form-inline" role="form" method="post" action="{% url 'rateFilm' pk=film.id %}" >
-            <div class="form-group">
-            {% for field in form2%}
-            {{ field }}
-            {% endfor %}
-            </div>
-            {% csrf_token %}
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary" style="float:left">
-                     bewerten
-                </button>
-           </div>
-        </form>
-    {% else %}
-        <b>Sie haben dieses Film schon  bewertet: {{ ownRating }}</b>
-    {% endif %}
+    <div class="custom-book-cover col-md-3 col-sm-3 col-xs-3">
+         <img src="{{MEDIA_URL}}{{film.cover}}" alt="Cover">
     </div>
-    {# Ende Bewertung des Filmes #}
 
-    <div>
-        {% if owning == 0 %}
-        <br><br>
-        <b>Geben Sie an, ob Sie diesen Film besitzen und ob Sie es bereits gesehen haben:</b>
-        <form class="form-inline" role="form" method="post" action="{% url 'ownFilm' pk=film.id %}" >
-            {% csrf_token %}
-            {% bootstrap_form form3 layout='inline' %}
+
+    <div class="custom-book-details col-md-6 col-sm-6 col-xs-6">
+        <h1>{{ film }}</h1>
+        <p>
+            <b>Kategorien:</b>
+           {{ film.categories.all|join:', ' }}
+        </p>
+        <p>
+            <b>Spieldauer: </b>
+            {{ film.length }}
+        </p>
+
+        <p> <b>Beschreibung: </b></p><p>{{ film.description }}</p>
+        <p> <b>Jahr: </b>{{ film.year }}</p>
+         <p>
+             <b>Mitwirkende:</b><br>
+        {% for participant in film.participants.all%}
+             <span style="margin-right:10px;" >{{ participant }}</span><br>
+        {% endfor %}
+        </p>
+    </div>
+
+    <div class="custom-book-add col-md-3 col-sm-3 col-xs-3">
+    {# Bewertung des Filmes #}
+
+        <b>Durchschnittliche Bewertung: {{ film.printAvgRating }}</b><br>
+
+        <div>
+        {% if ownRating == 0 %}
+
+            <b>Sie haben diesen Film noch nicht bewertet:</b>
+            <form class="form-inline" role="form" method="post" action="{% url 'rateFilm' pk=film.id %}" >
+                <div class="form-group">
+                {% for field in form2%}
+                {{ field }}
+                {% endfor %}
+                </div>
+                {% csrf_token %}
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary" style="float:left">
-                         speichern
+                         bewerten
                     </button>
                </div>
-         </form>
+            </form>
         {% else %}
-        <b>Sie haben ihre Angaben schon gemacht:<br> </b>
-        <span>Film gehört mir: {{ owning.own }}</span><br>
-        <span>Film gelesen: {{ owning.seen }}</span>
+            <b>Sie haben dieses Film schon  bewertet: {{ ownRating }}</b>
         {% endif %}
+        </div>
+        {# Ende Bewertung des Filmes #}
+
+        <div>
+            {% if owning == 0 %}
+            <br><br>
+            <b>Geben Sie an, ob Sie diesen Film besitzen und ob Sie es bereits gesehen haben:</b>
+            <form class="form-inline" role="form" method="post" action="{% url 'ownFilm' pk=film.id %}" >
+                {% csrf_token %}
+                {% bootstrap_form form3 layout='inline' %}
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" style="float:left">
+                             speichern
+                        </button>
+                   </div>
+             </form>
+            {% else %}
+            <b>Sie haben ihre Angaben schon gemacht:<br> </b>
+            <span>Film gehört mir: {{ owning.own }}</span><br>
+            <span>Film gelesen: {{ owning.seen }}</span>
+            {% endif %}
+        </div>
     </div>
+</div><!-- end row -->
+</div>
 </div>
 
 
+<div class="row" style="margin-top: 25px;">
+<div class=" col-md-10 col-sm-10 col-xs-10  col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
 <div class="custom-comment-area">
 <hr>
 <h2>Kommentare:</h2>
@@ -104,7 +116,7 @@
 <br><br><hr>
       <div class="container-fluid">
      <div class="row">
-     <div class="col-md-7 col-md-offset-0">
+     <div class="col-md-12 col-md-offset-0">
     {% for comment in comments%}
 
         <div class="custom-comment">
@@ -139,4 +151,7 @@
      </div>
      </div>
      </div>
+
+</div>
+</div>
 {% endblock %}
