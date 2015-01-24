@@ -99,14 +99,14 @@ html{
 /***INDEX**************************************************************/
 
 div.index-title{
-    height: 100px;
+    height: 50px;
 }
 img.index-cover{
     height: auto;
     width: 90%;
 }
 div.index-persons{
-    height: 100px;
+    height: 60px;
 }
 a.index-title{
     font-weight: 600;

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.21, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.11, for Win32 (x86)
 --
 -- Host: localhost    Database: medialib
 -- ------------------------------------------------------
--- Server version	5.6.21
+-- Server version	5.6.11
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -55,8 +55,8 @@ CREATE TABLE `auth_group_permissions` (
   UNIQUE KEY `group_id` (`group_id`,`permission_id`),
   KEY `auth_group_permissions_0e939a4f` (`group_id`),
   KEY `auth_group_permissions_8373b171` (`permission_id`),
-  CONSTRAINT `auth_group_permissi_permission_id_23962d04_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
-  CONSTRAINT `auth_group_permissions_group_id_58c48ba9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
+  CONSTRAINT `auth_group_permissions_group_id_58c48ba9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `auth_group_permissi_permission_id_23962d04_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -120,7 +120,7 @@ CREATE TABLE `auth_user` (
   `date_joined` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +129,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$12000$VPCmwOuglIhZ$0z5er7B19PFqewO8JpyYNNZ2fh6techf8NaGszbZKiw=','2015-01-22 09:27:55',1,'buffy','Beate','','buffy@test.de',1,1,'2015-01-02 16:05:18'),(2,'pbkdf2_sha256$12000$qsoNTYoR4rHq$CyJd4y7JhWgx9ZOyaNjzyu6/RCim4IlRFIj3BUtQMvM=','2015-01-20 13:32:06',0,'gst','','','gst@netuse.de',0,1,'2015-01-04 14:02:41'),(3,'pbkdf2_sha256$12000$WI5kilzxTlka$3IxYz4f3LEpn1aNm6jrnTSYOX98lgqAebPBQxpcLPhw=','2015-01-11 16:25:29',0,'tt','Peter','Lustig','tt@fd.fr',0,1,'2015-01-04 14:05:24'),(4,'pbkdf2_sha256$12000$sUKCzClit7yj$QWIdSfCWW1SUxHE1S82JmIJTNeeVEBFQikTUOUx1FNg=','2015-01-11 16:45:57',0,'hans','','','h@x.de',0,0,'2015-01-11 16:45:31'),(5,'pbkdf2_sha256$12000$Ksys5bZtD8oE$6Zk4NWM9ESpzEcXFasB63GnM9sM32VZy6AF79CqXq+Q=','2015-01-20 13:52:16',0,'dragos','Dirk','Mustermann','d@xxx.de',0,1,'2015-01-20 13:52:16'),(6,'pbkdf2_sha256$12000$IFO3jH6DidAm$FooP5T2J9TZ0Dgbz1ear9GPXdRZQ/48Ja4TUKQHVTew=','2015-01-20 13:59:56',0,'rrr','Ralf','Ramse','r@e.de',0,1,'2015-01-20 13:59:56'),(7,'pbkdf2_sha256$12000$drRChVEK09LG$j9erb81djYhwujRzowuuk1oGGbfoTS5TIMQznIg0DPc=','2015-01-20 14:01:21',0,'rrr2','Ralf','Ramse','r@e.de',0,0,'2015-01-20 14:01:13');
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$12000$svftXEbrsULV$QXVoJno1Y5hORZhK3O/QEY//JILawyjpl6EnP4E2sho=','2015-01-24 11:52:07',1,'buffy','Beate','','buffy@test.de',1,1,'2015-01-02 16:05:18'),(2,'pbkdf2_sha256$12000$qsoNTYoR4rHq$CyJd4y7JhWgx9ZOyaNjzyu6/RCim4IlRFIj3BUtQMvM=','2015-01-20 13:32:06',0,'gst','','','gst@netuse.de',0,1,'2015-01-04 14:02:41'),(3,'pbkdf2_sha256$12000$WI5kilzxTlka$3IxYz4f3LEpn1aNm6jrnTSYOX98lgqAebPBQxpcLPhw=','2015-01-11 16:25:29',0,'tt','Peter','Lustig','tt@fd.fr',0,1,'2015-01-04 14:05:24'),(4,'pbkdf2_sha256$12000$sUKCzClit7yj$QWIdSfCWW1SUxHE1S82JmIJTNeeVEBFQikTUOUx1FNg=','2015-01-11 16:45:57',0,'hans','','','h@x.de',0,0,'2015-01-11 16:45:31'),(5,'pbkdf2_sha256$12000$Ksys5bZtD8oE$6Zk4NWM9ESpzEcXFasB63GnM9sM32VZy6AF79CqXq+Q=','2015-01-20 13:52:16',0,'dragos','Dirk','Mustermann','d@xxx.de',0,1,'2015-01-20 13:52:16'),(6,'pbkdf2_sha256$12000$IFO3jH6DidAm$FooP5T2J9TZ0Dgbz1ear9GPXdRZQ/48Ja4TUKQHVTew=','2015-01-20 13:59:56',0,'rrr','Ralf','Ramse','r@e.de',0,1,'2015-01-20 13:59:56'),(7,'pbkdf2_sha256$12000$drRChVEK09LG$j9erb81djYhwujRzowuuk1oGGbfoTS5TIMQznIg0DPc=','2015-01-20 14:01:21',0,'rrr2','Ralf','Ramse','r@e.de',0,0,'2015-01-20 14:01:13'),(8,'pbkdf2_sha256$12000$pCJZtZtvloZP$cUvqGPZ/v4dtHYKDgVeeuxmDerHqN9NxqIgV7L/6g2I=','2015-01-22 17:52:12',0,'ralf','Ralf','Richter','dd@xy.de',0,1,'2015-01-22 17:52:12'),(9,'pbkdf2_sha256$12000$HMSd0ykLuTbL$WJ6NzpiURNuMeNBl89/YFjMtS/aX8DtRM+gpyQYpzj0=','2015-01-24 11:51:27',0,'maria','Maria','K.','maria@test.com',0,1,'2015-01-24 11:51:21');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,8 +178,8 @@ CREATE TABLE `auth_user_user_permissions` (
   UNIQUE KEY `user_id` (`user_id`,`permission_id`),
   KEY `auth_user_user_permissions_e8701ad4` (`user_id`),
   KEY `auth_user_user_permissions_8373b171` (`permission_id`),
-  CONSTRAINT `auth_user_user_perm_permission_id_3d7071f0_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
-  CONSTRAINT `auth_user_user_permissions_user_id_7cd7acb6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+  CONSTRAINT `auth_user_user_permissions_user_id_7cd7acb6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `auth_user_user_perm_permission_id_3d7071f0_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -205,7 +205,7 @@ CREATE TABLE `book_author` (
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,7 +214,7 @@ CREATE TABLE `book_author` (
 
 LOCK TABLES `book_author` WRITE;
 /*!40000 ALTER TABLE `book_author` DISABLE KEYS */;
-INSERT INTO `book_author` VALUES (1,'Hans-Peter','Anderson'),(2,'Tannenbaum','Andrew S.'),(3,'Kate','White'),(4,'Gumm','Prof. Dr. Heinz Peter'),(5,'Sommer','Prof. Dr. Manfred'),(6,'Karl','Heinz'),(13,'Hans-Dieter','Neuwingen'),(14,'Karl','Koch');
+INSERT INTO `book_author` VALUES (1,'Hans-Peter','Anderson'),(2,'Tannenbaum','Andrew S.'),(3,'Kate','White'),(4,'Gumm','Prof. Dr. Heinz Peter'),(5,'Sommer','Prof. Dr. Manfred'),(6,'Karl','Heinz'),(13,'Hans-Dieter','Neuwingen'),(14,'Karl','Koch'),(15,'Ralf','Zimmermann'),(16,'Arthur ','Schmidt'),(17,'Dirie','Waris'),(18,'Tolkin','J.R.R.');
 /*!40000 ALTER TABLE `book_author` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,8 +231,10 @@ CREATE TABLE `book_book` (
   `isbn` varchar(100) NOT NULL,
   `description` longtext NOT NULL,
   `cover` varchar(100) NOT NULL,
+  `booktimestamp` datetime NOT NULL,
+  `pages` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -241,7 +243,7 @@ CREATE TABLE `book_book` (
 
 LOCK TABLES `book_book` WRITE;
 /*!40000 ALTER TABLE `book_book` DISABLE KEYS */;
-INSERT INTO `book_book` VALUES (1,'Wenn Blicke töten könnten','9786-3666-4426-3667','Gerade nicht so wichtig','cover/default/default.png'),(4,'Die Wüste','2323-4433-4455-6789','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.','cover/default/default.png'),(6,'Einführung in die Informatik','978-3-486-59711-0','lWhether you\'re new to programming or an experienced developer, it\'s easy to learn and use Python.','cover/default/default.png'),(7,'Betriebssysteme','44444-2323-1212-1212','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ','cover/20150120/error2.jpg'),(8,'Aurora','2323-5678-1298-0000','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.','cover/default/default.png'),(9,'Das Märchenbuch','1234-1111-2222-3333','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.','cover/default/default.png'),(10,'Experimentalphysik ','2323-4444-5555-6666','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ','cover/default/default.png'),(12,'Cobra','1234-1234-1234-FF12','11','cover/default/default.png'),(13,'Der Herr der Ringe Band 1','1234-5678-2222-12G2','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.','cover/default/default.png');
+INSERT INTO `book_book` VALUES (1,'Wenn Blicke töten könnten','9786-3666-4426-3667','Gerade nicht so wichtig','cover/book/20150124/e1d9e0365d2.gif','2015-01-24 13:31:23','444'),(4,'Wüstenblume ','2323-4433-4455-6789','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.','cover/book/20150124/wustex.jpg','2015-01-24 13:03:00','344'),(6,'Einführung in die Informatik','978-3-486-59711-0','lWhether you\'re new to programming or an experienced developer, it\'s easy to learn and use Python.','cover/book/20150124/infoarge.jpg','2015-01-24 13:05:46','788'),(7,'Betriebssysteme','44444-2323-1212-1212','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ','cover/book/20150124/index.jpg','2015-01-24 12:59:01','0'),(8,'Die korrupte Republik','2323-5678-1298-0000','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.','cover/book/20150124/buchcover-tillack.jpg','2015-01-24 13:04:27','355'),(9,'Das Märchenbuch','1234-1111-2222-3333','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.','cover/default/default.png','2015-01-22 20:01:20','0'),(10,'Experimentalphysik ','2323-4444-5555-6666','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ','cover/book/20150124/41uQJDCibhL._SL500_AA300_.jpg','2015-01-24 12:59:52','1233'),(12,'Cobra','1234-1234-1234-FF12','Ein Thriller','cover/book/20150124/forsyth-cobracover.jpg','2015-01-24 13:08:48','348'),(13,'Der Herr der Ringe','1234-5678-2222-12G2','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.','cover/book/20150124/384px-Der_Herr_der_Ringe_2_Cover_ISBN_978-3-608-93982-8.png','2015-01-24 13:09:09','655');
 /*!40000 ALTER TABLE `book_book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,7 +264,7 @@ CREATE TABLE `book_book_authors` (
   KEY `book_book_authors_4f331e2f` (`author_id`),
   CONSTRAINT `book_book_authors_author_id_1fe658e4_fk_book_author_id` FOREIGN KEY (`author_id`) REFERENCES `book_author` (`id`),
   CONSTRAINT `book_book_authors_book_id_7b19abf0_fk_book_book_id` FOREIGN KEY (`book_id`) REFERENCES `book_book` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,7 +273,7 @@ CREATE TABLE `book_book_authors` (
 
 LOCK TABLES `book_book_authors` WRITE;
 /*!40000 ALTER TABLE `book_book_authors` DISABLE KEYS */;
-INSERT INTO `book_book_authors` VALUES (51,1,3),(46,4,3),(1,6,5),(50,7,2),(49,8,6),(43,9,6),(47,10,4),(48,10,5),(44,12,13),(45,13,14);
+INSERT INTO `book_book_authors` VALUES (68,1,3),(60,4,17),(63,6,5),(57,7,2),(62,8,6),(43,9,6),(58,10,4),(59,10,5),(66,12,13),(67,13,18);
 /*!40000 ALTER TABLE `book_book_authors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,7 +294,7 @@ CREATE TABLE `book_book_categories` (
   KEY `book_book_categories_b583a629` (`category_id`),
   CONSTRAINT `book_book_categories_book_id_109934e3_fk_book_book_id` FOREIGN KEY (`book_id`) REFERENCES `book_book` (`id`),
   CONSTRAINT `book_book_categories_category_id_ab9533a_fk_book_category_id` FOREIGN KEY (`category_id`) REFERENCES `book_category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -301,7 +303,7 @@ CREATE TABLE `book_book_categories` (
 
 LOCK TABLES `book_book_categories` WRITE;
 /*!40000 ALTER TABLE `book_book_categories` DISABLE KEYS */;
-INSERT INTO `book_book_categories` VALUES (28,1,39),(23,4,41),(18,6,41),(27,7,41),(26,8,1),(25,8,40),(19,9,40),(24,10,41),(20,12,1),(21,12,39),(22,13,40);
+INSERT INTO `book_book_categories` VALUES (44,1,39),(35,4,41),(38,6,41),(33,7,41),(37,8,41),(19,9,40),(34,10,41),(41,12,1),(42,12,39),(43,13,40);
 /*!40000 ALTER TABLE `book_book_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,7 +325,7 @@ CREATE TABLE `book_bookcomment` (
   KEY `book_bookcomment_e8701ad4` (`user_id`),
   CONSTRAINT `book_bookcomment_book_id_54573fcd_fk_book_book_id` FOREIGN KEY (`book_id`) REFERENCES `book_book` (`id`),
   CONSTRAINT `book_bookcomment_user_id_541f5e83_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -332,6 +334,7 @@ CREATE TABLE `book_bookcomment` (
 
 LOCK TABLES `book_bookcomment` WRITE;
 /*!40000 ALTER TABLE `book_bookcomment` DISABLE KEYS */;
+INSERT INTO `book_bookcomment` VALUES (1,'Ein gutes Buch','2015-01-24 13:04:44',8,1),(2,'Super Buch','2015-01-24 13:06:47',13,1),(3,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.','2015-01-24 13:21:30',9,1),(4,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.','2015-01-24 13:21:39',4,1),(5,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.','2015-01-24 13:21:45',6,1),(6,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.','2015-01-24 13:21:55',12,1),(7,'The 2015 Sundance Film Festival has started, and we\'re in Park City with coverage of the screenings, the street scene, and parties. Visit our Sundance section, brought to you by IMDb & Amazon Instant Video, to see the films we\'re excited about, plus browse our mini-guide, trailers, photos, and more!','2015-01-24 13:32:57',1,1);
 /*!40000 ALTER TABLE `book_bookcomment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -355,7 +358,7 @@ CREATE TABLE `book_bookowning` (
   KEY `book_bookowning_e8701ad4` (`user_id`),
   CONSTRAINT `book_bookowning_book_id_48500627_fk_book_book_id` FOREIGN KEY (`book_id`) REFERENCES `book_book` (`id`),
   CONSTRAINT `book_bookowning_user_id_11948a2f_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -364,6 +367,7 @@ CREATE TABLE `book_bookowning` (
 
 LOCK TABLES `book_bookowning` WRITE;
 /*!40000 ALTER TABLE `book_bookowning` DISABLE KEYS */;
+INSERT INTO `book_bookowning` VALUES (1,'Ja','Ja','2015-01-22 18:13:05',8,1),(2,'Ja','Ja','2015-01-24 13:06:52',13,1),(3,'Nein','Ja','2015-01-24 13:21:13',4,1),(4,'Ja','Ja','2015-01-24 13:31:14',1,1);
 /*!40000 ALTER TABLE `book_bookowning` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -386,7 +390,7 @@ CREATE TABLE `book_bookrating` (
   KEY `book_bookrating_e8701ad4` (`user_id`),
   CONSTRAINT `book_bookrating_book_id_4b6510e4_fk_book_book_id` FOREIGN KEY (`book_id`) REFERENCES `book_book` (`id`),
   CONSTRAINT `book_bookrating_user_id_50432772_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -395,6 +399,7 @@ CREATE TABLE `book_bookrating` (
 
 LOCK TABLES `book_bookrating` WRITE;
 /*!40000 ALTER TABLE `book_bookrating` DISABLE KEYS */;
+INSERT INTO `book_bookrating` VALUES (1,1,'2015-01-22 18:13:01',8,1),(2,1,'2015-01-24 10:31:54',10,1),(3,5,'2015-01-24 13:06:55',13,1),(4,5,'2015-01-24 13:21:09',4,1),(5,3,'2015-01-24 13:31:11',1,1);
 /*!40000 ALTER TABLE `book_bookrating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -409,7 +414,7 @@ CREATE TABLE `book_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `categoryname` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -418,7 +423,7 @@ CREATE TABLE `book_category` (
 
 LOCK TABLES `book_category` WRITE;
 /*!40000 ALTER TABLE `book_category` DISABLE KEYS */;
-INSERT INTO `book_category` VALUES (1,'Roman'),(39,'Krimi'),(40,'Fantasy'),(41,'Sachbuch'),(42,'Kinderbuch');
+INSERT INTO `book_category` VALUES (1,'Roman'),(39,'Krimi'),(40,'Fantasy'),(41,'Sachbuch'),(42,'Kinderbuch'),(43,'test');
 /*!40000 ALTER TABLE `book_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -441,8 +446,8 @@ CREATE TABLE `django_admin_log` (
   PRIMARY KEY (`id`),
   KEY `django_admin_log_417f1b1c` (`content_type_id`),
   KEY `django_admin_log_e8701ad4` (`user_id`),
-  CONSTRAINT `django_admin__content_type_id_5151027a_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
-  CONSTRAINT `django_admin_log_user_id_1c5f563_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+  CONSTRAINT `django_admin_log_user_id_1c5f563_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `django_admin__content_type_id_5151027a_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -496,7 +501,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -505,7 +510,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2014-12-27 13:32:21'),(2,'auth','0001_initial','2014-12-27 13:32:39'),(3,'admin','0001_initial','2014-12-27 13:32:44'),(4,'sessions','0001_initial','2014-12-27 13:32:45'),(5,'portal','0001_initial','2014-12-27 14:17:13'),(6,'portal','0002_auto_20150107_1511','2015-01-11 13:21:37'),(7,'portal','0003_book_cover','2015-01-11 13:21:37'),(8,'portal','0004_bookcomment','2015-01-11 13:21:38'),(9,'portal','0005_auto_20150111_1358','2015-01-11 14:33:49'),(10,'portal','0006_bookcomment_commentdate','2015-01-11 14:33:50'),(11,'portal','0007_auto_20150111_1546','2015-01-11 14:46:59'),(12,'portal','0008_auto_20150112_2119','2015-01-16 16:39:24'),(13,'portal','0009_auto_20150112_2208','2015-01-16 16:39:26'),(14,'portal','0010_auto_20150115_2133','2015-01-16 16:39:26'),(15,'portal','0011_auto_20150117_1409','2015-01-17 14:04:53'),(16,'userauth','0001_initial','2015-01-19 14:24:56'),(17,'userauth','0002_auto_20150120_1112','2015-01-20 10:12:38'),(18,'film','0001_initial','2015-01-22 11:24:54'),(19,'film','0002_auto_20150122_1646','2015-01-22 15:46:26'),(20,'book','0001_initial','2015-01-22 15:53:19');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2014-12-27 13:32:21'),(2,'auth','0001_initial','2014-12-27 13:32:39'),(3,'admin','0001_initial','2014-12-27 13:32:44'),(4,'sessions','0001_initial','2014-12-27 13:32:45'),(5,'portal','0001_initial','2014-12-27 14:17:13'),(6,'portal','0002_auto_20150107_1511','2015-01-11 13:21:37'),(7,'portal','0003_book_cover','2015-01-11 13:21:37'),(8,'portal','0004_bookcomment','2015-01-11 13:21:38'),(9,'portal','0005_auto_20150111_1358','2015-01-11 14:33:49'),(10,'portal','0006_bookcomment_commentdate','2015-01-11 14:33:50'),(11,'portal','0007_auto_20150111_1546','2015-01-11 14:46:59'),(12,'portal','0008_auto_20150112_2119','2015-01-16 16:39:24'),(13,'portal','0009_auto_20150112_2208','2015-01-16 16:39:26'),(14,'portal','0010_auto_20150115_2133','2015-01-16 16:39:26'),(15,'portal','0011_auto_20150117_1409','2015-01-17 14:04:53'),(16,'userauth','0001_initial','2015-01-19 14:24:56'),(17,'userauth','0002_auto_20150120_1112','2015-01-20 10:12:38'),(18,'film','0001_initial','2015-01-22 11:24:54'),(19,'film','0002_auto_20150122_1646','2015-01-22 15:46:26'),(20,'book','0001_initial','2015-01-22 15:53:19'),(21,'book','0002_book_booktimestamp','2015-01-23 20:03:18'),(22,'book','0003_book_paegs','2015-01-23 20:03:18'),(23,'book','0004_auto_20150122_2127','2015-01-23 20:03:18'),(24,'film','0003_film_filmtimestamp','2015-01-23 20:03:18'),(25,'film','0004_film_length','2015-01-23 20:03:18');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -531,7 +536,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('jf3s8izk4v0vp944z8va8e2wdq5k0ewi','ZGU5M2I4MTI5M2M2ZGQyYzk3ZTdlMjdmN2M1MTU1NTYzMmQ0MjE3ODp7Il9hdXRoX3VzZXJfaGFzaCI6ImQ3N2NhMTMyMDM0NzViYmNjMWVmNGMyODZkN2I1YTRmNWZiMjVmYjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-02-01 13:22:09'),('lr80hj0z632y626voub6ok7b083nrctn','ZGU5M2I4MTI5M2M2ZGQyYzk3ZTdlMjdmN2M1MTU1NTYzMmQ0MjE3ODp7Il9hdXRoX3VzZXJfaGFzaCI6ImQ3N2NhMTMyMDM0NzViYmNjMWVmNGMyODZkN2I1YTRmNWZiMjVmYjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-01-18 17:46:51'),('ykncqa9ahxc0xq5tig4ybwxahmqhx2me','ZGZhMzRmMDFkZjY2YjQ2Yzk1N2E0NzMzMzgxMDY1M2NjYzBlZDgzMjp7InNlYXJjaCI6IiIsInJldmVyc2UiOnRydWUsIl9hdXRoX3VzZXJfaWQiOjEsIm9yZGVyQm9va3NCeSI6InRpdGxlIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJmaWx0ZXIiOiIiLCJvcmRlckZpbG1zQnkiOiJyYXRpbmciLCJfYXV0aF91c2VyX2hhc2giOiJkNzdjYTEzMjAzNDc1YmJjYzFlZjRjMjg2ZDdiNWE0ZjVmYjI1ZmIxIn0=','2015-02-05 16:07:22');
+INSERT INTO `django_session` VALUES ('brgeu7z3uit5yhs15yiottxn9gkrzbr6','Y2Q1YjkzZWJjZjJlMzAxYWFiZjcxMGY1OTQ0OGNlYWE1ZWNkOGMxNzp7InNlYXJjaCI6IiIsInJldmVyc2UiOmZhbHNlLCJfYXV0aF91c2VyX2lkIjoxLCJvcmRlckZpbG1zQnkiOiJ5ZWFyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJmaWx0ZXIiOiIiLCJfYXV0aF91c2VyX2hhc2giOiJkNzdjYTEzMjAzNDc1YmJjYzFlZjRjMjg2ZDdiNWE0ZjVmYjI1ZmIxIn0=','2015-02-06 20:07:18'),('jf3s8izk4v0vp944z8va8e2wdq5k0ewi','ZGU5M2I4MTI5M2M2ZGQyYzk3ZTdlMjdmN2M1MTU1NTYzMmQ0MjE3ODp7Il9hdXRoX3VzZXJfaGFzaCI6ImQ3N2NhMTMyMDM0NzViYmNjMWVmNGMyODZkN2I1YTRmNWZiMjVmYjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-02-01 13:22:09'),('lr80hj0z632y626voub6ok7b083nrctn','ZGU5M2I4MTI5M2M2ZGQyYzk3ZTdlMjdmN2M1MTU1NTYzMmQ0MjE3ODp7Il9hdXRoX3VzZXJfaGFzaCI6ImQ3N2NhMTMyMDM0NzViYmNjMWVmNGMyODZkN2I1YTRmNWZiMjVmYjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-01-18 17:46:51'),('us0780omsdnbkxabjqc8h0xqh2jwp0cg','Y2JiZDg1ZjgzYzZlMjZmNTliMTI0NTE2NTc5MzFiYTBiY2EwMTM2Yjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZDc3Y2ExMzIwMzQ3NWJiY2MxZWY0YzI4NmQ3YjVhNGY1ZmIyNWZiMSIsInJldmVyc2UiOmZhbHNlLCJfYXV0aF91c2VyX2lkIjoxLCJvcmRlckJvb2tzQnkiOiJyYXRpbmcifQ==','2015-02-05 18:13:23'),('y4vwcipng7udy9fujl7gv02ve2v7z68s','ZDU2YWQ1NzU4MDkyMTgzYWZmNDU2ZmM5MDdkMWM0M2VlZWJlYTQ1ZTp7InNlYXJjaCI6IiIsInJldmVyc2UiOmZhbHNlLCJfYXV0aF91c2VyX2lkIjoxLCJvcmRlckJvb2tzQnkiOiJ0aXRsZSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiZmlsdGVyIjoiIiwib3JkZXJGaWxtc0J5IjoibGVuZ3RoIiwiX2F1dGhfdXNlcl9oYXNoIjoiMzA1Mzg5MDgwNmFlN2UwYTVjY2NlNzE5MWVjNzc5NjhiNTNkOWY3MSJ9','2015-02-07 13:07:46'),('ykncqa9ahxc0xq5tig4ybwxahmqhx2me','ZGZhMzRmMDFkZjY2YjQ2Yzk1N2E0NzMzMzgxMDY1M2NjYzBlZDgzMjp7InNlYXJjaCI6IiIsInJldmVyc2UiOnRydWUsIl9hdXRoX3VzZXJfaWQiOjEsIm9yZGVyQm9va3NCeSI6InRpdGxlIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJmaWx0ZXIiOiIiLCJvcmRlckZpbG1zQnkiOiJyYXRpbmciLCJfYXV0aF91c2VyX2hhc2giOiJkNzdjYTEzMjAzNDc1YmJjYzFlZjRjMjg2ZDdiNWE0ZjVmYjI1ZmIxIn0=','2015-02-05 16:07:22');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -546,7 +551,7 @@ CREATE TABLE `film_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `categoryname` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -555,7 +560,7 @@ CREATE TABLE `film_category` (
 
 LOCK TABLES `film_category` WRITE;
 /*!40000 ALTER TABLE `film_category` DISABLE KEYS */;
-INSERT INTO `film_category` VALUES (1,'Krimi'),(2,'Mystery');
+INSERT INTO `film_category` VALUES (1,'Krimi'),(2,'Mystery'),(3,'Action'),(4,'Drama'),(5,'Romance');
 /*!40000 ALTER TABLE `film_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -572,8 +577,10 @@ CREATE TABLE `film_film` (
   `year` varchar(100) NOT NULL,
   `description` longtext NOT NULL,
   `cover` varchar(100) NOT NULL,
+  `filmtimestamp` datetime NOT NULL,
+  `length` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -582,7 +589,7 @@ CREATE TABLE `film_film` (
 
 LOCK TABLES `film_film` WRITE;
 /*!40000 ALTER TABLE `film_film` DISABLE KEYS */;
-INSERT INTO `film_film` VALUES (1,'eeeee','1999','xxx','cover/default/default.png'),(2,'rrr','1987','c','cover/default/default.png'),(3,'ZZZ','2012','yyyy','cover/default/default.png');
+INSERT INTO `film_film` VALUES (1,'Empire','2003','Check out our exclusive video series with the future Academy Museum of Motion Pictures in Los Angeles, featuring stories on IMDb founder Col Needham, creating the costumes of Dallas Buyers Club, casting Elliott in E.T. the Extra-Terrestrial, and more. Learn how you can become a Founding Supporter of the world\'s leading movie museum.Empire','cover/film/20150124/emp_.jpg','2015-01-24 13:12:14','80'),(2,'Das Schweigen der Lämmer ','1991','Check out our exclusive video series with the future Academy Museum of Motion Pictures in Los Angeles, featuring stories on IMDb founder Col Needham, creating the costumes of Dallas Buyers Club, casting Elliott in E.T. the Extra-Terrestrial, and more. Learn how you can become a Founding Supporter of the world\'s leading movie museum.','cover/film/20150124/lamm0_.jpg','2015-01-24 13:17:05','88'),(3,'Minority Report','2012','To find a murder mystery, you should not always go to TV series. Which of these murder mystery films is the best of all time? From David Fincher\'s Seven to the 1931 film, M.','cover/film/20150124/minrep0_.jpg','2015-01-24 13:18:24','94'),(4,'Hateful Eight','2015',' Quentin Tarantino has begun shooting his Western “The Hateful Eight” in Telluride, Colo., for The Weinstein Co., which is planning a release this year.\r\n\r\nJames Parks, Dana Gourrier, Zoe Bell, Gene Jones, Keith Jefferson, Lee Horsley, Craig Stark and Belinda Owino have joined the cast. ','cover/film/20150124/MV5BM_.jpg','2015-01-24 13:10:58','95'),(5,'Verblendung ','2008','\r\nQuentin Tarantino Starts Shooting ‘Hateful Eight’\r\n19 hours ago | Variety - Film News\r\n\r\nQuentin Tarantino has begun shooting his Western “The Hateful Eight” in Telluride, Colo., for The Weinstein Co., which is planning a release this year. James Parks, Dana Gourrier, Zoe Bell, Gene Jones, Keith Jefferson, Lee Horsley, Craig Stark and Belinda Owino have joined the cast. The official ... See more »\r\n','cover/film/20150124/ver.jpg','2015-01-24 13:19:44','116');
 /*!40000 ALTER TABLE `film_film` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -603,7 +610,7 @@ CREATE TABLE `film_film_categories` (
   KEY `film_film_categories_b583a629` (`category_id`),
   CONSTRAINT `film_film_categories_category_id_377898f0_fk_film_category_id` FOREIGN KEY (`category_id`) REFERENCES `film_category` (`id`),
   CONSTRAINT `film_film_categories_film_id_25a4a1ae_fk_film_film_id` FOREIGN KEY (`film_id`) REFERENCES `film_film` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -612,7 +619,7 @@ CREATE TABLE `film_film_categories` (
 
 LOCK TABLES `film_film_categories` WRITE;
 /*!40000 ALTER TABLE `film_film_categories` DISABLE KEYS */;
-INSERT INTO `film_film_categories` VALUES (1,1,1),(5,2,2),(3,3,2);
+INSERT INTO `film_film_categories` VALUES (12,1,2),(13,1,3),(14,1,4),(15,2,2),(16,3,2),(11,4,2),(17,5,1);
 /*!40000 ALTER TABLE `film_film_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -631,9 +638,9 @@ CREATE TABLE `film_film_participants` (
   UNIQUE KEY `film_id` (`film_id`,`participant_id`),
   KEY `film_film_participants_cd2a3d01` (`film_id`),
   KEY `film_film_participants_4a3c2f9c` (`participant_id`),
-  CONSTRAINT `film_film_partici_participant_id_79d27784_fk_film_participant_id` FOREIGN KEY (`participant_id`) REFERENCES `film_participant` (`id`),
-  CONSTRAINT `film_film_participants_film_id_49c14cfa_fk_film_film_id` FOREIGN KEY (`film_id`) REFERENCES `film_film` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  CONSTRAINT `film_film_participants_film_id_49c14cfa_fk_film_film_id` FOREIGN KEY (`film_id`) REFERENCES `film_film` (`id`),
+  CONSTRAINT `film_film_partici_participant_id_79d27784_fk_film_participant_id` FOREIGN KEY (`participant_id`) REFERENCES `film_participant` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -642,7 +649,7 @@ CREATE TABLE `film_film_participants` (
 
 LOCK TABLES `film_film_participants` WRITE;
 /*!40000 ALTER TABLE `film_film_participants` DISABLE KEYS */;
-INSERT INTO `film_film_participants` VALUES (1,1,2),(2,1,3),(7,2,1),(8,2,3),(5,3,1);
+INSERT INTO `film_film_participants` VALUES (15,1,2),(16,1,3),(17,2,1),(18,2,3),(19,3,1),(20,3,5),(21,3,6),(14,4,2),(22,5,2),(23,5,3),(24,5,4);
 /*!40000 ALTER TABLE `film_film_participants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -664,7 +671,7 @@ CREATE TABLE `film_filmcomment` (
   KEY `film_filmcomment_e8701ad4` (`user_id`),
   CONSTRAINT `film_filmcomment_film_id_67fabdaa_fk_film_film_id` FOREIGN KEY (`film_id`) REFERENCES `film_film` (`id`),
   CONSTRAINT `film_filmcomment_user_id_773a9da5_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -673,7 +680,7 @@ CREATE TABLE `film_filmcomment` (
 
 LOCK TABLES `film_filmcomment` WRITE;
 /*!40000 ALTER TABLE `film_filmcomment` DISABLE KEYS */;
-INSERT INTO `film_filmcomment` VALUES (1,'fff','2015-01-22 14:52:49',3,1),(2,'ääää','2015-01-22 14:52:53',3,1),(3,'uoup','2015-01-22 14:52:57',3,1),(4,'k','2015-01-22 14:57:52',1,1),(5,'lklj','2015-01-22 15:01:10',1,1);
+INSERT INTO `film_filmcomment` VALUES (1,'fff','2015-01-22 14:52:49',3,1),(2,'ääää','2015-01-22 14:52:53',3,1),(3,'uoup','2015-01-22 14:52:57',3,1),(4,'k','2015-01-22 14:57:52',1,1),(5,'lklj','2015-01-22 15:01:10',1,1),(6,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.','2015-01-24 13:22:01',4,1),(7,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.','2015-01-24 13:22:08',1,1),(8,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.','2015-01-24 13:22:16',5,1);
 /*!40000 ALTER TABLE `film_filmcomment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -697,7 +704,7 @@ CREATE TABLE `film_filmowning` (
   KEY `film_filmowning_e8701ad4` (`user_id`),
   CONSTRAINT `film_filmowning_film_id_6e9f80f8_fk_film_film_id` FOREIGN KEY (`film_id`) REFERENCES `film_film` (`id`),
   CONSTRAINT `film_filmowning_user_id_5fde553d_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -706,7 +713,7 @@ CREATE TABLE `film_filmowning` (
 
 LOCK TABLES `film_filmowning` WRITE;
 /*!40000 ALTER TABLE `film_filmowning` DISABLE KEYS */;
-INSERT INTO `film_filmowning` VALUES (1,'Ja','Ja','2015-01-22 14:51:48',3,1),(2,'Ja','Ja','2015-01-22 15:01:06',1,1);
+INSERT INTO `film_filmowning` VALUES (1,'Ja','Ja','2015-01-22 14:51:48',3,1),(2,'Ja','Ja','2015-01-22 15:01:06',1,1),(3,'Ja','Ja','2015-01-24 13:18:31',2,1);
 /*!40000 ALTER TABLE `film_filmowning` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -729,7 +736,7 @@ CREATE TABLE `film_filmrating` (
   KEY `film_filmrating_e8701ad4` (`user_id`),
   CONSTRAINT `film_filmrating_film_id_720b6c53_fk_film_film_id` FOREIGN KEY (`film_id`) REFERENCES `film_film` (`id`),
   CONSTRAINT `film_filmrating_user_id_7dc34288_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -738,7 +745,7 @@ CREATE TABLE `film_filmrating` (
 
 LOCK TABLES `film_filmrating` WRITE;
 /*!40000 ALTER TABLE `film_filmrating` DISABLE KEYS */;
-INSERT INTO `film_filmrating` VALUES (1,3,'2015-01-22 14:51:42',3,1),(2,3,'2015-01-22 15:01:01',1,1);
+INSERT INTO `film_filmrating` VALUES (1,3,'2015-01-22 14:51:42',3,1),(2,3,'2015-01-22 15:01:01',1,1),(3,4,'2015-01-24 13:18:34',2,1);
 /*!40000 ALTER TABLE `film_filmrating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -755,7 +762,7 @@ CREATE TABLE `film_participant` (
   `lastname` varchar(255) NOT NULL,
   `role` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -764,7 +771,7 @@ CREATE TABLE `film_participant` (
 
 LOCK TABLES `film_participant` WRITE;
 /*!40000 ALTER TABLE `film_participant` DISABLE KEYS */;
-INSERT INTO `film_participant` VALUES (1,'Dieter','Mueller','director'),(2,'Dieter','Mueller','director'),(3,'Hans','Hermann','star');
+INSERT INTO `film_participant` VALUES (1,'Dieter','Mueller','director'),(2,'Dieter','Mueller','director'),(3,'Hans','Hermann','star'),(4,'Lars','Richter','star'),(5,'Tom','Hanks','star'),(6,'Cruse','Tom','star');
 /*!40000 ALTER TABLE `film_participant` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -787,7 +794,7 @@ CREATE TABLE `userauth_msg` (
   KEY `userauth_msg_63add04c` (`to_user_id`),
   CONSTRAINT `userauth_msg_from_user_id_6f2e5b5c_fk_auth_user_id` FOREIGN KEY (`from_user_id`) REFERENCES `auth_user` (`id`),
   CONSTRAINT `userauth_msg_to_user_id_2bf28fc1_fk_auth_user_id` FOREIGN KEY (`to_user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -796,7 +803,7 @@ CREATE TABLE `userauth_msg` (
 
 LOCK TABLES `userauth_msg` WRITE;
 /*!40000 ALTER TABLE `userauth_msg` DISABLE KEYS */;
-INSERT INTO `userauth_msg` VALUES (1,'test','123','2015-01-20 09:10:26',2,1),(4,'test2','123','2015-01-20 09:13:33',2,1),(5,'Hallo','Nur ein kleiner TestNur ein kleiner Test Nur ein kleiner Test\r\nNur ein kleiner Test\r\nNur ein kleiner TestNur ein kleiner TestNur ein kleiner TestNur ein kleiner Test','2015-01-20 09:44:30',1,2),(6,'Hallo nochmal','wieder ein Test','2015-01-20 09:44:52',1,2),(7,'Noch mal test','Hallo gst','2015-01-20 10:11:12',1,2),(8,'Hallo buffy','Nochmal ein etwas längerer Text Nochmal ein etwas längerer Text Nochmal ein etwas längerer Text\r\nNochmal ein etwas längerer Text Nochmal ein etwas längerer Text\r\nNochmal ein etwas längerer TextNochmal ein etwas längerer Text Nochmal ein etwas längerer Text\r\nNochmal ein etwas längerer Text\r\n','2015-01-20 10:14:36',2,1);
+INSERT INTO `userauth_msg` VALUES (1,'test','123','2015-01-20 09:10:26',2,1),(5,'Hallo','Nur ein kleiner TestNur ein kleiner Test Nur ein kleiner Test\r\nNur ein kleiner Test\r\nNur ein kleiner TestNur ein kleiner TestNur ein kleiner TestNur ein kleiner Test','2015-01-20 09:44:30',1,2),(6,'Hallo nochmal','wieder ein Test','2015-01-20 09:44:52',1,2),(7,'Noch mal test','Hallo gst','2015-01-20 10:11:12',1,2),(8,'Hallo buffy','Nochmal ein etwas längerer Text Nochmal ein etwas längerer Text Nochmal ein etwas längerer Text\r\nNochmal ein etwas längerer Text Nochmal ein etwas längerer Text\r\nNochmal ein etwas längerer TextNochmal ein etwas längerer Text Nochmal ein etwas längerer Text\r\nNochmal ein etwas längerer Text\r\n','2015-01-20 10:14:36',2,1),(9,'Viel Text','The 2015 Sundance Film Festival has started, and we\'re in Park City with coverage of the screenings, the street scene, and parties. Visit our Sundance section, brought to you by IMDb & Amazon Instant Video, to see the films we\'re excited about, plus browse our mini-guide, trailers, photos, and more!\r\nThe 2015 Sundance Film Festival has started, and we\'re in Park City with coverage of the screenings, the street scene, and parties. Visit our Sundance section, brought to you by IMDb & Amazon Instant Video, to see the films we\'re excited about, plus browse our mini-guide, trailers, photos, and more!\r\nThe 2015 Sundance Film Festival has started, and we\'re in Park City with coverage of the screenings, the street scene, and parties. Visit our Sundance section, brought to you by IMDb & Amazon Instant Video, to see the films we\'re excited about, plus browse our mini-guide, trailers, photos, and more!','2015-01-24 13:32:19',1,2);
 /*!40000 ALTER TABLE `userauth_msg` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -809,4 +816,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-22 17:17:01
+-- Dump completed on 2015-01-24 14:34:44
