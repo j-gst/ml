@@ -1,26 +1,7 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
-
 {% block title %}{{page_title}}{% endblock %}
-
 {% block content %}
-
-<!--<script>
-
-$( document ).ready(function() {
-
-
-$('#id_isbn').change(function() {
-alert( "Handler for .change() called." );
-var input = $('#id_isbn').val();
-$('#formAU').append($(input));
-});
-
-});
-
-</script>-->
-
-
 
 <script src="http://malsup.github.com/jquery.form.js"></script>
     <script> 
@@ -44,9 +25,7 @@ $('#formAU').append($(input));
                 }, 500);
             });           
         }); 
-    </script> 
-
-    
+</script> 
 
 <div class="custom-center-area-100">
 
@@ -54,35 +33,27 @@ $('#formAU').append($(input));
     <form  method="post" enctype="multipart/form-data" action="" class="form-horizontal">
         {% csrf_token %}
         {% bootstrap_form book_form layout='horizontal' %}
-      
-      
-<div style=" width:50%; margin-left:100px">
-        <button type="submit" class="btn btn-primary" name="submit" value="submit">
-         {#% bootstrap_icon "star" %#} Speichern
-        </button>
-        {% if not new %} 
-        <button type="submit" class="btn btn-primary" name="delete" value="delete">
-         {#% bootstrap_icon "star" %#} Löschen
-        </button>
-        {% endif %} 
-   <a style="float:right; margin:right:200px" id="btn_col" class="btn btn-default" data-toggle="collapse" href="#a" aria-expanded="false" aria-controls="a">neuer Autor</a>
-        <span id="InfoBox" style="visibility:hidden; color:green; "> Autor angelegt!</span>
-   <a style="float:right; margin:right:200px" id="btn_col2" class="btn btn-default" data-toggle="collapse" href="#c" aria-expanded="false" aria-controls="c">neue Kategorie</a>
-        <span id="InfoBox2" style="visibility:hidden; color:green; "> Kategorie angelegt!</span>       
-</div>        
-        
-<!--
-        <a id="btn_col" class="btn btn-default" data-toaggle="collapse" href="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory"> Kategorie </a>
-        <span id="InfoBox" style="visibility:hidden; color:green; "> Kategorie angelegt!</span>
--->
+           
+        <div style=" width:50%; margin-left:100px">
+                <button type="submit" class="btn btn-primary" name="submit" value="submit">
+                 {#% bootstrap_icon "star" %#} Speichern
+                </button>
+                {% if not new %} 
+                <button type="submit" class="btn btn-primary" name="delete" value="delete">
+                 {#% bootstrap_icon "star" %#} Löschen
+                </button>
+                {% endif %} 
+           <a style="float:right; margin:right:200px" id="btn_col" class="btn btn-default" data-toggle="collapse" href="#a" aria-expanded="false" aria-controls="a">neuer Autor</a>
+                <span id="InfoBox" style="visibility:hidden; color:green; "> Autor angelegt!</span>
+           <a style="float:right; margin:right:200px" id="btn_col2" class="btn btn-default" data-toggle="collapse" href="#c" aria-expanded="false" aria-controls="c">neue Kategorie</a>
+                <span id="InfoBox2" style="visibility:hidden; color:green; "> Kategorie angelegt!</span>       
+        </div>        
+       
        
     </form>
 
-
 <div class="collapse" id="a">
-  <div class="well">
-   
-   
+  <div class="well">    
     <form id="formAU" method="post" enctype="multipart/form-data" action="{% url 'book_author_add' %}" class="form-horizontal">
         {% csrf_token %}
         {% bootstrap_form author_form layout='horizontal' %}
@@ -93,16 +64,12 @@ $('#formAU').append($(input));
         </button>
         {% endbuttons %}
     </form>
-   
-
-   
   </div>
 </div>
 
 
 <div class="collapse" id="c">
   <div class="well">
-
     <form id="formCA" method="post" enctype="multipart/form-data" action="{% url 'book_category_add' %}" class="form-horizontal">
         {% csrf_token %}
         {% bootstrap_form category_form layout='horizontal' %}
@@ -115,8 +82,6 @@ $('#formAU').append($(input));
     </form>
   </div>
 </div>
-
-
 
 </div>
 {% endblock %}

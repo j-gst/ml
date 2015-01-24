@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
-
 {% block title %}{{page_title}}{% endblock %}
-
 {% block content %}
 <div class="custom-center-area-70">
         <h1>Liste der Autoren</h1>
-
-
         <table class="table">
             <tr>
                 <th>Nachname</th>
@@ -16,7 +12,6 @@
         <a href="{% url 'addAuthor' %}" class="btn btn-primary">neuer Autor</a>
         {% endif %}</th>
             </tr>
-
     {% for author in authors%}
         <tr>
             <td>
@@ -32,8 +27,7 @@
             </td>
         </tr>
     {% endfor %}
-        </table>
-        
+        </table>      
         <nav>
   <ul class="pagination">
     <li {% if 1 == page %} class="disabled" {% endif %}>
@@ -41,8 +35,7 @@
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    
-   
+
     {% for count in pageRange %}
         <li {% if count == page %} class="active" {% endif %}><a  href="{% url 'authors' page=count  %}">{{count}}</a></li>
     {% endfor %}
@@ -52,11 +45,8 @@
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
-    
-    
   </ul>
 </nav>
-
-      
+ 
 </div>
 {% endblock %}

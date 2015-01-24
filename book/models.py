@@ -1,8 +1,17 @@
+"""
+models book app
+Objektorientierte Scriptsprachen WS 2014
+Autoren: Beate Gericke, Gerrit Storm
+24.01.2015
+"""
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.auth.models import User
 from django.db.models import Avg
 
+""" BookOwning
+Speicherung ob ein Benutzer ein Buch gelesen hat oder besitzt
+"""
 @python_2_unicode_compatible
 class BookOwning(models.Model):
     OWN = (
@@ -13,7 +22,6 @@ class BookOwning(models.Model):
         ('Ja', 'Ja'),
         ('Nein', 'Nein'),
     )
-
     own = models.CharField(max_length=15, choices = OWN, default = 'Nein' )
     read = models.CharField(max_length=15, choices = READ, default = 'Nein' )
     user = models.ForeignKey(User, unique=False)
@@ -24,6 +32,9 @@ class BookOwning(models.Model):
     class Meta:
         unique_together = (('user', 'book'),)
 
+""" BookRating
+Speicherung der Bewertung eines Buches
+"""
 @python_2_unicode_compatible
 class BookRating(models.Model):
     CHOICE = (
@@ -42,7 +53,9 @@ class BookRating(models.Model):
     class Meta:
         unique_together = (('user', 'book'),)
 
-
+""" BookComment
+Kommentare zu Buechern
+"""      
 @python_2_unicode_compatible
 class BookComment(models.Model):
 
@@ -53,10 +66,8 @@ class BookComment(models.Model):
     def __str__(self):
         return '%s' % (self.text)
 
-
-
-
-
+""" Author
+"""
 @python_2_unicode_compatible
 class Author(models.Model):
     firstname = models.CharField('lastname', max_length=255, )
@@ -65,6 +76,8 @@ class Author(models.Model):
     def __str__(self):
         return '%s, %s' % (self.lastname, self.firstname)
 
+""" Category
+"""
 @python_2_unicode_compatible
 class Category(models.Model):
     categoryname = models.CharField('category', max_length=255)
@@ -72,9 +85,8 @@ class Category(models.Model):
     def __str__(self):
         return '%s' % (self.categoryname)
 
-
-
-
+""" Book
+"""
 @python_2_unicode_compatible
 class Book(models.Model):
     title = models.CharField( max_length=255, )
@@ -83,20 +95,18 @@ class Book(models.Model):
     authors = models.ManyToManyField(Author, verbose_name=u'Autoren')
     pages = models.IntegerField( max_length=4,verbose_name=u'Seitenzahl' )
     categories = models.ManyToManyField(Category, verbose_name=u'Kategorien')
-    cover = models.FileField(upload_to='cover/%Y%m%d', default='cover/default/default.png')
+    cover = models.FileField(upload_to='cover/book/%Y%m%d', default='cover/default/default.png')
     booktimestamp = models.DateTimeField(auto_now=True)
     
+    # Durchschnittliche Bewertung ermitteln
     def orderRating(self):
         return BookRating.objects.all().filter(book_id=self.id).aggregate(Avg('rating'))['rating__avg']
-        
-  
-               
-        
-
     def __str__(self):
         return self.title
     def printAuthors(self):
         return self.authors.all()
+        
+    # String zur Ausgabe der Bewertungen
     def printAvgRating(self):
         bookRatings = BookRating.objects.all().filter(book_id=self.id) 
         count = bookRatings.count()

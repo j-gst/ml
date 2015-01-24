@@ -1,19 +1,14 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
-
 {% block title %}{{page_title}}{% endblock %}
-
 {% block content %}
 
 <div class="row">
 <div class=" col-md-10 col-sm-10 col-xs-10  col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
 <div class="row">
-
     <div class="custom-book-cover col-md-3 col-sm-3 col-xs-3">
          <img src="{{MEDIA_URL}}{{film.cover}}" alt="Cover">
     </div>
-
-
     <div class="custom-book-details col-md-6 col-sm-6 col-xs-6">
         <h1>{{ film }}</h1>
         <p>
@@ -34,12 +29,9 @@
         {% endfor %}
         </p>
     </div>
-
     <div class="custom-book-add col-md-3 col-sm-3 col-xs-3">
     {# Bewertung des Filmes #}
-
         <b>Durchschnittliche Bewertung: {{ film.printAvgRating }}</b><br>
-
         <div>
         {% if ownRating == 0 %}
 
@@ -87,14 +79,12 @@
 </div>
 </div>
 
-
 <div class="row" style="margin-top: 25px;">
 <div class=" col-md-10 col-sm-10 col-xs-10  col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
 <div class="custom-comment-area">
 <hr>
 <h2>Kommentare:</h2>
 <hr>
-
 
     {% if user.is_authenticated %}
 <form  action="{% url 'commentFilm' pk=film.id %}" method="post" accept-charset="utf-8">
@@ -112,7 +102,6 @@
     <b>Sie müssen eingeloggt sein, um Kommentare abgeben zu können.</b>
     {% endif %}
 </div>
-
 <br><br><hr>
       <div class="container-fluid">
      <div class="row">
@@ -151,7 +140,6 @@
      </div>
      </div>
      </div>
-
 </div>
 </div>
 {% endblock %}

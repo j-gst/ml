@@ -1,19 +1,25 @@
+"""
+models film app
+Objektorientierte Scriptsprachen WS 2014
+Autoren: Beate Gericke, Gerrit Storm
+24.01.2015
+"""
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.auth.models import User
 from django.db.models import Avg
 
-
+""" Category
+"""
 @python_2_unicode_compatible
 class Category(models.Model):
     categoryname = models.CharField('category', max_length=255)
     def __str__(self):
         return '%s' % (self.categoryname)
 
-
-
-        
-        
+""" FilmComment
+Kommentare zu Filmen
+"""     
 @python_2_unicode_compatible 
 class FilmComment(models.Model):
 
@@ -23,8 +29,10 @@ class FilmComment(models.Model):
     commentdate = models.DateTimeField(auto_now=True)
     def __str__(self):
         return '%s' % (self.text)
-
-     
+        
+""" FilmOwning
+Speicherung ob ein Benutzer ein Film gesehen hat oder besitzt
+"""   
 @python_2_unicode_compatible
 class FilmOwning(models.Model):
     OWN = (
@@ -35,7 +43,6 @@ class FilmOwning(models.Model):
         ('Ja', 'Ja'),
         ('Nein', 'Nein'),
     )
-
     own = models.CharField(max_length=15, choices = OWN, default = 'Nein' )
     seen = models.CharField(max_length=15, choices = SEEN, default = 'Nein' )
     user = models.ForeignKey(User, unique=False)
@@ -46,9 +53,8 @@ class FilmOwning(models.Model):
     class Meta:
         unique_together = (('user', 'film'),)     
         
-
-
-
+""" Participant
+"""
 @python_2_unicode_compatible
 class Participant(models.Model):
     CHOICE = (
@@ -63,7 +69,9 @@ class Participant(models.Model):
     def __str__(self):
         return '%s, %s (%s)' % (self.lastname, self.firstname, self.role)
 
-
+""" FilmRating
+Speicherung der Bewertung eines Filmes
+"""
 @python_2_unicode_compatible
 class FilmRating(models.Model):
     CHOICE = (
@@ -82,10 +90,8 @@ class FilmRating(models.Model):
     class Meta:
         unique_together = (('user', 'film'),)     
         
-        
-        
-
-
+""" Film
+"""
 @python_2_unicode_compatible
 class Film(models.Model):
     title = models.CharField( max_length=255, verbose_name=u'Titel')
@@ -122,13 +128,4 @@ class Film(models.Model):
         else:
             avg = 'noch keine Bewertungen'
         
-        return avg
-
-        
-
-
-
-
-
-        
-
+        return avg  

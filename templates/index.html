@@ -1,24 +1,23 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
 
-
-
 {% block title %}{{page_title}}{% endblock %}
 
 {% block content %}
 
-
-
 <div class="row">
     <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
         <h1>Willkommen in der Medialib</h1>
+        <div class="custom-book-add">
+            Statistik: {{userC}} Benutzer, {{filmC}} Filme und {{bookC}} B&uuml;cher
+        </div>
         <div class="row content">
             <div class="col-md-6 col-sm-6 col-xs-6 books">
-                <h2>Bücher</h2>
-                <h3>Die neusten Einträge in Bücher</h3>
+                <h2>B&uuml;cher <small>Die neusten Einträge in B&uuml;cher </h3></small></h2>
+      
                 <div class="row">
                     {% for book in books %}
-                    <div class="col-md-4">
+                    <div class="col-md-5 custom-book-add" style="margin:4px; box-sizing: border-box;">
                         <div class="index-title">
                             <h4><a href="{% url 'detailBook' pk=book.pk %}" class="index-title">{{ book.title }}</a></h4>
                         </div>
@@ -31,15 +30,14 @@
                         </div>
                     </div>
                     {% endfor %}
-
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-6 films">
-                <h2>Filme</h2>
-                <h3>Die neusten Einträge in Filme</h3>
+                <h2>Filme <small>Die neusten Einträge in Filme</h3></small>
+               
                 <div class="row">
                     {% for film in films %}
-                    <div class="col-md-4">
+                    <div class="col-md-5 custom-book-add" style="margin:4px; box-sizing: border-box;">
                         <div class="index-title">
                             <h4><a href="{% url 'detailFilm' pk=film.pk %}" class="index-title">{{ film.title }}</a></h4>
                         </div>
@@ -58,7 +56,4 @@
         </div>
     </div>
 </div>
-
-
-
 {% endblock %}

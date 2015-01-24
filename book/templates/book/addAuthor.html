@@ -1,11 +1,7 @@
-{# Beate 02.01.2015#}
-        {% extends 'base.html' %}
-        {% load bootstrap3 %}
-{# End Beate 02.01.2015 #}
-
+{% extends 'base.html' %}
+{% load bootstrap3 %}
 {% block content %}
 <h1>{{ page_title }}</h1>
-
      <form method="post" enctype="multipart/form-data" action="" class="form-horizontal">
         {% csrf_token %}
         {% bootstrap_form author_form layout='horizontal' %}

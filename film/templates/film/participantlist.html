@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
-
 {% block title %}{{page_title}}{% endblock %}
-
 {% block content %}
 <div class="custom-center-area-70">
         <h1>Liste der Mitwirkenden</h1>
-
-
         <table class="table">
             <tr>
                 <th>Nachname</th>
@@ -38,15 +34,14 @@
     {% endfor %}
         </table>
         
-        <nav>
+<nav>
   <ul class="pagination">
     <li {% if 1 == page %} class="disabled" {% endif %}>
       <a  href="{% url 'authors' page=1  %}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    
-   
+      
     {% for count in pageRange %}
         <li {% if count == page %} class="active" {% endif %}><a  href="{% url 'authors' page=count  %}">{{count}}</a></li>
     {% endfor %}
@@ -59,8 +54,6 @@
     
     
   </ul>
-</nav>
-
-      
+</nav>    
 </div>
 {% endblock %}

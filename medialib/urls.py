@@ -1,13 +1,15 @@
+"""
+URLs medialib Projekt
+Autoren: Beate Gericke, Gerrit Storm
+24.01.2015
+"""
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.http import  HttpResponseRedirect
 from django.conf import settings
 import settings
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'medialib.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
 
+urlpatterns = patterns('',
     url(r'^$', 'medialib.views.index', name='home'),
     url(r'^film/', include('film.urls')),
     url(r'^book/', include('book.urls')),
