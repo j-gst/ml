@@ -21,7 +21,7 @@
                         <div class="index-title">
                             <h4><a href="{% url 'detailBook' pk=book.pk %}" class="index-title">{{ book.title }}</a></h4>
                         </div>
-                            <img style="height:250px; max-width:70%; " src="{{MEDIA_URL}}{{book.cover}}" alt="Cover" class="index-cover" >
+                            <img style=" " src="{{MEDIA_URL}}{{book.cover}}" alt="Cover" class="index-cover" >
                         <div class="index-persons">
                             {{ book.authors.all|join:', ' }}
                         </div>
@@ -41,7 +41,7 @@
                         <div class="index-title">
                             <h4><a href="{% url 'detailFilm' pk=film.pk %}" class="index-title">{{ film.title }}</a></h4>
                         </div>
-                         <img style="height:250px; max-width:80%; " src="{{MEDIA_URL}}{{film.cover}}" alt="Cover" class="index-cover">
+                         <img style=" " src="{{MEDIA_URL}}{{film.cover}}" alt="Cover" class="index-cover">
                         <div class="index-persons">
                             {{ film.participants.all|join:', ' }}
                         </div>

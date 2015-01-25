@@ -102,8 +102,9 @@ div.index-title{
     height: 50px;
 }
 img.index-cover{
-    height: auto;
-    width: 90%;
+    width: auto;
+    max-width: 90%;
+    height: 250px;
 }
 div.index-persons{
     height: 60px;
