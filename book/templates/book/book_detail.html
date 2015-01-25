@@ -29,12 +29,13 @@
         </p>
     </div>
 
-    {% if user.is_authenticated %}
+    
     <div class="custom-book-add col-md-3 col-sm-3 col-xs-3">
     {# Bewertung des Buches #}
 
         <b>Durchschnittliche Bewertung: {{ book.printAvgRating }}</b><br>
 
+        {% if user.is_authenticated %}
         <div>
         {% if ownRating == 0 %}
 
@@ -77,8 +78,9 @@
             <span>Buch gelesen: {{ owning.read }}</span>
             {% endif %}
         </div>
+         {% endif %}
     </div>
-    {% endif %}
+   
 
 </div>
 </div>
