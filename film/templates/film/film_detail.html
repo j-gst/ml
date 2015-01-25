@@ -29,6 +29,8 @@
         {% endfor %}
         </p>
     </div>
+
+    {% if user.is_authenticated %}
     <div class="custom-book-add col-md-3 col-sm-3 col-xs-3">
     {# Bewertung des Filmes #}
         <b>Durchschnittliche Bewertung: {{ film.printAvgRating }}</b><br>
@@ -75,6 +77,8 @@
             {% endif %}
         </div>
     </div>
+    {% endif %}
+
 </div><!-- end row -->
 </div>
 </div>
